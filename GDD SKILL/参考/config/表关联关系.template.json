@@ -1,0 +1,29 @@
+{
+  "$schema": "config_table_relations.v1",
+  "version": "1.0",
+  "description": "配置表关联关系模板。策划+程序维护；供未来 config_table_impact Skill 检索。",
+  "maintainers": {
+    "planner": "",
+    "programmer": ""
+  },
+  "tables": [
+    {
+      "table_id": "ExampleTableA",
+      "name": "示例表 A",
+      "owner": "策划",
+      "relations": [
+        {
+          "type": "ref",
+          "target": "ExampleTableB",
+          "via": "ref_id",
+          "desc": "字段引用示例"
+        },
+        {
+          "type": "gdd_pxx",
+          "target": "P-01",
+          "desc": "对应 02/数据源/字段映射索引.md"
+        }
+      ]
+    }
+  ]
+}

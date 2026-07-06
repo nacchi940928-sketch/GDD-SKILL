@@ -37,8 +37,14 @@
 | **流程规范** | `gdd/p0~p6-*/SKILL.md` | — | 各阶段**文档格式**铁律（P0~P6） |
 | **横切基底** | `tech/*`、`ux/*` | L0 | 分辨率、交互反馈等全项目共用 |
 | **系统框架** | `design/*` | L1 | 抽象业务模式 + `config_schema` |
+| **代做/待建** | `_backlog/*` | — | 须确认后才实现的 Skill 构想 |
 
-## 框架 vs 实例
+## Skill 代做记录
+
+尚未实现的 Skill 登记在 [_backlog/](_backlog/README.md)。  
+当前：**[config_table_impact](_backlog/config_table_impact.md)** — 线上配置表变更后，按策划/程序维护的表关联关系检索影响范围。
+
+---
 
 ```text
 L1 框架 Skill（本目录 design/*）
