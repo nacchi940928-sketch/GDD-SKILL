@@ -1,0 +1,38 @@
+{
+  "project": {
+    "name": "竞技场高级赛",
+    "description": "周练定组 → 自动报名 → 16人单败锦标赛 + 竞猜",
+    "reference_games": "现网纷乱的群殴",
+    "platform": "移动端",
+    "target_audience": "竞技场活跃玩家",
+    "monetization": "竞猜币商店"
+  },
+  "selected_skills": [
+    "resolution_standard",
+    "interaction_feedback",
+    "tournament_bracket"
+  ],
+  "skill_configs": {
+    "tournament_bracket": {
+      "bracket_size": "16",
+      "registration_mode": "auto",
+      "registration_cron": "周一 UTC0",
+      "contestant_top_n": "4",
+      "groups_per_bracket": "4",
+      "robot_fill": "true",
+      "identity_lock_days": "7",
+      "enable_betting": "true",
+      "phase_schedule": "公示1天 + 战斗4轮 + 结算2天"
+    },
+    "resolution_standard": {
+      "orientation": "竖屏",
+      "reference_resolution": "1080x2340",
+      "scale_mode": "等比包含留黑边（fit）"
+    },
+    "interaction_feedback": {
+      "feedback_strength": "标准",
+      "click_lock_ms": "300"
+    }
+  },
+  "feature_root": "案例/竞技场高级赛"
+}
