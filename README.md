@@ -1,11 +1,10 @@
 # GDD SKILL
 
 > **目标**：产出程序可执行的 **需求拆解（02）** 与 **功能点梳理（03）**，经补充清单迭代完善后入库交付程序。  
-> 策划提供原始案 → AI/程序辅助拆解 → **补充清单 ↔ 回填验收** → 入库。
+> **两条线**：可选 **P0 策划创作辅助**（立项探索 → 01 草稿）→ **P1~P6 规格交付**（拆解 → 补全 → 编译 → 开发管线）。
 
 **当前分支**：`promptmerge`（PromptMerge 架构落地版）  
 **仓库**：https://github.com/nacchi940928-sketch/GDD-SKILL.git
-
 ---
 
 ## 1. 项目定位
@@ -54,7 +53,7 @@
 GDD SKILL/                          ← 项目主目录（本 README 同级为仓库根）
 └── GDD SKILL/
     ├── README.md                   ← 详细说明（本文件副本见仓库根 README.md）
-    ├── 策划工作流.md               ← 五阶段工作流详解 + 检查清单
+    ├── 策划工作流.md               ← 阶段工作流详解 + 检查清单
     ├── 内容要点.md                 ← 与 design/server/client 仓库协作说明
     │
     ├── prompts/                    ← ★ 提示词（复制粘贴到 Agent 即用）
@@ -68,7 +67,7 @@ GDD SKILL/                          ← 项目主目录（本 README 同级为�
     │
     ├── skills/                     ← ★ 规范与可复用知识（Skill）
     │   ├── README.md               ← Skill 总索引（L0/L1/流程）
-    │   ├── gdd/                    ← 各阶段规范（p1~p6-decompose 等）
+    │   ├── gdd/                    ← 各阶段规范（p0-discovery ~ p6-pipeline）
     │   ├── design/                 ← L1 系统**框架**（如 tournament_bracket）
     │   ├── ux/                     ← L0 横切（interaction_feedback）
     │   ├── tech/                   ← L0 横切（resolution_standard）
@@ -99,27 +98,28 @@ L1 系统框架（跨功能复用，抽象模式 + config 槽位）
   skills/design/tournament_bracket / …
         ↓ 实例化（skill_configs + 业务 delta）
 L2 项目/功能实例
-  案例/{功能}/01~04 + workflows/*.json
+  案例/{功能}/00~04 + workflows/*.json
+  （00 立项探索为 P0 可选产出；01~04 为规格交付主线）
 ```
 
 **原则**：L1 写通用规则与槽位；L2 写项目差异；workflow 填参数；**03-功能点梳理** 是程序 AI 管线的唯一主读文档。
 
 ---
 
-## 4. 文档五阶段 + Prompt 六段
+## 4. 文档阶段 + Prompt 阶段
 
-### 文档阶段（策划工作流）
+### 文档阶段（策划工作流 · 00~05）
 
 | 阶段 | 目录 | 执行者 | 说明 |
 |------|------|--------|------|
 | 00 | 立项探索 | 策划 + AI（**可选**） | P0：项目发现、GameDNA、Skill 选型、玩法大纲、01 草稿 |
-| 01 | 原始策划案 | **策划提供/定稿** | 完整设计叙述；可由 P0-4 草稿修订而来 |
+| 01 | 原始策划案 | **策划定稿** | 完整设计叙述；可由 P0-4 草稿修订，或由 docx 整理 |
 | 02 | 需求拆解 | 程序/AI | 8 维度：规则、边界、红点、数据源、UI、状态机、校验、验收 |
 | 03 | 功能点梳理 | 程序/AI | **程序主文档**，自包含可开发 |
 | 04 | 待策划补充 | 程序/AI + **策划** | 生成补充清单 → 策划回填 → 验收（**可循环**） |
 | 05 | 入库交付 | 程序 | 02/03/04 完整后 git 提交，交付程序开发 |
 
-### Prompt 阶段（Agent 执行）
+### Prompt 阶段（Agent 执行 · P0~P6）
 
 | 段 | 提示词数 | 索引 |
 |----|----------|------|
@@ -175,15 +175,32 @@ python tools/compile.py 案例/竞技场高级赛 --workflow workflows/arena.wor
 | 策划包.md | 策划 | 01 + 规则摘要 + skill_configs |
 | compiled.json | 工具链 | 编译 manifest |
 
-### 新建功能（概要）
+### 新建功能
 
-1. 策划按 P1 产出 `01-原始策划案`
-2. 程序/AI 按 P2、P3 提示词逐段执行
-3. P4 生成待补充清单 → 策划回填
-4. P5 分轨检查 + 编译 + 验收
-5. P6 生成 server/client design 四件套，进入 AI 自动开发管线
+**路径 A — 策划已有 docx/01（如竞技场高级赛）**
 
-复制 `workflows/arena.workflow.json`，修改 `selected_skills` 与 `skill_configs`。
+1. P1-1 整理 / 确认 `01-原始策划案`
+2. P2、P3 逐段执行 → P4 待补充 → 策划回填
+3. P5 编译验收 → P6 开发管线
+4. 复制 `workflows/arena.workflow.json`，修改 `selected_skills` 与 `skill_configs`
+
+**路径 B — 从模糊想法开始（走 P0）**
+
+1. 复制 `templates/00-立项探索/{功能名}/` → `案例/{功能名}/00-立项探索/`
+2. P0-1 → P0-2 → P0-3 → P0-4（每步策划确认）
+3. P1 将 `原始策划案-草稿.md` 定稿为 `原始策划案.md`
+4. 继续路径 A 的步骤 2~4
+
+### P0 快速索引
+
+| 提示词 | 产出 |
+|--------|------|
+| [P0-1 项目发现](GDD%20SKILL/prompts/P0/P0-1-项目发现.md) | `00-立项探索/{功能名}/project.json` |
+| [P0-2 GameDNA 定调](GDD%20SKILL/prompts/P0/P0-2-GameDNA定调.md) | `game_dna.json` + `game_dna.md` |
+| [P0-3 Skill 选型](GDD%20SKILL/prompts/P0/P0-3-功能层级与Skill选型.md) | `skill选型.md` + workflow 草案 |
+| [P0-4 玩法大纲与 01 初稿](GDD%20SKILL/prompts/P0/P0-4-玩法大纲与01初稿.md) | `玩法大纲.md` + `01/原始策划案-草稿.md` |
+
+规范：`skills/gdd/p0-discovery/SKILL.md`
 
 ---
 
@@ -205,10 +222,11 @@ python tools/compile.py 案例/竞技场高级赛 --workflow workflows/arena.wor
 
 **竞技场高级赛**（`案例/竞技场高级赛/`）
 
-- 完整走通 01 → 04 五阶段
+- 策划已有 docx，**跳过 P0**，走 P1 → 04 规格交付线
+- 完整走通 01 → 04，继承 `tournament_bracket` L1 框架
 - 关联 workflow：`workflows/arena.workflow.json`
 - 已编译产出：`outputs/竞技场高级赛/`
-- 继承现网「纷乱的群殴」决斗模块，本次增量为分组/报名/竞猜/商店
+- 继承现网「纷乱的群殴」决斗模块；L2 delta：分组/报名/竞猜/商店
 
 评审建议路径：
 
@@ -238,7 +256,8 @@ design 仓库（本工程产出）→ server/design + client/design（P6 四件�
 
 | 维度 | 建议评审问题 |
 |------|--------------|
-| 工作流完整性 | P1~P6 是否覆盖策划→程序→测试全链路？ |
+| 两条线边界 | P0 草稿 vs P1 定稿 vs P2 规格是否清晰？P0 能否跳过？ |
+| 工作流完整性 | P0~P6 是否覆盖策划创作 → 程序 → 测试全链路？ |
 | 可复用性 | L1 tournament_bracket 能否支撑下一个锦标赛类功能？ |
 | 程序可读性 | 03 是否自包含、无「见原文档」？ |
 | AI 可执行性 | 02 规则是否有伪代码 + P-xx？状态机是否无歧义？ |
@@ -253,7 +272,8 @@ design 仓库（本工程产出）→ server/design + client/design（P6 四件�
 |------|------|
 | [策划工作流.md](GDD%20SKILL/策划工作流.md) | 阶段定义与检查清单 |
 | [docs/PromptMerge规划.md](GDD%20SKILL/docs/PromptMerge规划.md) | 架构设计与 Vibe Studio 融合说明 |
-| [prompts/README.md](GDD%20SKILL/prompts/README.md) | 26 个提示词索引（含 P0） |
+| [prompts/P0/README.md](GDD%20SKILL/prompts/P0/README.md) | P0 立项探索（策划创作辅助） |
+| [prompts/README.md](GDD%20SKILL/prompts/README.md) | 全阶段 26 个提示词索引 |
 | [skills/README.md](GDD%20SKILL/skills/README.md) | Skill 知识库（L0/L1 框架 + 流程规范） |
 | [templates/转换规范.md](GDD%20SKILL/templates/转换规范.md) | 01→03 转换铁律 |
 
@@ -264,7 +284,7 @@ design 仓库（本工程产出）→ server/design + client/design（P6 四件�
 | 分支 | 说明 |
 |------|------|
 | `main` | 初始提交：模板 + 竞技场案例 |
-| `promptmerge` | PromptMerge 架构：skills / prompts / compile / workflows |
+| `promptmerge` | PromptMerge 架构：skills / prompts（P0~P6）/ compile / workflows |
 
 **变更原则**：改 `skills/`、`案例/`、`workflows/` → 重新 `compile.py` → **禁止手改 `outputs/`**。
 
@@ -279,4 +299,4 @@ design 仓库（本工程产出）→ server/design + client/design（P6 四件�
 
 ---
 
-*文档生成供项目组评审 · 如有问题请在 PR / Issue 中标注具体阶段（P1~P6）与功能名。*
+*文档供项目组评审 · 如有问题请在 PR / Issue 中标注具体阶段（P0~P6）与功能名。*
