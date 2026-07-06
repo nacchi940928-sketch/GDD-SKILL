@@ -37,7 +37,7 @@ P0 → 01 草稿        →    P1 定稿 → P2 八维度 → P3 功能点 → P
 | P5 编译验收 | [P5/README.md](P5/README.md) |
 | P6 开发管线 | [P6/README.md](P6/README.md) |
 
-> **P1~P6 共 22 个提示词正文**均已统一 Part 2 六段式结构。
+> **P1~P6 共 23 个提示词正文**均已统一 Part 2 六段式结构。
 
 ---
 
@@ -49,7 +49,7 @@ P0 → 01 草稿        →    P1 定稿 → P2 八维度 → P3 功能点 → P
 | **P2 需求拆解** | **8** | [p2-decompose](../skills/gdd/p2-decompose/SKILL.md) | **核心：八维度编号化** |
 | **P3 功能点** | **6** | [p3-feature-spec](../skills/gdd/p3-feature-spec/SKILL.md) | **核心：程序主文档** |
 | P4 待补充 | 2 | [p4-planner-fill](../skills/gdd/p4-planner-fill/SKILL.md) | 策划回填 delta |
-| P5 编译验收 | 3 | [p5-compile-verify](../skills/gdd/p5-compile-verify/SKILL.md) | compile + 验收 |
+| P5 编译验收 | 4 | [p5-compile-verify](../skills/gdd/p5-compile-verify/SKILL.md) | compile + 验收 + **执行日志** |
 | P6 开发管线 | 3 | [p6-pipeline](../skills/gdd/p6-pipeline/SKILL.md) | server/client 四件套 |
 
 ## Part 2 推荐顺序
@@ -65,7 +65,7 @@ P4-1 → 策划回填 04 → P4-2 验收 ──┐
   ↑                              │ 未通过
   └──────────────────────────────┘
   ↓
-P5-1 → P5-2 → P5-3 → P6
+P5-1 → P5-2 → P5-3 → P5-4 → P6
 ```
 
 ## 用法

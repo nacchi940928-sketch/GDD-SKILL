@@ -9,7 +9,7 @@
 
 ```text
 P4-2 通过 → P5-1 分轨检查 → 修正 02/03
-  → P5-2 compile → P5-3 策划验收 → P6
+  → P5-2 compile → P5-3 策划验收 → P5-4 执行日志 → P6
 ```
 
 ---
@@ -21,6 +21,20 @@ P4-2 通过 → P5-1 分轨检查 → 修正 02/03
 | P5-1 | [P5-1-职能分轨检查.md](P5-1-职能分轨检查.md) | `{feature_root}/职能分轨检查报告.md` |
 | P5-2 | [P5-2-执行编译验收.md](P5-2-执行编译验收.md) | `outputs/{功能名}/编译验收报告.md` + 三包 |
 | P5-3 | [P5-3-策划验收清单.md](P5-3-策划验收清单.md) | `outputs/{功能名}/策划验收清单.md` |
+| P5-4 | [P5-4-管线执行日志.md](P5-4-管线执行日志.md) | `{feature_root}/logs/{YYYYMMDD}-{HHmmss}.log.md` |
+
+---
+
+## 执行日志（P5-4 · 每次必写）
+
+| 规则 | 说明 |
+|------|------|
+| 路径 | `{feature_root}/logs/` |
+| 命名 | `{YYYYMMDD}-{HHmmss}.log.md`（结束时刻本地时间） |
+| 频次 | 每次工作流会话结束新建一条，**禁止覆盖** |
+| 模板 | [templates/logs/模板.log.md](../../templates/logs/模板.log.md) |
+
+部分执行（仅 P1~P2 等）中断时也须写日志，记录到达节点与阻塞项。
 
 ---
 
@@ -54,3 +68,4 @@ python tools/compile.py 案例/{功能名} --workflow workflows/{项目}.workflo
 - [ ] P5-3 策划验收：可否进入 P6 = **是**
 - [ ] `outputs/{功能名}/程序包.md` 已生成
 - [ ] 无 blocking 编译/错轨问题
+- [ ] **P5-4** 已写入 `logs/{YYYYMMDD}-{HHmmss}.log.md`

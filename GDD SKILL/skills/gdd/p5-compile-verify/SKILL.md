@@ -53,9 +53,20 @@ python tools/compile.py 案例/{功能名} --workflow workflows/{项目}.workflo
 | P5-1-职能分轨检查.md | 错轨清单 + 移动建议 |
 | P5-2-执行编译验收.md | 运行 compile + 产出检查报告 |
 | P5-3-策划验收清单.md | 逐项验收结果 |
+| P5-4-管线执行日志.md | `{feature_root}/logs/{YYYYMMDD}-{HHmmss}.log.md` |
+
+## 执行日志
+
+每次工作流会话结束（含部分执行、重跑）须新建一条：
+
+```text
+{feature_root}/logs/{YYYYMMDD}-{HHmmss}.log.md
+```
+
+模板：`templates/logs/模板.log.md`。同功能多次执行多条并存，禁止覆盖。
 
 ## 推荐顺序
 
 ```
-P4-2 完成后 → P5-1 → 修正错轨 → P5-2 compile → P5-3 → P6
+P4-2 完成后 → P5-1 → 修正错轨 → P5-2 compile → P5-3 → P5-4 写 logs → P6
 ```
