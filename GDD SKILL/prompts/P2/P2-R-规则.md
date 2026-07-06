@@ -1,6 +1,6 @@
 ﻿# P2-R 规则
 
-规范：`skills/gdd/p2-decompose/SKILL.md` · 库索引：[规格交付库.md](../规格交付库.md)
+规范：`skills/gdd/p2-decompose/SKILL.md` · **配置表**：`skills/tech/config_table/tech.md` · **可配置规则**：`skills/tech/configurable_rules/tech.md` · 库索引：[规格交付库.md](../规格交付库.md)
 
 ## 提示词正文（复制以下内容）
 
@@ -19,6 +19,7 @@ L1 skill_id：{skill_id，无则留空}
 - {feature_root}/02-需求拆解/{功能名}/数据源/字段映射索引.md
 - workflows/{项目}.workflow.json
 - skills/design/{skill_id}/design.md（如有 L1）
+- skills/tech/configurable_rules/tech.md（R-xx 依赖 Const/配置表时）
 
 【本步任务】
 为「{功能名}」生成 02-需求拆解 的「规则」维度。
@@ -37,6 +38,7 @@ L1 skill_id：{skill_id，无则留空}
   · 数据依赖（P-xx 读写，引用已登记编号）
   · 伪代码（可执行级别）
   · 来源：01 §x.x
+- 可配置规则（configurable_rules）：伪代码读 P-xx/表，禁止魔法数；数值缺口登记 Q-Dxx，边界歧义写默认实现并登记 Q-Rxx
 
 【Part 2 公共铁律】
 1. 产出路径固定在 {feature_root}/ 下
@@ -52,7 +54,7 @@ L1 skill_id：{skill_id，无则留空}
 【完成后自检】
 - [ ] 每条 R- 是否都有触发、行为、伪代码、P-xx？
 - [ ] 01 规则章节是否全覆盖？
-- [ ] 子系统是否已拆成独立文件？
+- [ ] 依赖 Const/表的规则是否无未登记魔法数？数值/边界是否分 Q-D / Q-R？
 
 请直接创建/写入 markdown 文件，不要只输出大纲。
 ```

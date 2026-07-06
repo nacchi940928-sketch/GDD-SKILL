@@ -1,6 +1,6 @@
 ﻿# P2-DS 数据源
 
-规范：`skills/gdd/p2-decompose/SKILL.md` · 库索引：[规格交付库.md](../规格交付库.md)
+规范：`skills/gdd/p2-decompose/SKILL.md` · **配置表格式**：`skills/tech/config_table/tech.md` · 库索引：[规格交付库.md](../规格交付库.md)
 
 > **P2 必须第一个执行**：登记全部 P-xx，后续维度禁止自创字段名。
 
@@ -20,6 +20,7 @@ L1 skill_id：{skill_id，无则留空}
 - {feature_root}/01-原始策划案/{功能名}/原始策划案.md
 - workflows/{项目}.workflow.json
 - skills/design/{skill_id}/meta.md、tech.md（如有 L1）
+- skills/tech/config_table/tech.md（配置表格式与三阶段流程）
 
 【本步任务】
 为「{功能名}」生成 02-需求拆解 的「数据源」维度，登记全部 P-xx 字段。
@@ -36,8 +37,9 @@ L1 skill_id：{skill_id，无则留空}
 2. 分配全局唯一编号 P-01、P-02…，写入 字段映射索引.md
 3. 索引表头：编号 | 业务含义 | 类型 | 来源表/协议 | 读写方 | 状态
 4. 配置 / 运行时 / 协议分文件；枚举集中到 枚举/枚举定义.md
-5. L1 tech.md 已有骨架：写「继承 {skill_id}」，只补充本项目字段名与 proto
-6. 每条标注「来源：01 §x.x」
+5. **配置表**：按 config_table Skill — 每张表一个 `{TableName}.md`，**一行一主键**；合并策划多 sheet 为程序态单表；枚举用 int + 枚举定义；开关用 bool；缺值标「待填」不臆造；`配置表说明.md` 只做索引
+6. L1 tech.md 已有骨架：写「继承 {skill_id}」，只补充本项目字段名与 proto
+7. 每条标注「来源：01 §x.x」
 
 【Part 2 公共铁律】
 1. 产出路径固定在 {feature_root}/ 下
@@ -54,6 +56,8 @@ L1 skill_id：{skill_id，无则留空}
 - [ ] 字段映射索引是否覆盖 01 全部数据项？
 - [ ] 每个 P-xx 是否有类型与读写方？
 - [ ] 是否与 L1 tech.md 骨架对齐？
+- [ ] 配置表是否为一行一主键（非 docx 双段式）？缺值是否标「待填」？
+- [ ] 枚举是否写入 枚举/枚举定义.md，数据列是否为程序类型？
 
 请直接创建/写入上述 markdown 文件，不要只输出大纲。
 ```

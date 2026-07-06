@@ -1,7 +1,7 @@
 # 配置表关联关系（参考）
 
-> **供未来 Skill `config_table_impact` 使用**（当前为代做，见 [skills/_backlog/config_table_impact.md](../../skills/_backlog/config_table_impact.md)）。  
-> 策划与程序在此维护**全项目或跨功能**的表关联；单功能细表仍可在 `产出/{功能名}/02-…/数据源/` 登记。
+> **编写格式**：L0 Skill [config_table](../../skills/tech/config_table/tech.md)（策划→Agent→程序三阶段）  
+> **改表影响检索**：代做 Skill [config_table_impact](../../skills/_backlog/config_table_impact.md)（待实现）
 
 | 文件 | 用途 |
 |------|------|

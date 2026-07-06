@@ -23,6 +23,9 @@
 |----|------|------|------|
 | **config_table_impact** | 📝 代做 | [config_table_impact.md](config_table_impact.md) | 线上改表后，按关联关系检索所有受影响配置表 |
 
+**全量路线图**（含已启用的 config_table）：[维度Skill路线图.md](维度Skill路线图.md)  
+**更新流程**：[GDD-SKILL-更新规范.md](../GDD-SKILL-更新规范.md)
+
 ---
 
 ## 与正式 Skill 的关系

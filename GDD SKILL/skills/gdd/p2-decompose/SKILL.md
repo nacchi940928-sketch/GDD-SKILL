@@ -69,6 +69,22 @@ if {条件}:
 继承 tournament_bracket R-TB-002，本项目无 delta。
 ```
 
+## 配置表（L0）
+
+P2-DS 产出 `数据源/配置表/` 时**必须**遵循 [tech/config_table/tech.md](../tech/config_table/tech.md)：
+
+- 一行一主键，禁止 docx 式「列说明 + 摘要清单」拆分
+- 枚举 / bool / 数值列程序可读；缺值标 `待填`，禁止臆造
+- 策划提供骨架 → Agent 合并补充 → 程序开发期完善并回流
+
+## 可配置规则（L0）
+
+P2-R / P2-DS 涉及 **Const + 配置表驱动** 的 R-xx 时，遵循 [tech/configurable_rules/tech.md](../tech/configurable_rules/tech.md)：
+
+- R-xx 伪代码只读 P-xx / 表，禁止未登记魔法数
+- 数值缺口 → Q-Dxx + `04/02-配置数值.md`；边界缺口 → Q-Rxx + 按需 `04/09-规则边界确认.md`
+- 复杂域可产出 `02/规则/{域}全量审计.md`（L2 结构见 configurable_rules Skill）
+
 ## 状态机 V6 写法示例
 
 ```markdown
