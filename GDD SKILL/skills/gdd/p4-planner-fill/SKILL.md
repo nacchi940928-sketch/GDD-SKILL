@@ -29,7 +29,7 @@
 | 08-新手引导.md | 策划 | 引导流程 |
 | **09-规则边界确认.md** | 策划 | **按需**：R-xx 边界歧义（Q-Rxx）；见 [configurable_rules](../tech/configurable_rules/tech.md) |
 
-`02-配置数值.md` 可按域分 §（如 §Const、§基础计分、§{表名}数值），**数值与规则边界分轨**。
+`02-配置数值.md` 可按域分 §（如 §Const、§基础计分、§跑酷物理、§{表名}数值），**数值与规则边界分轨**；全局 Const 与表逐行列**分 §**，见 [implementation_data](../tech/implementation_data/tech.md)。
 
 ## 看板 ID 约定
 

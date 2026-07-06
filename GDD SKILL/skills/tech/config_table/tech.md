@@ -43,8 +43,8 @@ Agent 读取 01 与策划附件后，在 `{feature_root}/02-需求拆解/{功能
 1. **合并**：多 sheet / 多段说明 → 一张「字段说明 + 数据行」表
 2. **类型化**：枚举进 `枚举/枚举定义.md`；开关用 `bool`；周期/权重用 `float` / `map`
 3. **命名**：列名用程序字段（`snake_case`），与 P-xx 在 `字段映射索引.md` 登记
-4. **推断**：仅从原文可确定的内容填入（如原文写明「受重力」→ `gravity_fall=true`）
-5. **标注缺口**：无法从 01 确定的单元格写 **`待填`** 或 **`【待确认】`**，**禁止编造业务数值**
+4. **推断**：仅从原文可确定的内容填入（如原文写明「受重力」→ `gravity_mode=Fall`；「摩擦力为基础 ×50%」→ `surface_friction_mult=0.5`）
+5. **标注缺口**：无法从 01 确定的单元格写 **`待填`** 或 **`【待确认】`**，**禁止编造业务数值**；须登记 Q-D 并写入 [implementation_data](../implementation_data/tech.md) 数据契约审计
 6. **登记待办**：缺口汇总到 `04-待策划补充/` 与 `补充与修改看板.md`（如 Q-D02b）
 
 **提取备份**：docx 内嵌 xlsx / sheet 导出 md → `产出/{功能名}/01-…/源表提取/`；**程序态表** → `02-…/数据源/配置表/`（本 Skill）。
@@ -86,6 +86,8 @@ Agent 读取 01 与策划附件后，在 `{feature_root}/02-需求拆解/{功能
 | 用「类型推断」散文列代替 `item_type` 枚举 | `item_type` 填 1~6 |
 | 无行级数据却声称「表已完整」 | 行齐、缺值标 `待填` |
 | Agent 猜测权重/分值 | 标 `待填`，进 04 待策划补（Q-Dxx，见 configurable_rules） |
+| 倍率/速度/周期只写在 `trigger_desc` | 拆独立数值列；desc 仅策划摘要（见 [implementation_data](../implementation_data/tech.md)） |
+| 表骨架 ✅ 当作域可开发 | gap 分 G-xxa 结构 / G-xxb 契约 |
 
 ### 行为 / 积分类表
 
@@ -156,6 +158,7 @@ Agent 读取 01 与策划附件后，在 `{feature_root}/02-需求拆解/{功能
 |-------|------|
 | `gdd/p2-decompose` | P2-DS 产出配置表时**必须**遵循本规范 |
 | `configurable_rules` | Const + 表驱动规则时，数值/边界分轨与 04 分工 |
+| `implementation_data` | R-xx 变量追溯、数据契约审计、01 推断义务 |
 | `config_table_impact`（代做） | 表结构定稿后，程序维护 `config/表关联关系.json`；改表时做影响检索 |
 | L1 `design/*/tech.md` | 框架级 config 槽位；本项目表在 L2 `产出/` 实例化 |
 

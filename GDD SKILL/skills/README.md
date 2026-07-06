@@ -44,7 +44,8 @@
 尚未实现的 Skill 登记在 [_backlog/](_backlog/README.md)。  
 当前：**[config_table_impact](_backlog/config_table_impact.md)** — 线上配置表变更后，按策划/程序维护的表关联关系检索影响范围。  
 配置表**编写格式**见 **[tech/config_table](tech/config_table/tech.md)**。  
-**可配置规则**（Const + 表 + Q-D/Q-R 分轨）见 **[tech/configurable_rules](tech/configurable_rules/tech.md)**。
+**可配置规则**（Const + 表 + Q-D/Q-R 分轨）见 **[tech/configurable_rules](tech/configurable_rules/tech.md)**。  
+**实现数据契约**（R-xx 变量追溯、契约审计、模块就绪）见 **[tech/implementation_data](tech/implementation_data/tech.md)**。
 
 ---
 
@@ -73,6 +74,7 @@ L2 项目实例（产出/{功能名}/ + workflows/*.json）
 | `resolution_standard` | L0 | [tech/resolution_standard](tech/resolution_standard/) | 1080×2340 fit、安全区 |
 | `config_table` | L0 | [tech/config_table](tech/config_table/) | 配置表单表结构、策划→Agent→程序三阶段 |
 | `configurable_rules` | L0 | [tech/configurable_rules](tech/configurable_rules/) | 可配置规则：R-xx + Const/表、Q-D/Q-R 分轨 |
+| `implementation_data` | L0 | [tech/implementation_data](tech/implementation_data/) | 实现数据契约：变量追溯、契约审计、就绪矩阵 |
 | `interaction_feedback` | L0 | [ux/interaction_feedback](ux/interaction_feedback/) | 按钮三态、Toast、防连点 |
 | `tournament_bracket` | L1 框架 | [design/tournament_bracket](design/tournament_bracket/) | 单败 Bracket 通用模式 |
 | `gdd/p0-discovery` | 流程 | [gdd/p0-discovery](gdd/p0-discovery/) | P0 立项探索（可选） |

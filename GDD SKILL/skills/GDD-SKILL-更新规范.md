@@ -143,6 +143,19 @@
 
 ---
 
+## 5c. 范例：implementation_data（第三个维度 Skill）
+
+| 项 | 内容 |
+|----|------|
+| **问题** | R-xx 有「重力/摩擦」等词但无 P-xx/表列；表骨架 ✅ 被当作可开发；数值埋在 trigger_desc |
+| **真源** | `产出/超级鸡马/02-…/数据契约审计.md`、`物理全量审计.md` |
+| **抽象** | 变量追溯；G-xxa/G-xxb；数据契约审计；模块就绪矩阵；01 推断义务 |
+| **Skill** | [tech/implementation_data/tech.md](tech/implementation_data/tech.md) |
+
+**可复制模式**：与 configurable_rules 并列；计分域用 configurable_rules + implementation_data 双 Skill。
+
+---
+
 ## 6. 待建设维度 Skill 路线图
 
 > 由维护者维护 [\_backlog/维度Skill路线图.md](_backlog/维度Skill路线图.md)。  
@@ -154,6 +167,7 @@
 |----------------|------|--------|------|------|
 | **config_table** | 数据源·配置表 | P2-DS | ✅ 已启用 | 程序态单表、三阶段协作 |
 | **configurable_rules** | 可配置规则 | P2-R、P4 | ✅ 已启用 | Q-D/Q-R 分轨、按需 09 |
+| **implementation_data** | 实现数据契约 | P2 收尾、P3、P5 | ✅ 已启用 | 数据契约审计、就绪矩阵 |
 | config_table_impact | 配置表·变更影响 | （待建） | 📝 代做 | 表关联 JSON 检索 |
 | decompose_rules | 规则 R-xx | P2-R | ⬜ 待提炼 | 触发/检测位置/读写表 |
 | decompose_state_machine | 状态机 | P2-SM | ⬜ 待提炼 | V6 写法、迁移条件 |

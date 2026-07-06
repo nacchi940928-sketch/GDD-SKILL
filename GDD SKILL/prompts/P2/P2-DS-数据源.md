@@ -1,6 +1,6 @@
 ﻿# P2-DS 数据源
 
-规范：`skills/gdd/p2-decompose/SKILL.md` · **配置表格式**：`skills/tech/config_table/tech.md` · 库索引：[规格交付库.md](../规格交付库.md)
+规范：`skills/gdd/p2-decompose/SKILL.md` · **配置表格式**：`skills/tech/config_table/tech.md` · **数据契约**：`skills/tech/implementation_data/tech.md` · 库索引：[规格交付库.md](../规格交付库.md)
 
 > **P2 必须第一个执行**：登记全部 P-xx，后续维度禁止自创字段名。
 
@@ -21,6 +21,7 @@ L1 skill_id：{skill_id，无则留空}
 - workflows/{项目}.workflow.json
 - skills/design/{skill_id}/meta.md、tech.md（如有 L1）
 - skills/tech/config_table/tech.md（配置表格式与三阶段流程）
+- skills/tech/implementation_data/tech.md（01 推断义务、禁止 trigger_desc 承载数值列）
 
 【本步任务】
 为「{功能名}」生成 02-需求拆解 的「数据源」维度，登记全部 P-xx 字段。
@@ -37,7 +38,7 @@ L1 skill_id：{skill_id，无则留空}
 2. 分配全局唯一编号 P-01、P-02…，写入 字段映射索引.md
 3. 索引表头：编号 | 业务含义 | 类型 | 来源表/协议 | 读写方 | 状态
 4. 配置 / 运行时 / 协议分文件；枚举集中到 枚举/枚举定义.md
-5. **配置表**：按 config_table Skill — 每张表一个 `{TableName}.md`，**一行一主键**；合并策划多 sheet 为程序态单表；枚举用 int + 枚举定义；开关用 bool；缺值标「待填」不臆造；`配置表说明.md` 只做索引
+5. **配置表**：按 config_table Skill — 每张表一个 `{TableName}.md`，**一行一主键**；合并策划多 sheet 为程序态单表；枚举用 int + 枚举定义；三态物理用 enum（非 bool）；01 可推断的数值/枚举**必须填入**；仅未知标「待填」+ Q-D；`trigger_desc` 不得承载倍率/速度等可程序化字段
 6. L1 tech.md 已有骨架：写「继承 {skill_id}」，只补充本项目字段名与 proto
 7. 每条标注「来源：01 §x.x」
 
@@ -58,6 +59,10 @@ L1 skill_id：{skill_id，无则留空}
 - [ ] 是否与 L1 tech.md 骨架对齐？
 - [ ] 配置表是否为一行一主键（非 docx 双段式）？缺值是否标「待填」？
 - [ ] 枚举是否写入 枚举/枚举定义.md，数据列是否为程序类型？
+- [ ] 01 明确的比例/枚举是否已从 trigger 文案拆到独立列？
+- [ ] 全局 Const（物理、冷却等）是否已登记 P-xx，而非只写在 01 散文？
 
 请直接创建/写入上述 markdown 文件，不要只输出大纲。
+
+（P2 全部维度完成后）另产出 `{feature_root}/02-需求拆解/{功能名}/数据源/数据契约审计.md`，见 implementation_data Skill。
 ```
