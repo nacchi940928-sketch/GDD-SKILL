@@ -2,6 +2,16 @@
 
 > 以下是在转化原始策划案过程中发现的不确定内容。请在相应文件中填写后通知程序。
 
+## L1 框架继承
+
+本功能实例化 [tournament_bracket](../../../../skills/design/tournament_bracket/) 框架。  
+参数见 `workflows/arena.workflow.json` → `skill_configs.tournament_bracket`。
+
+| 层级 | 内容 |
+|------|------|
+| L1 已覆盖 | 报名、签位、阶段驱动、节点状态机、晋级（R-TB-xxx） |
+| L2 本目录 | 签位表数值、竞猜/商店、UI 文案、GM 等待填项 |
+
 ---
 
 ## 补充进度

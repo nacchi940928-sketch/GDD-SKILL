@@ -1,18 +1,25 @@
 # 提示词索引
 
-`prompts/` = **可直接复制粘贴到 Agent 的提示词**  
-`skills/gdd/` = **规范与知识（Skill）**，Agent 可读，人不逐条粘贴
+## 提示词 vs Skill
+
+| 类型 | 位置 | 用法 |
+|------|------|------|
+| **提示词** | `prompts/` | 复制「提示词正文」到 Agent 对话，直接执行 |
+| **流程规范 Skill** | `skills/gdd/*/SKILL.md` | 格式铁律、检查清单（Agent 可读，人不逐条粘贴） |
+| **框架 Skill** | `skills/design/*` 等 | L1 抽象模式；实例化见 `案例/` + `workflows/` |
+
+详见 [skills/README.md](../skills/README.md)。
 
 ## 阶段索引
 
 | 阶段 | 目录 | 规范 Skill | 说明 |
 |------|------|------------|------|
 | P1 原始策划案 | [P1/](P1/) | [p1-original-gdd](../skills/gdd/p1-original-gdd/SKILL.md) | 策划主文档 |
-| P2 需求拆解 | [P2/](P2/) | [p2-decompose](../skills/gdd/p2-decompose/SKILL.md) | 8 个维度 |
+| P2 需求拆解 | [P2/](P2/) | [p2-decompose](../skills/gdd/p2-decompose/SKILL.md) | 8 维度；可继承 L1 框架 |
 | P3 功能点梳理 | [P3/](P3/) | [p3-feature-spec](../skills/gdd/p3-feature-spec/SKILL.md) | 程序主文档 |
-| P4 待策划补充 | [P4/](P4/) | [p4-planner-fill](../skills/gdd/p4-planner-fill/SKILL.md) | 策划回填 |
-| P5 编译验收 | [P5/](P5/) | [p5-compile-verify](../skills/gdd/p5-compile-verify/SKILL.md) | 分轨+编译+验收 |
-| P6 开发管线 | [P6/](P6/) | [p6-pipeline](../skills/gdd/p6-pipeline/SKILL.md) | 后端/前端四件套 |
+| P4 待策划补充 | [P4/](P4/) | [p4-planner-fill](../skills/gdd/p4-planner-fill/SKILL.md) | 只填 L2 delta |
+| P5 编译验收 | [P5/](P5/) | [p5-compile-verify](../skills/gdd/p5-compile-verify/SKILL.md) | 分轨 + compile + 验收 |
+| P6 开发管线 | [P6/](P6/) | [p6-pipeline](../skills/gdd/p6-pipeline/SKILL.md) | server/client 四件套 |
 
 ## 全流程推荐顺序
 
@@ -34,9 +41,17 @@ P5-1 → P5-2 → P5-3 → 05 入库 → P6
 
 1. 打开对应 `.md` 文件
 2. 复制 **「提示词正文」** 代码块内全文
-3. 替换 `{功能名}` 等占位符
-4. `@` 引用实际文件
+3. 替换 `{功能名}`、`{skill_id}` 等占位符
+4. `@` 引用实际文件（01、L1 框架 Skill、workflow 等）
 5. 发送给 Agent
+
+## L1 框架继承（P2/P3）
+
+若 workflow 选了 `tournament_bracket` 等 L1 Skill：
+
+- P2 各维度在 L1 骨架上**只写项目 delta**，标注 `继承 R-TB-xxx`
+- P3 功能点**自包含**业务细节；L1 `feature.md` 仅作框架任务对照
+- 项目参数从 `workflows/*.json` 的 `skill_configs` 读取，不硬编码进 Skill
 
 ## 编译
 

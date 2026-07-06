@@ -58,8 +58,9 @@ GDD SKILL/                          ← 项目主目录（本 README 同级为�
     │   └── P6/  开发管线（3）
     │
     ├── skills/                     ← ★ 规范与可复用知识（Skill）
+    │   ├── README.md               ← Skill 总索引（L0/L1/流程）
     │   ├── gdd/                    ← 各阶段规范（p1~p6-decompose 等）
-    │   ├── design/                 ← L1 系统基底（如 tournament_bracket）
+    │   ├── design/                 ← L1 系统**框架**（如 tournament_bracket）
     │   ├── ux/                     ← L0 横切（interaction_feedback）
     │   ├── tech/                   ← L0 横切（resolution_standard）
     │   └── _template/              ← 新建 Skill 模板
@@ -85,15 +86,14 @@ GDD SKILL/                          ← 项目主目录（本 README 同级为�
 L0 横切基底（全项目共用）
   resolution_standard / interaction_feedback
         ↓
-L1 系统基底（跨功能复用）
-  tournament_bracket / …          ← **框架 Skill**：抽象模式 + config 槽位
-  案例/{功能}/02~03                 ← **项目实例**：竞技场、周练组、竞猜等 delta
-        ↓
-L2 项目实例（本项目差异）
-  案例/{功能}/01~04 + workflows/*.json skill_configs
+L1 系统框架（跨功能复用，抽象模式 + config 槽位）
+  skills/design/tournament_bracket / …
+        ↓ 实例化（skill_configs + 业务 delta）
+L2 项目/功能实例
+  案例/{功能}/01~04 + workflows/*.json
 ```
 
-**原则**：L1 写通用规则，workflow 填项目参数，**03-功能点梳理** 是程序 AI 管线的唯一主读文档。
+**原则**：L1 写通用规则与槽位；L2 写项目差异；workflow 填参数；**03-功能点梳理** 是程序 AI 管线的唯一主读文档。
 
 ---
 
@@ -240,6 +240,7 @@ design 仓库（本工程产出）→ server/design + client/design（P6 四件�
 | [策划工作流.md](GDD%20SKILL/策划工作流.md) | 阶段定义与检查清单 |
 | [docs/PromptMerge规划.md](GDD%20SKILL/docs/PromptMerge规划.md) | 架构设计与 Vibe Studio 融合说明 |
 | [prompts/README.md](GDD%20SKILL/prompts/README.md) | 22 个提示词索引 |
+| [skills/README.md](GDD%20SKILL/skills/README.md) | Skill 知识库（L0/L1 框架 + 流程规范） |
 | [templates/转换规范.md](GDD%20SKILL/templates/转换规范.md) | 01→03 转换铁律 |
 
 ---
