@@ -6,8 +6,8 @@
 
 ```
 请阅读我 @ 的：
-- 00-立项探索/{功能名}/project.json
-- 00-立项探索/{功能名}/game_dna.json（或 game_dna.md）
+- 案例/{功能名}/00-立项探索/{功能名}/project.json
+- 案例/{功能名}/00-立项探索/{功能名}/game_dna.json（或 game_dna.md）
 - skills/README.md
 - skills/design/*/meta.md（按需 @ 相关框架）
 
@@ -20,7 +20,7 @@
 4. 输出 workflow 配置草案（供策划确认，非最终文件）
 
 【输出文件】
-00-立项探索/{功能名}/skill选型.md
+案例/{功能名}/00-立项探索/{功能名}/skill选型.md
 
 【skill选型.md 必须包含的章节】
 

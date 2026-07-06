@@ -6,7 +6,8 @@
 
 | 文档 | 用途 |
 |------|------|
-| [策划工作流.md](策划工作流.md) | 五阶段定义 + 检查清单 |
+| **[使用指导.md](使用指导.md)** | **路径规范、@ 引用、新建功能步骤** |
+| [策划工作流.md](策划工作流.md) | 阶段定义 + 检查清单 |
 | [prompts/P0/README.md](prompts/P0/README.md) | P0 立项探索（策划创作辅助，可选） |
 | [prompts/README.md](prompts/README.md) | 全阶段 26 个提示词索引 |
 | [skills/README.md](skills/README.md) | Skill 知识库（L0/L1 框架 + 流程规范） |
@@ -21,6 +22,7 @@ skills/           规范与框架知识（Agent 读，人不逐条粘贴）
   gdd/            P0~P6 阶段规范
   design/         L1 系统框架（如 tournament_bracket）
   tech/ ux/       L0 横切基底
+参考/             策划原始输入（docx），非 01 定稿位置
 templates/        00~04 阶段文档模板
 workflows/        项目配置（selected_skills + skill_configs）
 tools/            compile.py、docx_extract.py 等
