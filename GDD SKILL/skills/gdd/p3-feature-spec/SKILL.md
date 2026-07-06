@@ -84,7 +84,7 @@
 | 3 | P3-3-字段映射.md | 字段映射.md |
 | 4 | P3-4-验收场景.md | 验收场景.md |
 | 5 | P3-5-待确认事项.md | 待确认事项.md |
-| 6 | P3-6-Feature对齐.md | L1 feature.md 任务表更新 |
+| 6 | P3-6-Feature对齐.md | `{feature_root}/03/…/Feature任务映射.md`（**仅 L2**，禁止改 L1 feature.md） |
 
 ## 推荐顺序
 

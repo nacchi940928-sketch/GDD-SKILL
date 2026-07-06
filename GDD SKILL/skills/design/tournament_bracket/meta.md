@@ -4,7 +4,7 @@ name: 单败淘汰赛对阵树（框架）
 category: design
 description: >
   通用框架：报名、身份分流、Bracket 组成、签位、阶段驱动、节点状态机、晋级。
-  不含具体项目业务（竞猜/商店/定组算法等由 L2 或 extension Skill 实例化。
+  不含具体项目业务（extension 槽内规则由 L2 或 extension Skill 实例化。
 dependencies:
   - interaction_feedback
   - resolution_standard

@@ -1,33 +1,90 @@
-# P6 提示词索引
+# P6 开发管线 — Prompt 库
 
-规范：`skills/gdd/p6-pipeline/SKILL.md`
+> **Part 2 下游阶段**：基于 03 + 程序包，生成 server/client design 四件套，供 AI 自动开发。  
+> 完整规范：[规格交付库.md](../规格交付库.md) · Skill：[p6-pipeline](../../skills/gdd/p6-pipeline/SKILL.md)
 
-## 前置
+---
 
-- P3 完成，P4-2 / P5 验收通过
-- 已执行 `python tools/compile.py` 生成 `outputs/{功能名}/程序包.md`
+## 前置门禁
+
+- P5-3 策划验收通过
+- `outputs/{功能名}/程序包.md` 已生成
 - workflow 中 `selected_skills` 与 `skill_configs` 已定稿
 
-## 用法
+---
 
-1. 复制提示词正文到 Agent
-2. `@` 引用 03、02、`outputs/程序包.md`、workflow、server 协议（前端用）
+## 执行顺序
 
-## 推荐顺序
-
-```
-P6-1 后端管线编排
-  → 后端开发/交付协议
-  → P6-2 前端管线编排
-  → P6-3 增量开发核对（可选，或合并进 P6-1/2）
+```text
+P6-3 继承现网 delta 清单（建议先做，可选）
+  → P6-1 后端四件套
+  → 后端 proto 交付
+  → P6-2 前端四件套
 ```
 
-## 文件列表
+---
 
-| 提示词 | 产出路径 |
-|--------|----------|
-| P6-1-后端管线编排.md | server/design/{功能名}/ 四件套 |
-| P6-2-前端管线编排.md | client/design/{功能名}/ 四件套 |
-| P6-3-增量开发继承现网.md | 复用标注 + delta 清单 |
+## Prompt 清单
 
-L1 框架规则已在 03 中实例化；P6 以 **03 + 程序包** 为开发输入，不回读 L1 抽象层。
+| ID | 文件 | 产出 |
+|----|------|------|
+| P6-3 | [P6-3-增量开发继承现网.md](P6-3-增量开发继承现网.md) | `{feature_root}/03-…/继承现网-delta清单.md` |
+| P6-1 | [P6-1-后端管线编排.md](P6-1-后端管线编排.md) | `server/design/{功能名}/` 四件套 |
+| P6-2 | [P6-2-前端管线编排.md](P6-2-前端管线编排.md) | `client/design/{功能名}/` 四件套 |
+
+---
+
+## 四件套结构（P6-1 / P6-2 共用）
+
+```text
+{server|client}/design/{功能名}/
+  ├── 需求文档.md
+  ├── 设计方案.md
+  ├── 开发方案.md
+  └── 管线编排.md
+```
+
+---
+
+## 统一 @ 引用
+
+**P6-1**：
+```
+@ {feature_root}/03-功能点梳理/{功能名}/（全部）
+@ {feature_root}/02-…/数据源/、校验规则/、状态机/
+@ outputs/{功能名}/程序包.md
+@ workflows/{项目}.workflow.json
+@ skills/design/{skill_id}/tech.md、feature.md
+```
+
+**P6-2**：
+```
+@ {feature_root}/03-功能点梳理/{功能名}/（全部）
+@ {feature_root}/02-…/UI交互/、状态机/、红点/
+@ outputs/{功能名}/程序包.md
+@ {feature_root}/04-…/01-字段命名.md（或 server proto）
+@ skills/tech/resolution_standard/、skills/ux/interaction_feedback/
+```
+
+**P6-3**：
+```
+@ {feature_root}/03-功能点梳理/{功能名}/（全部）
+@ {feature_root}/01-…/原始策划案.md
+@ server|client/design/{功能名}/（草稿，如有）
+```
+
+---
+
+## 铁律
+
+- 以 **03 + 程序包** 为开发输入，不回读 L1 抽象层
+- 继承现网：复用只写对接点，改动只写 delta
+- 每个管线任务须标注 P-xx 与对应 03 文件
+
+---
+
+## 完成标准
+
+- [ ] 03 每个需开发的功能点在四件套/管线编排中有任务
+- [ ] P6-3 与 03「涉及模块」表一致
+- [ ] 前端协议字段与 server 04-01 / proto 一致

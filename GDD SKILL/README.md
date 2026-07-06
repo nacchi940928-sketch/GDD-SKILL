@@ -7,9 +7,10 @@
 | 文档 | 用途 |
 |------|------|
 | **[使用指导.md](使用指导.md)** | **路径规范、@ 引用、新建功能步骤** |
+| **[prompts/规格交付库.md](prompts/规格交付库.md)** | **Part 2 规格交付 Prompt 库（工作重点）** |
 | [策划工作流.md](策划工作流.md) | 阶段定义 + 检查清单 |
-| [prompts/P0/README.md](prompts/P0/README.md) | P0 立项探索（策划创作辅助，可选） |
-| [prompts/README.md](prompts/README.md) | 全阶段 26 个提示词索引 |
+| [prompts/P0/README.md](prompts/P0/README.md) | Part 1 策划创作辅助（可选） |
+| [prompts/README.md](prompts/README.md) | 提示词总索引 |
 | [skills/README.md](skills/README.md) | Skill 知识库（L0/L1 框架 + 流程规范） |
 | [docs/PromptMerge规划.md](docs/PromptMerge规划.md) | 架构设计与 Vibe Studio 融合 |
 | [templates/转换规范.md](templates/转换规范.md) | 01→03 转换铁律 |

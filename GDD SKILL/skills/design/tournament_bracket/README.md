@@ -2,13 +2,13 @@
 
 ## 定位
 
-本目录是 **单败淘汰赛对阵树的通用框架 Skill**，不是某个具体功能（如「竞技场高级赛」）的策划案。
+本目录是 **单败淘汰赛对阵树的通用框架 Skill**，不是某个具体功能的策划案。
 
 | 本 Skill（L1 框架） | 项目实例（L2） |
 |---------------------|----------------|
 | 抽象模式、可配置槽位、规则编号 R-TB-xxx | `案例/{功能名}/` 下的 01~04 |
 | 不绑定 P-xx、具体 UI 文案、签位表数值 | workflow `skill_configs` 填本项目参数 |
-| 不定义竞猜/商店/货币等业务 | L2 delta 或独立 extension Skill |
+| 不定义 extension 槽内的具体业务 | L2 delta 写在 `案例/` |
 
 上级索引：[skills/README.md](../../README.md)
 
@@ -17,7 +17,7 @@
 ```text
 报名 → 身份分流 → Bracket 组成 → 签位 → 阶段驱动 → 节点状态 → 晋级
          ↓
-    [扩展槽 extension_slots] 竞猜 / 商店 / 自定义货币 …（仅挂点，规则在 L2）
+    [扩展槽 extension_slots] 自定义业务模块 …（仅挂点，规则在 L2）
 ```
 
 ## config_schema（抽象参数）
@@ -36,17 +36,16 @@
 
 完整定义见 [meta.md](meta.md)。
 
-## 实例化示例
+## L2 实例化（不在本 Skill 内）
 
-**竞技场高级赛**（首个 L2 实例）：
+框架通过 workflow + `案例/{功能名}/` 实例化：
 
-| 资源 | 路径 |
+| 配置 | 位置 |
 |------|------|
-| workflow | `workflows/arena.workflow.json` |
-| 案例 | `案例/竞技场高级赛/` |
-| 编译产出 | `outputs/竞技场高级赛/` |
+| `selected_skills` / `skill_configs` | `workflows/{项目}.workflow.json` |
+| 业务 delta、P-xx、R-{缩写}-* | `案例/{功能名}/02~03` |
 
-L2 delta 示例：周练组、UTC0、16 强固定签位、`extension_slots: betting,shop`。
+**禁止**将 L2 案例正文回写进本目录。
 
 ## 文件职责
 
