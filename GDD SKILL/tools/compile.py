@@ -215,14 +215,6 @@ def compile_feature(
         fp_dir = dir_03 / "功能点"
         if fp_dir.is_dir():
             prog_sections.append(("1. 功能点（程序主读）", _read_files(sorted(fp_dir.glob("*.md")), dir_03)))
-
-    if text_02:
-        # 程序包附带 02 中的数据/校验章节（附录或整文引用）
-        ds = _extract_appendix(text_02, r"## 6\. 数据与配置.*")
-        if ds:
-            prog_sections.append(("需求拆解 · 数据与配置", ds))
-        elif text_02:
-            prog_sections.append(("需求拆解（参考）", text_02))
     elif dir_02:
         prog_sections.extend(_legacy_02_sections(dir_02, PROGRAM_02_DIMS))
 
