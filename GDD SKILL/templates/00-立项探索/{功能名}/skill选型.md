@@ -1,4 +1,4 @@
-# Skill 选型 — {功能名}
+﻿# Skill 选型 — {功能名}
 
 > P0-3 产出。确认后可复制 workflow 草案为 `workflows/{项目}.workflow.json`。
 
@@ -43,7 +43,7 @@
   "project": {},
   "selected_skills": [],
   "skill_configs": {},
-  "feature_root": "案例/{功能名}"
+  "feature_root": "产出/{功能名}"
 }
 ```
 

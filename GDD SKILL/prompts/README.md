@@ -1,6 +1,6 @@
-# 提示词总索引
+﻿# 提示词总索引
 
-> **路径规范**：`{feature_root}` = `案例/{功能名}`。详见 [使用指导.md](../使用指导.md)。
+> **路径规范**：`{feature_root}` = `产出/{功能名}`。详见 [使用指导.md](../使用指导.md)。
 
 ---
 
@@ -79,7 +79,7 @@ P5-1 → P5-2 → P5-3 → P5-4 → P6
 ## 编译
 
 ```bash
-python tools/compile.py 案例/{功能名} --workflow workflows/{项目}.workflow.json
+python tools/compile.py 产出/{功能名} --workflow workflows/{项目}.workflow.json
 ```
 
 产出 `outputs/{功能名}/程序包.md | 测试包.md | 策划包.md`

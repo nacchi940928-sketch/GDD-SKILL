@@ -1,4 +1,4 @@
-# P5 编译验收 — Prompt 库
+﻿# P5 编译验收 — Prompt 库
 
 > **Part 2 交付阶段**：分轨检查 → 编译 → 策划验收，产出 `outputs/` 三包。  
 > 完整规范：[规格交付库.md](../规格交付库.md) · Skill：[p5-compile-verify](../../skills/gdd/p5-compile-verify/SKILL.md)
@@ -42,7 +42,7 @@ P4-2 通过 → P5-1 分轨检查 → 修正 02/03
 
 ```bash
 cd "GDD SKILL"
-python tools/compile.py 案例/{功能名} --workflow workflows/{项目}.workflow.json
+python tools/compile.py 产出/{功能名} --workflow workflows/{项目}.workflow.json
 ```
 
 | 输入 | 合并到 |

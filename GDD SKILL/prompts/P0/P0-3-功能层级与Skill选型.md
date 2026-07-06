@@ -1,4 +1,4 @@
-# P0-3 功能层级与 Skill 选型
+﻿# P0-3 功能层级与 Skill 选型
 
 规范：`skills/gdd/p0-discovery/SKILL.md`
 
@@ -6,8 +6,8 @@
 
 ```
 请阅读我 @ 的：
-- 案例/{功能名}/00-立项探索/{功能名}/project.json
-- 案例/{功能名}/00-立项探索/{功能名}/game_dna.json（或 game_dna.md）
+- 产出/{功能名}/00-立项探索/{功能名}/project.json
+- 产出/{功能名}/00-立项探索/{功能名}/game_dna.json（或 game_dna.md）
 - skills/README.md
 - skills/design/*/meta.md（按需 @ 相关框架）
 
@@ -20,7 +20,7 @@
 4. 输出 workflow 配置草案（供策划确认，非最终文件）
 
 【输出文件】
-案例/{功能名}/00-立项探索/{功能名}/skill选型.md
+产出/{功能名}/00-立项探索/{功能名}/skill选型.md
 
 【skill选型.md 必须包含的章节】
 
@@ -53,7 +53,7 @@
   "project": { ... },
   "selected_skills": [],
   "skill_configs": {},
-  "feature_root": "案例/{功能名}"
+  "feature_root": "产出/{功能名}"
 }
 ```
 注明：确认后可复制为 workflows/{项目}.workflow.json

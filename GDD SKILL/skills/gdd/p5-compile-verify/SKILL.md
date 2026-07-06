@@ -1,4 +1,4 @@
-# P5 编译验收 — 规范（Skill）
+﻿# P5 编译验收 — 规范（Skill）
 
 > **本文件是 Skill（知识与规范）**，不是提示词。  
 > 执行请使用 `prompts/P5/P5-*.md` 中的提示词。
@@ -13,7 +13,7 @@ P5 在 P3/P4 完成后，检查文档质量、执行编译、策划验收。**�
 
 ```bash
 cd "GDD SKILL"
-python tools/compile.py 案例/{功能名} --workflow workflows/{项目}.workflow.json
+python tools/compile.py 产出/{功能名} --workflow workflows/{项目}.workflow.json
 ```
 
 产出 `outputs/{功能名}/`：

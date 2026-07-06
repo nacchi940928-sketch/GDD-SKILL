@@ -1,0 +1,26 @@
+{
+  "project": {
+    "name": "超级鸡马",
+    "description": "联机多人派对平台跳跃：轮流布置道具 + 跑酷竞速 + 段位奖杯",
+    "reference_games": "Ultimate Chicken Horse",
+    "platform": "移动端",
+    "target_audience": "休闲派对玩家",
+    "monetization": "【待确认】"
+  },
+  "selected_skills": [
+    "resolution_standard",
+    "interaction_feedback"
+  ],
+  "skill_configs": {
+    "resolution_standard": {
+      "orientation": "横屏",
+      "reference_resolution": "1080x2340",
+      "scale_mode": "等比包含留黑边（fit）"
+    },
+    "interaction_feedback": {
+      "feedback_strength": "标准",
+      "click_lock_ms": "300"
+    }
+  },
+  "feature_root": "产出/超级鸡马"
+}

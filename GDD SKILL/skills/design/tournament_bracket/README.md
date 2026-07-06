@@ -1,4 +1,4 @@
-# tournament_bracket — 框架 Skill 说明
+﻿# tournament_bracket — 框架 Skill 说明
 
 ## 定位
 
@@ -6,7 +6,7 @@
 
 | 本 Skill（L1 框架） | 项目实例（L2） |
 |---------------------|----------------|
-| 抽象模式、可配置槽位、规则编号 R-TB-xxx | `案例/{功能名}/` 下的 01~04 |
+| 抽象模式、可配置槽位、规则编号 R-TB-xxx | `产出/{功能名}/` 下的 01~04 |
 | 不绑定 P-xx、具体 UI 文案、签位表数值 | workflow `skill_configs` 填本项目参数 |
 | 不定义 extension 槽内的具体业务 | L2 delta 写在 `案例/` |
 
@@ -38,12 +38,12 @@
 
 ## L2 实例化（不在本 Skill 内）
 
-框架通过 workflow + `案例/{功能名}/` 实例化：
+框架通过 workflow + `产出/{功能名}/` 实例化：
 
 | 配置 | 位置 |
 |------|------|
 | `selected_skills` / `skill_configs` | `workflows/{项目}.workflow.json` |
-| 业务 delta、P-xx、R-{缩写}-* | `案例/{功能名}/02~03` |
+| 业务 delta、P-xx、R-{缩写}-* | `产出/{功能名}/02~03` |
 
 **禁止**将 L2 案例正文回写进本目录。
 
