@@ -1,13 +1,14 @@
 {
   "feature": "竞技场高级赛",
   "feature_root": "E:\\mhw\\GDD SKILL\\GDD SKILL\\案例\\竞技场高级赛",
-  "compiled_at": "2026-07-06T07:04:28.408832+00:00",
+  "compiled_at": "2026-07-06T10:16:02.177350+00:00",
   "workflow": "E:\\mhw\\GDD SKILL\\GDD SKILL\\workflows\\arena.workflow.json",
   "selected_skills": [
     "resolution_standard",
     "interaction_feedback",
     "tournament_bracket"
   ],
+  "delivery_format": "single_md",
   "outputs": [
     "程序包.md",
     "测试包.md",
@@ -15,8 +16,10 @@
   ],
   "sources": {
     "01": "E:\\mhw\\GDD SKILL\\GDD SKILL\\案例\\竞技场高级赛\\01-原始策划案\\竞技场高级赛",
-    "02": "E:\\mhw\\GDD SKILL\\GDD SKILL\\案例\\竞技场高级赛\\02-需求拆解\\竞技场高级赛",
-    "03": "E:\\mhw\\GDD SKILL\\GDD SKILL\\案例\\竞技场高级赛\\03-功能点梳理\\竞技场高级赛",
+    "02-需求拆解.md": "E:\\mhw\\GDD SKILL\\GDD SKILL\\案例\\竞技场高级赛\\02-需求拆解.md",
+    "03-功能点梳理.md": "E:\\mhw\\GDD SKILL\\GDD SKILL\\案例\\竞技场高级赛\\03-功能点梳理.md",
+    "02_legacy": "E:\\mhw\\GDD SKILL\\GDD SKILL\\案例\\竞技场高级赛\\02-需求拆解\\竞技场高级赛",
+    "03_legacy": "E:\\mhw\\GDD SKILL\\GDD SKILL\\案例\\竞技场高级赛\\03-功能点梳理\\竞技场高级赛",
     "04": "E:\\mhw\\GDD SKILL\\GDD SKILL\\案例\\竞技场高级赛\\04-待策划补充\\竞技场高级赛"
   }
 }

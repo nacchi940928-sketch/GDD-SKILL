@@ -19,7 +19,7 @@ skills/           规范与框架（Agent 读）
 源文档/             仅原始策划 docx
 config/             全项目表关联 JSON 模板
 templates/        空模板
-产出/{功能名}/     ★ 管线交付物（01~04 + logs）
+产出/{功能名}/     ★ 管线交付物（02/03 单文档 + 01/04 + logs）
 案例/             对照样例（如竞技场高级赛）
 outputs/          compile 三包（勿手改）
 workflows/        feature_root → 产出/
