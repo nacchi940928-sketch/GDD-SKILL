@@ -1,7 +1,7 @@
 ﻿# AB2_ChickenHorseScore — 成就分行为表
 
-> **来源**：`参考/《超级鸡马》.docx` → 内嵌 `Microsoft_Excel_Worksheet1.xlsx`（2026-07-06 提取）  
-> 原始提取稿：`参考/超级鸡马-嵌入表格/AB2_ChickenHorseScore_成就分.md`
+> **来源**：`源文档/《超级鸡马》.docx` → 内嵌 `Microsoft_Excel_Worksheet1.xlsx`（2026-07-06 提取）  
+> 原始提取稿：`产出/超级鸡马/01-原始策划案/超级鸡马/源表提取/AB2_ChickenHorseScore_成就分.md`
 
 | behavior_id | 成就名 | 达成条件 | 备注 | score |
 |-------------|--------|----------|------|-------|

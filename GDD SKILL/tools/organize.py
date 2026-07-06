@@ -1,4 +1,4 @@
-import os, shutil, glob as _glob
+﻿import os, shutil, glob as _glob
 
 ROOT = r"g:\GDD SKILL"
 DRY = False  # set True to preview only
@@ -30,7 +30,7 @@ def rm(path):
 # ═══════════════════════════════
 # 1. Create target directories
 # ═══════════════════════════════
-for d in ['templates', '案例', 'tools', '参考']:
+for d in ['templates', '案例', 'tools', '源文档']:
     os.makedirs(os.path.join(ROOT, d), exist_ok=True)
 
 # ═══════════════════════════════
@@ -79,16 +79,16 @@ for bf in bad_files:
 print("cases done")
 
 # ═══════════════════════════════
-# 4. Move reference docs: 策划案参考 → 参考/
+# 4. Move reference docs: 策划案参考 → 源文档/
 # ═══════════════════════════════
 print("\n--- References ---")
 ref_src = os.path.join(ROOT, '策划案参考')
-ref_dst = os.path.join(ROOT, '参考')
+ref_dst = os.path.join(ROOT, '源文档')
 if os.path.exists(ref_src):
     for item in os.listdir(ref_src):
         s = os.path.join(ref_src, item)
         d = os.path.join(ref_dst, item)
-        # Only move .docx files (original references)
+        # Only move .docx files (original source docs only)
         if item.endswith('.docx'):
             if os.path.exists(d): os.remove(d)
             mv(s, d)

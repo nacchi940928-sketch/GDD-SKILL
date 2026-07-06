@@ -1,4 +1,4 @@
-# GDD SKILL 子项目
+﻿# GDD SKILL 子项目
 
 策划工作流主内容目录。仓库根 [README.md](../README.md) 为项目组评审入口。
 
@@ -16,7 +16,8 @@
 ```text
 prompts/          提示词 P0~P6
 skills/           规范与框架（Agent 读）
-参考/             策划原始 docx
+源文档/             仅原始策划 docx
+config/             全项目表关联 JSON 模板
 templates/        空模板
 产出/{功能名}/     ★ 管线交付物（01~04 + logs）
 案例/             对照样例（如竞技场高级赛）

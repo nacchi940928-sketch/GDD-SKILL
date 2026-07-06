@@ -1,4 +1,4 @@
-# 代做记录：config_table_impact（配置表变更影响检索）
+﻿# 代做记录：config_table_impact（配置表变更影响检索）
 
 | 项 | 值 |
 |----|-----|
@@ -29,7 +29,7 @@
 
 **不用于**：Part 2 从 docx 首次拆解（那是 P2-DS + [config_table](../tech/config_table/tech.md)）；本 Skill 面向**已有表关系网后的变更管理**。
 
-**前置**：GDD 配置表须先按 [config_table](../tech/config_table/tech.md) 写成程序态单表；程序定稿后维护本目录 `参考/config/表关联关系.json`。
+**前置**：GDD 配置表须先按 [config_table](../tech/config_table/tech.md) 写成程序态单表；程序定稿后维护本目录 `config/表关联关系.json`。
 
 ---
 
@@ -42,7 +42,7 @@
 建议路径（实现时二选一，维护者确认）：
 
 ```text
-参考/config/表关联关系.json          ← 全项目一张
+config/表关联关系.json          ← 全项目一张
 或
 产出/{功能名}/02-…/数据源/表关联关系.json  ← 按功能增量
 ```
@@ -165,7 +165,7 @@ prompts/                   # 可选 Part 2 外挂
 
 | # | 问题 | 选项 |
 |---|------|------|
-| C-01 | 关系库放 `参考/config/` 还是各 `产出/`？ | 全局 / 按功能 / 混合 |
+| C-01 | 关系库放 `config/` 还是各 `产出/`？ | 全局 / 按功能 / 混合 |
 | C-02 | 是否做 CLI 工具还是仅 Agent + Prompt？ | tools / Prompt only |
 | C-03 | 是否与现网配置仓库（Git/Excel）对接？ | 手动 JSON / 自动同步 |
 | C-04 | 最大关联展开深度 | 默认 3 跳？ |

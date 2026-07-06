@@ -1,4 +1,4 @@
-# 维度 Skill 路线图
+﻿# 维度 Skill 路线图
 
 > 跟踪 **P2 拆解** 与 **P3 功能梳理** 各子域 Skill 的建设进度。  
 > 更新流程见 [GDD-SKILL-更新规范.md](../GDD-SKILL-更新规范.md)。
@@ -13,7 +13,7 @@
 |----------|------|--------|------|----------------|------|
 | config_table | 配置表 | P2-DS | ✅ | `产出/超级鸡马/02-…/AB2_ChickenHorseItem.md` | [tech.md](../tech/config_table/tech.md) |
 | configurable_rules | 可配置规则 | P2-R、P4 | ✅ | `产出/超级鸡马/02-…/计分全量审计.md` | [tech.md](../tech/configurable_rules/tech.md) |
-| config_table_impact | 配置表变更影响 | 待建 | 📝 | `参考/config/表关联关系.template.json` | [代做](config_table_impact.md) |
+| config_table_impact | 配置表变更影响 | 待建 | 📝 | `config/表关联关系.template.json` | [代做](config_table_impact.md) |
 | decompose_rules | 规则 R-xx | P2-R | ⬜ | 待提供 | |
 | decompose_state_machine | 状态机 | P2-SM | ⬜ | 待提供 | 竞技场对阵树可作候选 |
 | decompose_protocol | 协议 | P2-DS | ⬜ | `产出/超级鸡马/02-…/协议/` | 与 DS 分文件 |
