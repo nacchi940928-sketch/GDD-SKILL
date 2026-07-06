@@ -86,8 +86,8 @@ L0 横切基底（全项目共用）
   resolution_standard / interaction_feedback
         ↓
 L1 系统基底（跨功能复用）
-  tournament_bracket / shop_system / …
-  meta.md + design/ux/tech/qa/feature + config_schema
+  tournament_bracket / …          ← **框架 Skill**：抽象模式 + config 槽位
+  案例/{功能}/02~03                 ← **项目实例**：竞技场、周练组、竞猜等 delta
         ↓
 L2 项目实例（本项目差异）
   案例/{功能}/01~04 + workflows/*.json skill_configs
@@ -180,8 +180,10 @@ python tools/compile.py 案例/竞技场高级赛 --workflow workflows/arena.wor
 |----|------|------|
 | `resolution_standard` | L0 | 1080×2340 fit 留黑边、安全区 |
 | `interaction_feedback` | L0 | 按钮三态、Toast、防连点 |
-| `tournament_bracket` | L1 | 单败对阵树：报名、签位、阶段、节点状态机 |
+| `tournament_bracket` | L1 **框架** | 单败 Bracket 通用模式（报名/签位/阶段/节点）；**不含**竞技场/竞猜等业务 |
 | `gdd/p1~p6-*` | 流程 | 各阶段规范 Skill（非业务系统） |
+
+> 具体功能（如竞技场高级赛）的业务规则在 `案例/{功能名}/` 实例化，通过 `workflows/*.json` 的 `skill_configs` 填框架参数。
 
 ---
 

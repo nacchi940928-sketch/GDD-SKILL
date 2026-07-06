@@ -1,34 +1,34 @@
-# 锦标赛对阵树 — 功能拆解（L1 基底）
+# 单败淘汰赛对阵树 — 功能拆解（框架 Skill）
 
 ## 交付目标
 
-可独立开发的 Bracket 最小闭环：报名 → 签位 → 阶段驱动 → 节点渲染 → 晋级。
+Bracket **最小闭环**：报名 → 签位 → 阶段驱动 → 节点渲染 → 晋级。  
+L2 `03-功能点梳理` 为程序主读；本表为**框架层排期索引**，不引用具体案例路径。
 
 ## 任务清单
 
-| 优先级 | 功能 | 依赖 | 验收 | L2 对应 |
-|--------|------|------|------|---------|
-| P0 | 阶段状态机（Scheduler） | — | T-TB-001 | 02/状态机/活动阶段 |
-| P0 | 自动报名 + 身份判定 | Scheduler | T-TB-001, T-TB-002 | 02/规则/报名与身份 |
-| P0 | 签位生成 + 机器人补位 | 报名 | T-TB-003 | 03/4-2, 4-4 |
-| P0 | Bracket 快照存储与协议 | 签位 | GetBracketSnapshot | 02/数据源/协议 |
-| P1 | 对阵树 UI + 节点状态机 | 快照协议 | 节点三态 | 03/7-x |
-| P1 | 身份门控（决斗 vs 对阵树） | 身份 | B-TB-001 | 03/7-5, 10-6 |
-| P1 | Phase Push + 客户端门控 | Scheduler | 阶段切换 | 02/状态机/活动阶段 |
-| P2 | 竞猜子系统 | enable_betting | 项目用例 | 03/10-x |
-| P2 | 奖励/积分/商店 | 结算阶段 | 项目用例 | 03/6-x |
+| 优先级 | 框架任务 | 依赖 | 框架验收 |
+|--------|----------|------|----------|
+| P0 | 阶段 Scheduler | — | T-TB-001 |
+| P0 | 报名 + 身份判定 | Scheduler | T-TB-001, T-TB-002 |
+| P0 | 签位 + 机器人补位 | 报名 | T-TB-003 |
+| P0 | Bracket 快照与协议族 | 签位 | GetBracketSnapshot |
+| P1 | 对阵树 UI + 节点三态 | 快照 | ux 节点机 |
+| P1 | 身份门控（战斗 vs 树） | 身份 | B-TB-001 |
+| P1 | Phase Push + 客户端门控 | Scheduler | 阶段一致 |
+| P2 | 扩展槽适配 | extension_slots | L2 用例 |
 
 ## 依赖关系
 
 ```text
-Scheduler → Registration → BracketService → MatchService(可选继承)
+Scheduler → Registration → BracketService → MatchService
                 ↓
            UI + Push
                 ↓
-         BettingService(optional)
+      ExtensionAdapter（可选）
 ```
 
 ## 完成定义
 
-- L2 实例 `03-功能点梳理` 为程序 AI **主读**；本表为排期索引
-- 继承现网模块在 L2 标注「复用」，不重复开发
+- 框架任务在 L2 03 中实例化为具体功能点文件
+- 继承现网模块：L2 标注「复用」，不重复展开框架任务

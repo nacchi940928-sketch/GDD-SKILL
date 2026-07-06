@@ -16,13 +16,13 @@
     "tournament_bracket": {
       "bracket_size": "16",
       "registration_mode": "auto",
-      "registration_cron": "周一 UTC0",
-      "contestant_top_n": "4",
-      "groups_per_bracket": "4",
+      "registration_schedule": "周一 UTC0",
+      "contestant_rank_top_n": "4",
+      "source_groups_per_bracket": "4",
       "robot_fill": "true",
-      "identity_lock_days": "7",
-      "enable_betting": "true",
-      "phase_schedule": "公示1天 + 战斗4轮 + 结算2天"
+      "identity_lock_duration": "7天（本期全程）",
+      "period_structure": "公示1天 + 战斗4轮 + 结算2天",
+      "extension_slots": "betting,shop"
     },
     "resolution_standard": {
       "orientation": "竖屏",

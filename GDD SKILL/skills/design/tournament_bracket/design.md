@@ -1,24 +1,24 @@
-# 锦标赛对阵树 — 设计规范（L1 基底）
+# 单败淘汰赛对阵树 — 设计规范（框架 Skill）
 
 ## 规范目标
 
-定义**单败淘汰赛对阵树**的通用策划规则，适用于「周练定组 → 自动/手动报名 → 签位 → 多轮战斗 → 结算」类活动。
+提供**可复用的锦标赛 Bracket 策划框架**：任意「来源分组 → 报名 → 签位 → 多轮单败 → 结算」类玩法，均可继承本 Skill，在 L2 只写业务 delta。
 
-L2 项目实例（如竞技场高级赛）**只写与本文不同的 delta**，相同规则标注「继承 tournament_bracket」。
+**本文件不包含**：具体项目名称、周练/联赛名词、固定签位表数值、竞猜/商店规则、P-xx 字段。
 
 ## 适用范围
 
-- 16/8/32 人单败 Bracket（由 `bracket_size` 配置）
-- 选手 vs 观众双身份分流
-- 服务端权威阶段驱动 + 客户端门控
-- 可选竞猜子系统（`enable_betting=true` 时启用，规则见项目 delta）
+- 单败 Bracket，`bracket_size` 可配置（8/16/32…）
+- 可选**双身份**（参赛者 / 观赛者）或 L2 定义为单一身份
+- 服务端权威**阶段机** + 客户端门控
+- `extension_slots` 声明扩展能力挂点，**不定义**扩展业务规则
 
-## 玩家流程
+## 玩家流程（框架）
 
 ```text
-[活动入口] → [活动展示/公示]
-  ├── 选手 → [决斗/战斗界面]
-  └── 观众 → [对阵树界面] →（可选）竞猜
+[活动入口] → [公示/活动展示]
+  ├── 参赛者 → [战斗主界面]
+  └── 观赛者 → [对阵树主界面] →（可选扩展槽）
 ```
 
 ## 核心规则
@@ -27,83 +27,101 @@ L2 项目实例（如竞技场高级赛）**只写与本文不同的 delta**，�
 
 | registration_mode | 行为 |
 |-------------------|------|
-| `auto` | 定时任务触发，无主动报名 UI/接口 |
-| `manual` | 玩家主动报名，有截止时间与资格校验 |
+| `auto` | 按 `registration_schedule` 触发；无主动报名 UI/接口 |
+| `manual` | 玩家主动报名；截止时间与资格由 L2 定义 |
 
-**自动报名（默认）**：
-- 触发：`registration_cron`（如周一 UTC0）
-- 读：玩家分组归属 + 组内排名
-- 写：身份（选手/观众）、对阵树快照
-- 失败：整事务回滚，签位与报名原子提交
+**自动报名框架行为**：
+- 触发：`registration_schedule`
+- 读：来源组归属 + 组内排名（字段名 L2 定义）
+- 写：身份、Bracket 快照
+- 签位与报名**同一事务**；失败回滚
 
-### R-TB-002 身份判定
+### R-TB-002 身份判定（双身份模式）
 
 ```
-if rank in [1 .. contestant_top_n]:
+if rank in [1 .. contestant_rank_top_n]:
     role = CONTESTANT
 else:
     role = SPECTATOR
 ```
 
-- 身份在 `identity_lock_days` 内不变（除非 GM 审计修改）
+- 身份在 `identity_lock_duration` 内不变（GM 修改需 L2 定义审计）
 - 下一周期重新报名时覆盖
 
-### R-TB-003 赛区/Bracket 组成
+> 若项目无观赛者，L2 标注「R-TB-002 N/A，全员 CONTESTANT」。
 
-- 每 `groups_per_bracket` 个来源组合并为一个独立 Bracket
-- 各 Bracket 独立淘汰赛、独立冠军、独立竞猜池（若启用）
-- 规模：`bracket_size` 叶节点选手 + 对应观众池
+### R-TB-003 Bracket 组成
+
+- 每 `source_groups_per_bracket` 个**来源组**合并为一个独立 Bracket
+- 各 Bracket 独立淘汰赛、独立冠军
+- 规模：叶节点 `bracket_size` 名参赛者 + L2 定义的观赛者池（若有）
+
+**来源组**：L2 定义（周练组、公会组、服务器分区等），框架不绑定。
 
 ### R-TB-004 签位生成
 
-- Bracket 签位表**固定**（不可随机），由配置或常量表定义
-- 报名成功后生成签位 → 写叶节点 → `robot_fill=true` 时不足补机器人
-- 签位失败回滚报名事务
+- 签位表由**配置/常量表**驱动，**不可运行时随机**
+- 报名成功 → 写叶节点 → `robot_fill=true` 时不足补机器人
+- 签位失败 → 回滚报名
+
+签位算法（同组规避、种子保护等）：**L2 在 02/规则 展开**。
 
 ### R-TB-005 对战与晋级
 
-- 单败：胜者写入父节点 slotLeft/slotRight
-- 轮次顺序：R16 → QF → SF → FINAL（随 `bracket_size` 缩放）
-- **继承现网战斗模块**的项目：只写对接点，不重写战斗判定逻辑
+- 单败：胜者写入父节点
+- 轮次数量由 `bracket_size` 决定（log2 规模）
+- **战斗判定**：框架不定义；L2 标注「继承现网 {模块}」或「新建 MatchService」
 
 ### R-TB-006 阶段日程
 
-由 `phase_schedule` 实例化，典型结构：
+由 `period_structure` 实例化，框架阶段枚举：
 
-| 阶段 | 选手 | 观众 |
-|------|------|------|
-| ANNOUNCE（公示） | 预览对阵，不可战斗 | 预览，不可竞猜 |
-| BATTLE_n（各轮） | 可战斗 | 可竞猜（若启用） |
-| SETTLE（结算） | 发奖、积分转化 | 同左 |
+| 阶段 | 框架含义 |
+|------|----------|
+| ANNOUNCE | 公示；不可战斗 |
+| BATTLE_* | 各战斗轮（数量 = f(bracket_size)） |
+| SETTLE | 结算、发奖、扩展槽收尾（L2 定义） |
 
-每日 UTC0（或可配置 tick）切换阶段；服务端权威，客户端读倒计时 + 本地门控。
+阶段切换：服务端权威；切换 tick 由 L2 定义（如 UTC0）。
 
-## 数据模型（策划视角）
+## 扩展槽（框架挂点）
+
+`extension_slots` 非空时，L2 在独立章节/SKill 定义规则，例如：
+
+| 槽位 id | 框架约定 | 规则定义方 |
+|---------|----------|------------|
+| `betting` | 观赛者可选参与；与 BATTLE 轮次对齐 | L2 / 独立 Skill |
+| `shop` | 结算后或期内兑换 | L2 |
+| `custom_currency` | 期内代币与结算转化 | L2 |
+
+框架**不包含**扩展槽的业务数值与 UI 文案。
+
+## 数据模型（概念层）
 
 | 概念 | 说明 |
 |------|------|
-| BracketSnapshot | 完整对阵树，含所有节点 |
-| BracketNode | matchId, round, slotLeft/Right, winnerId, status |
-| PlayerRole | CONTESTANT / SPECTATOR |
-| Phase | ANNOUNCE / BATTLE_* / SETTLE |
+| BracketSnapshot | 完整对阵树 |
+| BracketNode | 单场比赛节点 |
+| PlayerRole | CONTESTANT / SPECTATOR（可扩展） |
+| Phase | ANNOUNCE / BATTLE_n / SETTLE |
 
-字段编号 P-xx 在 L2 `02/数据源/字段映射索引.md` 登记，L1 不绑定具体 P 编号。
+字段编号、proto 名：**L2 在 02/数据源 登记**。
 
-## 边界与异常
+## 边界与异常（框架）
 
-| 编号 | 场景 | 处理 |
-|------|------|------|
-| EX-TB-001 | 定时任务失败 | 需 L2 定义重试策略 |
-| EX-TB-002 | 签位生成失败 | 回滚报名，告警 |
-| EX-TB-003 | 战斗超时未结算 | 需 L2 定义超时判负/延期 |
-| PRE-TB-001 | 玩家未在来源组 | 不参与本期 |
-| LIM-TB-001 | 身份锁定期内 | 不因游戏内事件改变身份 |
+| 编号 | 场景 | 框架处理 |
+|------|------|----------|
+| EX-TB-001 | 定时任务失败 | L2 定义重试 |
+| EX-TB-002 | 签位失败 | 回滚报名 |
+| EX-TB-003 | 战斗超时未结算 | L2 定义判负/延期 |
+| PRE-TB-001 | 无来源组资格 | 不参与本期 |
+| LIM-TB-001 | 身份锁定期 | 不因局内事件改身份 |
 
-## 验收标准
+## 验收标准（框架）
 
-- [ ] 自动/手动报名与 `registration_mode` 一致
-- [ ] 身份判定符合 `contestant_top_n`，锁定期内不变
-- [ ] 签位固定、机器人补位符合 `robot_fill`
-- [ ] 阶段切换服务端权威，客户端门控与阶段一致
-- [ ] 节点状态 PENDING → IN_PROGRESS → COMPLETED 无歧义
-- [ ] L2 delta 与 workflow `skill_configs` 数值一致
+- [ ] registration_mode 行为与配置一致
+- [ ] 身份判定符合 contestant_rank_top_n（若启用双身份）
+- [ ] 签位非随机、robot_fill 行为正确
+- [ ] 阶段切换服务端权威，客户端门控一致
+- [ ] 节点三态无歧义（见 ux.md）
+- [ ] L2 workflow skill_configs 与 02 规则数值一致

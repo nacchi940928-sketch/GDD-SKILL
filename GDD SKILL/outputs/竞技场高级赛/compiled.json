@@ -1,7 +1,7 @@
 {
   "feature": "竞技场高级赛",
   "feature_root": "E:\\mhw\\GDD SKILL\\GDD SKILL\\案例\\竞技场高级赛",
-  "compiled_at": "2026-07-06T02:01:30.166821+00:00",
+  "compiled_at": "2026-07-06T02:07:05.292214+00:00",
   "workflow": "E:\\mhw\\GDD SKILL\\GDD SKILL\\workflows\\arena.workflow.json",
   "selected_skills": [
     "resolution_standard",

@@ -1,30 +1,26 @@
-# 锦标赛对阵树 — 技术规范（L1 基底）
+# 单败淘汰赛对阵树 — 技术规范（框架 Skill）
 
 ## 规范目标
 
-定义对阵树系统的模块划分、数据结构骨架与接口约定。L2 在 `02/数据源/` 填写具体 P-xx 与协议字段名。
+模块边界、数据结构骨架、接口**族**。不含具体 proto 名、P-xx、项目服务类名。
 
-## 适用范围
-
-服务端权威；客户端读快照 + Push 增量更新。
-
-## 服务 / 模块
+## 服务 / 模块（框架）
 
 | 模块 | 职责 |
 |------|------|
-| TournamentScheduler | 阶段切换定时任务 |
-| RegistrationService | 自动/手动报名 |
-| BracketService | 签位生成、晋级写入 |
-| MatchService | 对战调度（可继承现网） |
-| BettingService | 竞猜（optional） |
-| PushGateway | PhaseChange / BracketUpdate |
+| TournamentScheduler | 阶段切换 |
+| RegistrationService | 报名 |
+| BracketService | 签位、晋级写入 |
+| MatchService | 对战（可继承现网或 L2 新建） |
+| ExtensionAdapter | 扩展槽适配（betting/shop…，可选） |
+| PushGateway | 阶段/节点推送 |
 
-## 数据结构 — BracketNode（骨架）
+## BracketNode（骨架）
 
 ```json
 {
   "matchId": 0,
-  "round": 1,
+  "round": 0,
   "matchIndex": 0,
   "slotLeft": 0,
   "slotRight": 0,
@@ -32,43 +28,39 @@
   "status": "PENDING",
   "isRobotLeft": false,
   "isRobotRight": false,
-  "scoreLeft": 0,
-  "scoreRight": 0,
   "parentMatchId": 0
 }
 ```
 
-**status 枚举**：`PENDING` | `IN_PROGRESS` | `COMPLETED`
+**status**：`PENDING` | `IN_PROGRESS` | `COMPLETED`
 
-**round 映射**（bracket_size=16）：1=R16, 2=QF, 3=SF, 4=FINAL
+**round**：从 1 递增；语义（十六强/八强…）由 `bracket_size` 推导，L2 可命名别名。
 
-## 接口约定（骨架）
+## 接口族（框架）
 
-| 接口 | 方向 | 说明 |
-|------|------|------|
+| 接口族 | 方向 | 用途 |
+|--------|------|------|
 | GetBracketSnapshot | C→S | 拉取对阵树 |
-| GetPhaseInfo | C→S | 当前阶段 + 倒计时 |
+| GetPhaseInfo | C→S | 阶段 + 倒计时 |
 | PhaseChangePush | S→C | 阶段变更 |
-| BracketUpdatePush | S→C | 节点状态/胜者更新 |
-
-L2 在 `02/数据源/协议/` 展开完整 proto/message。
+| BracketUpdatePush | S→C | 节点更新 |
+| Extension* | C↔S | 扩展槽，L2 定义 |
 
 ## 实现约束
 
-- 签位生成与报名同一事务
-- 阶段切换前校验上一轮全部 COMPLETED（或 L2 定义例外）
-- Push 策略：L2 选择全量 vs 增量
+- 签位与报名同事务
+- 阶段切换前：L2 定义上一轮结算完成条件
+- Push：L2 选全量/增量
 
-## 校验规则（骨架）
+## 校验规则（框架）
 
 | 编号 | 校验 |
 |------|------|
-| V-TB-001 | 押注请求：phase 允许 + 未重复押注 + 目标场次 IN_PROGRESS |
-| V-TB-002 | 身份门控：CONTESTANT 才能进入战斗接口 |
-| V-TB-003 | 签位：叶节点数 == bracket_size（含机器人） |
+| V-TB-001 | 扩展槽写操作：phase 允许 + 业务规则（L2） |
+| V-TB-002 | 身份门控：参赛者才能进战斗接口 |
+| V-TB-003 | 叶节点数 == bracket_size（含机器人） |
 
 ## 验收标准
 
-- [ ] 模块边界清晰，L2 协议与 P-xx 对齐
-- [ ] 状态枚举与 02/状态机 一致
-- [ ] 服务端权威，客户端无 sole source of truth
+- [ ] L2 协议与骨架字段一一映射
+- [ ] 服务端权威，客户端不 sole source of truth
