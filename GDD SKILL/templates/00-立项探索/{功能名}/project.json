@@ -1,0 +1,22 @@
+{
+  "feature_name": "{功能名}",
+  "one_liner": "",
+  "reference_games": [
+    {
+      "name": "",
+      "takeaway": "仅启发，非照搬"
+    }
+  ],
+  "platform": "",
+  "target_audience": "",
+  "monetization": "",
+  "inheritance": {
+    "existing_modules": [],
+    "scope": "new",
+    "notes": ""
+  },
+  "constraints": [],
+  "open_questions": [],
+  "confirmed_by_planner": false,
+  "updated_at": ""
+}

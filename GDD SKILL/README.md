@@ -7,7 +7,7 @@
 | 文档 | 用途 |
 |------|------|
 | [策划工作流.md](策划工作流.md) | 五阶段定义 + 检查清单 |
-| [prompts/README.md](prompts/README.md) | 22 个可复制提示词索引 |
+| [prompts/README.md](prompts/README.md) | 26 个提示词（含 P0 策划创作） |
 | [skills/README.md](skills/README.md) | Skill 知识库（L0/L1 框架 + 流程规范） |
 | [docs/PromptMerge规划.md](docs/PromptMerge规划.md) | 架构设计与 Vibe Studio 融合 |
 | [templates/转换规范.md](templates/转换规范.md) | 01→03 转换铁律 |
@@ -15,12 +15,12 @@
 ## 目录一览
 
 ```text
-prompts/          提示词（复制粘贴到 Agent）
+prompts/          提示词 P0~P6（P0 可选，策划创作辅助）
 skills/           规范与框架知识（Agent 读，人不逐条粘贴）
   gdd/            P1~P6 阶段规范
   design/         L1 系统框架（如 tournament_bracket）
   tech/ ux/       L0 横切基底
-templates/        01~04 阶段文档模板
+templates/        00~04 阶段文档模板
 workflows/        项目配置（selected_skills + skill_configs）
 tools/            compile.py、docx_extract.py 等
 案例/             L2 完整样例（竞技场高级赛）

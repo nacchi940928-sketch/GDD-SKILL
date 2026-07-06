@@ -78,30 +78,18 @@
 
 ---
 
-### P0 — 立项与边界（来自 V5 Discovery + GameDNA）
+### P0 — 立项与边界（策划创作辅助 · 已落地）
 
-**P0-1 项目发现**
-```text
-按 Project Discovery Agent 向我提问，一次只问一组：
-项目名称 / 一句话描述 / 参考游戏 / 目标平台 / 目标用户 / 商业模式。
-只输出 project JSON，不要生成 GDD，不要展开系统细节。
-```
+提示词目录：`prompts/P0/` · 规范：`skills/gdd/p0-discovery/SKILL.md`
 
-**P0-2 GameDNA 定调**
-```text
-根据已确认的 project JSON，提炼 game_dna：
-fantasy / emotion / core_experience / core_loop / excluded_systems。
-参考游戏仅作启发，信息不足标「待研究」，禁止编造规则数值。
-输出 game_dna JSON，不要写具体功能设计。
-```
+| 提示词 | 产出 |
+|--------|------|
+| P0-1 项目发现 | `00-立项探索/{功能名}/project.json` |
+| P0-2 GameDNA 定调 | `game_dna.json` + `game_dna.md` |
+| P0-3 功能层级与 Skill 选型 | `skill选型.md` + workflow 草案 |
+| P0-4 玩法大纲与 01 初稿 | `玩法大纲.md` + `01/原始策划案-草稿.md` |
 
-**P0-3 功能层级与选型**
-```text
-根据 game_dna，列出本功能属于哪一层：
-基础功能层 / 边缘系统层 / 核心玩法层 / 活动玩法层。
-从 skills/ 或 templates/ 已有基底中推荐可复用的系统模板；
-库中没有的列「待建 Skill 清单」，不要虚构 id。
-```
+**原则**：P0 产出为草稿，策划确认后进 P1 定稿；已有完整 01/docx 可跳过 P0。
 
 ---
 
@@ -345,7 +333,8 @@ GDD SKILL/
 
 | 优先级 | 任务 | 状态 |
 |--------|------|------|
-| P0 | tournament_bracket L1 Skill | ✅ |
+| P0 | 立项探索 prompts/P0 + p0-discovery Skill | ✅ |
+| P1 | tournament_bracket L1 框架 Skill | ✅ |
 | P1 | prompts/P1~P6 全阶段提示词 | ✅ |
 | P1 | compile.py | ✅ |
 | P1 | 横切 Skill | ✅ |

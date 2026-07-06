@@ -14,7 +14,8 @@
 
 | 阶段 | 目录 | 规范 Skill | 说明 |
 |------|------|------------|------|
-| P1 原始策划案 | [P1/](P1/) | [p1-original-gdd](../skills/gdd/p1-original-gdd/SKILL.md) | 策划主文档 |
+| P0 立项探索（可选） | [P0/](P0/) | [p0-discovery](../skills/gdd/p0-discovery/SKILL.md) | 策划创作辅助：发现、定调、选型、大纲 |
+| P1 原始策划案 | [P1/](P1/) | [p1-original-gdd](../skills/gdd/p1-original-gdd/SKILL.md) | 策划主文档定稿 |
 | P2 需求拆解 | [P2/](P2/) | [p2-decompose](../skills/gdd/p2-decompose/SKILL.md) | 8 维度；可继承 L1 框架 |
 | P3 功能点梳理 | [P3/](P3/) | [p3-feature-spec](../skills/gdd/p3-feature-spec/SKILL.md) | 程序主文档 |
 | P4 待策划补充 | [P4/](P4/) | [p4-planner-fill](../skills/gdd/p4-planner-fill/SKILL.md) | 只填 L2 delta |
@@ -24,6 +25,8 @@
 ## 全流程推荐顺序
 
 ```text
+（可选）P0-1 → P0-2 → P0-3 → P0-4 → 策划确认 01 草稿
+  ↓
 P1-1 → P1-2 → 策划确认
   ↓
 P2-DS → P2-R → P2-EX → P2-SM → P2-UI → P2-RD → P2-V → P2-T

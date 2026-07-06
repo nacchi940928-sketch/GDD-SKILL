@@ -7,7 +7,7 @@
 
 | 类型 | 路径 | 层级 | 说明 |
 |------|------|------|------|
-| **流程规范** | `gdd/p1~p6-*/SKILL.md` | — | 各阶段格式铁律、检查清单（P1~P6 对应） |
+| **流程规范** | `gdd/p0~p6-*/SKILL.md` | — | 各阶段格式铁律、检查清单（P0~P6 对应） |
 | **横切基底** | `tech/*`、`ux/*` | L0 | 分辨率、交互反馈等全项目共用 |
 | **系统框架** | `design/*` | L1 | 抽象业务模式 + `config_schema`，**不含具体项目名词** |
 
@@ -34,6 +34,7 @@ L2 项目实例（案例/{功能名}/ + workflows/*.json）
 | `resolution_standard` | L0 | [tech/resolution_standard](tech/resolution_standard/) | 1080×2340 fit、安全区 |
 | `interaction_feedback` | L0 | [ux/interaction_feedback](ux/interaction_feedback/) | 按钮三态、Toast、防连点 |
 | `tournament_bracket` | L1 框架 | [design/tournament_bracket](design/tournament_bracket/) | 单败 Bracket 通用模式 |
+| `gdd/p0-discovery` | 流程 | [gdd/p0-discovery](gdd/p0-discovery/) | P0 立项探索（策划创作辅助，可选） |
 | `gdd/p1-original-gdd` | 流程 | [gdd/p1-original-gdd](gdd/p1-original-gdd/) | P1 原始案规范 |
 | `gdd/p2-decompose` | 流程 | [gdd/p2-decompose](gdd/p2-decompose/) | P2 八维度拆解规范 |
 | `gdd/p3-feature-spec` | 流程 | [gdd/p3-feature-spec](gdd/p3-feature-spec/) | P3 功能点规范 |
