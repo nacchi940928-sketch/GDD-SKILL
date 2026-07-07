@@ -1,6 +1,6 @@
 ﻿# P2-R 规则
 
-规范：`skills/gdd/p2-decompose/SKILL.md` · **写作规范**：`templates/02-需求拆解-写作规范.md` · 库索引：[规格交付库.md](../规格交付库.md)
+规范：`skills/pipeline/p2-decompose/SKILL.md` · **写作规范**：`templates/02-需求拆解-写作规范.md` · 库索引：[规格交付库.md](../规格交付库.md)
 
 > **02 = 策划自然语言**；伪代码、P-xx 读写、implementation_data 审计 → **P3 / 03**。
 
@@ -18,16 +18,16 @@ L1 skill_id：{skill_id，无则留空}
 
 【@ 必读输入】
 - {feature_root}/01-原始策划案/{功能名}/原始策划案.md
-- {feature_root}/02-需求拆解.md（已有则追加/改写规则章）
+- {feature_root}/02-03需求拆解与功能点梳理/02-需求拆解.md（已有则追加/改写规则章）
 - templates/02-需求拆解-写作规范.md
 - workflows/{项目}.workflow.json
-- skills/design/{skill_id}/design.md（如有 L1）
+- skills/frameworks/{skill_id}/design.md（如有 L1）
 
 【本步任务】
 为「{功能名}」编写 02 的「§3 业务规则」（自然语言），合并进 02-需求拆解.md。
 
 【输出路径】
-{feature_root}/02-需求拆解.md（§3 业务规则章节）
+{feature_root}/02-03需求拆解与功能点梳理/02-需求拆解.md（§3 业务规则章节）
 
 【本步格式要求】
 - 编号：R-{功能缩写}-{序号}

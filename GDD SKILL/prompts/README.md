@@ -1,4 +1,4 @@
-﻿# 提示词总索引
+# 提示词总索引
 
 > **路径规范**：`{feature_root}` = `产出/{功能名}`。详见 [使用指导.md](../使用指导.md)。
 
@@ -45,12 +45,12 @@ P0 → 01 草稿        →    P1 定稿 → P2 八维度 → P3 功能点 → P
 
 | 阶段 | 提示词数 | 规范 Skill | 说明 |
 |------|----------|------------|------|
-| P1 入口 | 2 | [p1-original-gdd](../skills/gdd/p1-original-gdd/SKILL.md) | docx → 01 定稿 |
-| **P2 需求拆解** | **8** | [p2-decompose](../skills/gdd/p2-decompose/SKILL.md) | **核心：八维度编号化** |
-| **P3 功能点** | **6** | [p3-feature-spec](../skills/gdd/p3-feature-spec/SKILL.md) | **核心：程序主文档** |
-| P4 待补充 | 2 | [p4-planner-fill](../skills/gdd/p4-planner-fill/SKILL.md) | 策划回填 delta |
-| P5 编译验收 | 4 | [p5-compile-verify](../skills/gdd/p5-compile-verify/SKILL.md) | compile + 验收 + **执行日志** |
-| P6 开发管线 | 3 | [p6-pipeline](../skills/gdd/p6-pipeline/SKILL.md) | server/client 四件套 |
+| P1 入口 | 2 | [p1-original-gdd](../skills/pipeline/p1-original-gdd/SKILL.md) | docx → 01 定稿 |
+| **P2 需求拆解** | **8** | [p2-decompose](../skills/pipeline/p2-decompose/SKILL.md) | **核心：八维度编号化** |
+| **P3 功能点** | **6** | [p3-feature-spec](../skills/pipeline/p3-feature-spec/SKILL.md) | **核心：程序主文档** |
+| P4 待补充 | 2 | [p4-planner-fill](../skills/pipeline/p4-planner-fill/SKILL.md) | 策划回填 delta |
+| P5 编译验收 | 4 | [p5-compile-verify](../skills/pipeline/p5-compile-verify/SKILL.md) | compile + 验收 + **执行日志** |
+| P6 开发管线 | 3 | [p6-pipeline](../skills/pipeline/p6-pipeline/SKILL.md) | server/client 四件套 |
 
 ## Part 2 推荐顺序
 
@@ -82,4 +82,4 @@ P5-1 → P5-2 → P5-3 → P5-4 → P6
 python tools/compile.py 产出/{功能名} --workflow workflows/{项目}.workflow.json
 ```
 
-产出 `outputs/{功能名}/程序包.md | 测试包.md | 策划包.md`
+产出 `{feature_root}/开发文档/程序包.md | 测试包.md | 策划包.md`

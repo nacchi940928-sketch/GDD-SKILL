@@ -4,7 +4,7 @@
 
 ## L1 框架继承
 
-本功能实例化 [tournament_bracket](../../../../skills/design/tournament_bracket/) 框架。  
+本功能实例化 [tournament_bracket](../../../../skills/frameworks/tournament_bracket/) 框架。  
 参数见 `workflows/arena.workflow.json` → `skill_configs.tournament_bracket`。
 
 | 层级 | 内容 |

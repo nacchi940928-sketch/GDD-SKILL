@@ -1,6 +1,6 @@
 ﻿# P1-1 Docx转原始案
 
-规范：`skills/gdd/p1-original-gdd/SKILL.md` · 库索引：[规格交付库.md](../规格交付库.md)
+规范：`skills/pipeline/p1-original-gdd/SKILL.md` · 库索引：[规格交付库.md](../规格交付库.md)
 
 > **Part 2 入口**：将策划提供的任意格式源材料规范化为标准 01 结构，供 P2/P3 统一拆解。
 

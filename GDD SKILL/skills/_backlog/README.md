@@ -11,7 +11,7 @@
 |------|------|
 | 📝 代做 | 仅有构想与接口约定，无 SKILL.md 执行体 |
 | 🟡 设计中 | 已有目录草案，待评审 |
-| ✅ 已晋升 | 迁入 `tech/` / `design/` / `gdd/`，并从本表移除 |
+| ✅ 已晋升 | 迁入 `tech/` / `frameworks/` / `pipeline/`，并从本表移除 |
 
 **晋升条件**：维护者确认 + 关联数据（如表关系图）有维护责任人 + 至少一个 Prompt 或工具入口。
 
@@ -33,7 +33,7 @@
 ```text
 _backlog/（代做记录）
     ↓ 维护者确认
-skills/tech|design|gdd/（正式 Skill）
+skills/tech|frameworks|pipeline/（正式 Skill）
     ↓ 可选
 prompts/（执行 Prompt）
     ↓ 可选

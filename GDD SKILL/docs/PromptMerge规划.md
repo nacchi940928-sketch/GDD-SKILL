@@ -71,8 +71,8 @@
 | 类型 | 位置 | 用途 |
 |------|------|------|
 | **提示词** | `prompts/P2/P2-*.md` | 复制「提示词正文」到 Agent 对话，直接执行 |
-| **Skill** | `skills/gdd/p2-decompose/SKILL.md` | 维度规范、格式示例、铁律（Agent 可读，人不逐条粘贴） |
-| **L1 基底** | `skills/design/*` 等 | 跨项目可复用系统知识 |
+| **Skill** | `skills/pipeline/p2-decompose/SKILL.md` | 维度规范、格式示例、铁律（Agent 可读，人不逐条粘贴） |
+| **L1 基底** | `skills/frameworks/*` 等 | 跨项目可复用系统知识 |
 
 以下按**管线阶段**组织；P2 八个维度已落地为 `prompts/P2/`，P0/P3+ 仍见下文参考话术。
 
@@ -80,7 +80,7 @@
 
 ### P0 — 立项与边界（策划创作辅助 · 已落地）
 
-提示词目录：`prompts/P0/` · 规范：`skills/gdd/p0-discovery/SKILL.md`
+提示词目录：`prompts/P0/` · 规范：`skills/pipeline/p0-discovery/SKILL.md`
 
 | 提示词 | 产出 |
 |--------|------|
@@ -236,7 +236,7 @@
 - 程序包：03-功能点梳理/（主读）+ 04 已填项
 - 测试包：验收标准 + 验收场景 + qa 基底
 - 策划包：01 + 02/规则摘要 + 节点配置
-禁止手改 outputs/；变更回流到 02/03/04 或 L1 Skill。
+禁止手改 `{feature_root}/开发文档/`；变更回流到 02/03/04 或 L1 Skill。
 ```
 
 **P5-3 策划验收清单**
@@ -322,7 +322,9 @@ GDD SKILL/
 ├── tools/
 │   ├── compile.py
 │   └── ...
-├── outputs/                   # 编译产出（勿手改）
+├── 产出/{功能名}/
+│   ├── 02-需求拆解.md / 03-功能点梳理.md / 01 / 04 / logs
+│   └── 编译/                 # compile 三包（勿手改）
 ├── 案例/
 └── 策划工作流.md
 ```

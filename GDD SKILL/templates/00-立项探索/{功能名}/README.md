@@ -3,7 +3,7 @@
 > **可选阶段**：策划已有完整 01/docx 时可跳过本目录，直接 P1。  
 > 本目录产出均为**草稿**，策划确认后才进入 P1 定稿与 P2 拆解。
 
-规范：`skills/gdd/p0-discovery/SKILL.md`  
+规范：`skills/pipeline/p0-discovery/SKILL.md`  
 提示词：`prompts/P0/README.md`
 
 ---

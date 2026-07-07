@@ -1,6 +1,6 @@
 ﻿# P0-2 GameDNA 定调
 
-规范：`skills/gdd/p0-discovery/SKILL.md`
+规范：`skills/pipeline/p0-discovery/SKILL.md`
 
 ## 提示词正文（复制以下内容）
 

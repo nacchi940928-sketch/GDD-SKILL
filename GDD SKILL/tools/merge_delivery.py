@@ -2,7 +2,7 @@
 """
 将 legacy 02/03 多文件夹合并为单文档（一次性迁移用）。
 
-日常交付请直接编辑 {feature_root}/02-需求拆解.md 与 03-功能点梳理.md。
+日常交付请直接编辑 `{feature_root}/02-03需求拆解与功能点梳理/02-需求拆解.md` 与 `03-功能点梳理.md`。
 
 用法:
   python tools/merge_delivery.py 产出/超级鸡马   # 仅当 legacy 目录仍存在时
@@ -19,6 +19,7 @@ ROOT = Path(__file__).resolve().parent.parent
 
 STAGE_02 = "02-需求拆解"
 STAGE_03 = "03-功能点梳理"
+SPEC_DIR = "02-03需求拆解与功能点梳理"
 
 DIMENSION_ORDER_02 = [
     ("规则", "3. 业务规则"),
@@ -148,7 +149,9 @@ def merge_03(feature_root: Path, feature_name: str, workflow_note: str = "") -> 
             lines.append(_downgrade_headers(_strip_top_h1(_read_md(p)), 1))
             lines.append("")
 
-    out = feature_root / "03-功能点梳理.md"
+    out_dir = feature_root / SPEC_DIR
+    out_dir.mkdir(parents=True, exist_ok=True)
+    out = out_dir / "03-功能点梳理.md"
     out.write_text("\n".join(lines).strip() + "\n", encoding="utf-8")
     return out
 
@@ -242,7 +245,9 @@ def merge_02(feature_root: Path, feature_name: str) -> Path:
             lines.append("_见 补充与修改看板.md_")
         lines.append("")
 
-    out = feature_root / "02-需求拆解.md"
+    out_dir = feature_root / SPEC_DIR
+    out_dir.mkdir(parents=True, exist_ok=True)
+    out = out_dir / "02-需求拆解.md"
     out.write_text("\n".join(lines).strip() + "\n", encoding="utf-8")
     return out
 

@@ -10,18 +10,19 @@
 | **[prompts/规格交付库.md](prompts/规格交付库.md)** | **Part 2 规格交付 Prompt 库（工作重点）** |
 | [产出/README.md](产出/README.md) | **管线交付物**（01~04） |
 | [案例/README.md](案例/README.md) | **对照样例**（非日常产出） |
+| [templates/README.md](templates/README.md) | **空模板与写作规范** |
 
 ## 目录一览
 
 ```text
 prompts/          提示词 P0~P6
-skills/           规范与框架（Agent 读）
+skills/           规范与框架 — pipeline/（文档管线）· frameworks/（玩法框架）· tech/ux/（L0）
 源文档/             仅原始策划 docx
 config/             全项目表关联 JSON 模板
-templates/        空模板
-产出/{功能名}/     ★ 管线交付物（02/03 单文档 + 01/04 + logs）
+templates/        空模板 — 见 templates/README.md
+产出/{功能名}/     ★ 管线交付物（02-03需求拆解与功能点梳理/ + 开发文档/ + logs）
 案例/             对照样例（如竞技场高级赛）
-outputs/          compile 三包（勿手改）
+outputs/          已废弃；编译产出见 {feature_root}/开发文档/
 workflows/        feature_root → 产出/
 tools/            compile.py 等
 ```
@@ -31,7 +32,7 @@ tools/            compile.py 等
 | 层级 | 位置 | 内容 |
 |------|------|------|
 | L0 | `skills/tech/*`、`skills/ux/*` | 分辨率、交互反馈 |
-| L1 | `skills/design/*` | 框架 Skill |
+| L1 | `skills/frameworks/*` | 框架 Skill |
 | L2 | **`产出/{功能}/`** + `workflows/*.json` | 项目交付实例 |
 
 ## 常用命令

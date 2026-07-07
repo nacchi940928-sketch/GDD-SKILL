@@ -1,6 +1,6 @@
 ﻿# P0-3 功能层级与 Skill 选型
 
-规范：`skills/gdd/p0-discovery/SKILL.md`
+规范：`skills/pipeline/p0-discovery/SKILL.md`
 
 ## 提示词正文（复制以下内容）
 
@@ -9,7 +9,7 @@
 - 产出/{功能名}/00-立项探索/{功能名}/project.json
 - 产出/{功能名}/00-立项探索/{功能名}/game_dna.json（或 game_dna.md）
 - skills/README.md
-- skills/design/*/meta.md（按需 @ 相关框架）
+- skills/frameworks/*/meta.md（按需 @ 相关框架）
 
 功能名：{功能名}
 

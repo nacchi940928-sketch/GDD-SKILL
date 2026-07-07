@@ -2,7 +2,7 @@
 
 > **Part 1（可选）**：帮策划**写**案。Part 2 规格交付见 [规格交付库.md](../规格交付库.md)。
 
-规范：`skills/gdd/p0-discovery/SKILL.md`
+规范：`skills/pipeline/p0-discovery/SKILL.md`
 
 ## 定位
 

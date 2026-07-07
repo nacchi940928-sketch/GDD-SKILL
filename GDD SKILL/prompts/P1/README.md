@@ -1,7 +1,7 @@
 ﻿# P1 原始策划案 — Prompt 库
 
 > **Part 2 入口阶段**：将策划提供的任意源材料规范化为标准 01，供 P2/P3 统一拆解。  
-> 完整规范：[规格交付库.md](../规格交付库.md) · Skill：[p1-original-gdd](../../skills/gdd/p1-original-gdd/SKILL.md)
+> 完整规范：[规格交付库.md](../规格交付库.md) · Skill：[p1-original-gdd](../../skills/pipeline/p1-original-gdd/SKILL.md)
 
 ---
 

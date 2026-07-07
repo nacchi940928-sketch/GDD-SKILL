@@ -11,16 +11,6 @@
     "resolution_standard",
     "interaction_feedback"
   ],
-  "skill_configs": {
-    "resolution_standard": {
-      "orientation": "横屏",
-      "reference_resolution": "1080x2340",
-      "scale_mode": "等比包含留黑边（fit）"
-    },
-    "interaction_feedback": {
-      "feedback_strength": "标准",
-      "click_lock_ms": "300"
-    }
-  },
+  "skill_configs": {},
   "feature_root": "产出/超级鸡马"
 }

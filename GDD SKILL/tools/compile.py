@@ -2,6 +2,12 @@
 """
 GDD 编译器：02-需求拆解.md + 03-功能点梳理.md → 程序包 / 测试包 / 策划包
 
+默认输入：`{feature_root}/02-03需求拆解与功能点梳理/`（即 02/03 拆解目录；兼容旧路径）
+默认输出：`{feature_root}/开发文档/`（与 01~04 同属一份策划案，不再使用顶层 outputs/）。
+
+策划包 skill_configs：仅输出 workflow 中显式填写的 key；不合并 L0 meta 默认值。
+策划包 / 测试包：Skill 仅输出路径索引，不嵌入 design/ux/tech/qa 全文。
+
 用法:
   python compile.py 产出/超级鸡马
   python compile.py 产出/超级鸡马 --workflow workflows/chickenhorse.workflow.json
@@ -32,6 +38,8 @@ STAGE_DIRS = {
 
 FILE_02 = "02-需求拆解.md"
 FILE_03 = "03-功能点梳理.md"
+SPEC_DIR = "02-03需求拆解与功能点梳理"  # 02/03 单文档目录（Windows 用 02-03 表示 02/03）
+COMPILE_DIR = "开发文档"  # compile 三包目录
 
 DIMENSION_ORDER = [
     "规则",
@@ -47,6 +55,17 @@ DIMENSION_ORDER = [
 PROGRAM_02_DIMS = {"数据源", "状态机", "校验规则", "规则"}
 TEST_02_DIMS = {"验收标准", "边界条件"}
 PLANNING_02_DIMS = {"规则", "UI交互"}
+
+
+def _resolve_delivery_paths(feature_root: Path) -> tuple[Path, Path]:
+    """优先 02-03需求拆解与功能点梳理/ 子目录，兼容旧名与 feature_root 根目录。"""
+    sub = feature_root / SPEC_DIR
+    legacy = feature_root / "02-03需求拆解与功能点梳理"
+    candidates_02 = (sub / FILE_02, legacy / FILE_02, feature_root / FILE_02)
+    candidates_03 = (sub / FILE_03, legacy / FILE_03, feature_root / FILE_03)
+    path_02 = next((p for p in candidates_02 if p.exists()), sub / FILE_02)
+    path_03 = next((p for p in candidates_03 if p.exists()), sub / FILE_03)
+    return path_02, path_03
 
 
 def _find_stage_dir(feature_root: Path, stage_key: str) -> Path | None:
@@ -128,34 +147,80 @@ def _render_skill_configs(workflow: dict, skills: dict) -> str:
         schema = skill.get("config_schema", [])
         if not schema:
             lines.append("- 无 config_schema")
+        elif not cfg:
+            lines.append("- _未填写 skill_configs（请在 `workflows/*.json` 配置本项目参数）_")
         else:
-            for field in schema:
-                key = field["key"]
-                label = field.get("label", key)
-                val = cfg.get(key, field.get("default", ""))
+            schema_by_key = {f["key"]: f for f in schema}
+            for key, val in cfg.items():
+                field = schema_by_key.get(key)
+                label = field.get("label", key) if field else key
+                if val is None or (isinstance(val, str) and not val.strip()):
+                    val = "【待填】"
                 lines.append(f"- **{label}** (`{key}`): {val}")
         lines.append("")
     return "\n".join(lines)
 
 
-def _render_l1_skills(workflow: dict, skills: dict) -> list[tuple[str, str]]:
+def _skill_tier(pkg_dir: Path) -> str:
+    skills_root = (ROOT / "skills").resolve()
+    try:
+        top = pkg_dir.resolve().relative_to(skills_root).parts[0]
+    except (ValueError, IndexError):
+        return "L?"
+    if top == "design":
+        return "L1"
+    if top in ("tech", "ux", "gdd"):
+        return "L0"
+    return top
+
+
+def _render_skill_index(workflow: dict, skills: dict) -> str:
+    """Skill 路径索引；不嵌入 design/ux/tech/qa 全文。"""
     selected = workflow.get("selected_skills", [])
     if not selected:
-        return []
+        return ""
+
     try:
         ordered = resolve_dependencies(selected, skills)
-    except (KeyError, ValueError):
-        return []
+    except (KeyError, ValueError) as e:
+        return f"_Skill 解析失败: {e}_\n"
 
-    sections = []
+    lines = [
+        "> 框架/横切 Skill **不嵌入全文**；详细规范请阅读仓库 `skills/` 下对应文件。",
+        "> **本项目实例参数** → 见上方「节点配置 (skill_configs)」。",
+        "",
+        "| skill_id | 名称 | 层级 | 路径 | 文件 |",
+        "|----------|------|------|------|------|",
+    ]
+    qa_refs: list[str] = []
     for sid in ordered:
         skill = skills[sid]
-        pkg = Path(skill["package_dir"])
-        for role in ("design", "ux", "tech", "qa"):
-            path = pkg / f"{role}.md"
-            if path.exists():
-                sections.append((f"L1 {sid} / {role}", path.read_text(encoding="utf-8")))
-    return sections
+        pkg = Path(skill["package_dir"]).resolve()
+        try:
+            rel_pkg = pkg.relative_to(ROOT.resolve()).as_posix()
+        except ValueError:
+            rel_pkg = skill["package_dir"]
+        tier = _skill_tier(pkg)
+        kf = skill.get("knowledge_files", {})
+        files = ", ".join(f"`{k}.md`" for k in sorted(kf)) if kf else "—"
+        lines.append(
+            f"| `{sid}` | {skill.get('name', sid)} | {tier} | `{rel_pkg}/` | {files} |"
+        )
+        if "qa" in kf:
+            try:
+                qa_rel = Path(kf["qa"]).resolve().relative_to(ROOT.resolve()).as_posix()
+            except ValueError:
+                qa_rel = kf["qa"]
+            qa_refs.append(f"- `{sid}` → `{qa_rel}`")
+
+    if qa_refs:
+        lines.extend([
+            "",
+            "**测试基线 QA**（不嵌入全文）：",
+            *qa_refs,
+        ])
+    lines.append("")
+    return "\n".join(lines)
 
 
 def _legacy_02_sections(dir_02: Path, dims: set[str]) -> list[tuple[str, str]]:
@@ -177,8 +242,7 @@ def compile_feature(
     feature_root = feature_root.resolve()
     feature_name = feature_root.name
 
-    path_02 = feature_root / FILE_02
-    path_03 = feature_root / FILE_03
+    path_02, path_03 = _resolve_delivery_paths(feature_root)
     dir_01 = _find_stage_dir(feature_root, "01")
     dir_02 = _find_stage_dir(feature_root, "02")
     dir_03 = _find_stage_dir(feature_root, "03")
@@ -196,7 +260,7 @@ def compile_feature(
     if workflow_path and workflow_path.exists():
         workflow = json.loads(workflow_path.read_text(encoding="utf-8"))
 
-    out = output_dir or ROOT / "outputs" / feature_name
+    out = output_dir or (feature_root / COMPILE_DIR)
     out.mkdir(parents=True, exist_ok=True)
 
     text_03 = _read_single(path_03)
@@ -253,10 +317,9 @@ def compile_feature(
     elif dir_02:
         test_sections.extend(_legacy_02_sections(dir_02, TEST_02_DIMS))
 
-    for sid in workflow.get("selected_skills", []):
-        qa_path = Path(skills.get(sid, {}).get("package_dir", "")) / "qa.md"
-        if qa_path.exists():
-            test_sections.append((f"L1 QA / {sid}", qa_path.read_text(encoding="utf-8")))
+    skill_index = _render_skill_index(workflow, skills) if workflow else ""
+    if skill_index.strip():
+        test_sections.append(("Skill 索引", skill_index))
 
     test_doc = _build_doc(f"{feature_name} — 测试包", test_sections)
     (out / "测试包.md").write_text(test_doc, encoding="utf-8")
@@ -271,7 +334,9 @@ def compile_feature(
         plan_sections.append(("需求拆解（汇报主读）", text_02))
     elif dir_02:
         plan_sections.extend(_legacy_02_sections(dir_02, PLANNING_02_DIMS))
-    plan_sections.extend(_render_l1_skills(workflow, skills))
+    skill_index = _render_skill_index(workflow, skills) if workflow else ""
+    if skill_index.strip():
+        plan_sections.append(("Skill 索引", skill_index))
 
     plan_doc = _build_doc(f"{feature_name} — 策划包", plan_sections)
     (out / "策划包.md").write_text(plan_doc, encoding="utf-8")
@@ -283,8 +348,10 @@ def compile_feature(
         "workflow": str(workflow_path) if workflow_path else None,
         "selected_skills": workflow.get("selected_skills", []),
         "delivery_format": "single_md" if use_single else "legacy_folders",
+        "compiled_dir": str(out),
         "outputs": ["程序包.md", "测试包.md", "策划包.md"],
         "sources": {
+            "spec_dir": str(feature_root / SPEC_DIR),
             "01": str(dir_01) if dir_01 else None,
             FILE_02: str(path_02) if path_02.exists() else None,
             FILE_03: str(path_03) if path_03.exists() else None,
@@ -309,7 +376,9 @@ def compile_skills_only(workflow_path: Path, skills_dir: Path, output_dir: Path)
     sections = [
         ("Skill 配置", _render_skill_configs(workflow, skills)),
     ]
-    sections.extend(_render_l1_skills(workflow, skills))
+    skill_index = _render_skill_index(workflow, skills)
+    if skill_index.strip():
+        sections.append(("Skill 索引", skill_index))
 
     doc = _build_doc("Skill 编译预览", sections)
     (out / "策划包.md").write_text(doc, encoding="utf-8")

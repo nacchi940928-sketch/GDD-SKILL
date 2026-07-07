@@ -1,7 +1,7 @@
 # P4 待策划补充 — Prompt 库
 
 > **Part 2 补全阶段**：扫描 02/03，生成策划待填清单（只填 L2 delta）。  
-> 完整规范：[规格交付库.md](../规格交付库.md) · Skill：[p4-planner-fill](../../skills/gdd/p4-planner-fill/SKILL.md)
+> 完整规范：[规格交付库.md](../规格交付库.md) · Skill：[p4-planner-fill](../../skills/pipeline/p4-planner-fill/SKILL.md)
 
 ---
 
@@ -47,9 +47,9 @@ P5 编译验收
 
 ```
 @ {feature_root}/01-原始策划案/{功能名}/原始策划案.md
-@ {feature_root}/02-需求拆解/{功能名}/（全目录）
-@ {feature_root}/03-功能点梳理/{功能名}/（全目录）
-@ skills/design/{skill_id}/（如有 L1）
+@ {feature_root}/02-03需求拆解与功能点梳理/02-需求拆解.md
+@ {feature_root}/02-03需求拆解与功能点梳理/03-功能点梳理.md
+@ skills/frameworks/{skill_id}/（如有 L1）
 ```
 
 ---
@@ -58,8 +58,9 @@ P5 编译验收
 
 | 来源 | 内容 |
 |------|------|
-| `workflows/*.json` → `skill_configs` | 已确定的框架参数 |
-| `04/02-配置数值` | workflow 未覆盖、须策划确认的数值 |
+| `workflows/*.json` → `skill_configs` | **程序填写**；策划未提供则不预填；compile 仅展示已填 key |
+| `04/01-字段命名` §L0 | 程序回填 orientation、reference_resolution 等 |
+| `04/02-配置数值` | 策划填 Const / 配置表数值（Q-Dxx） |
 
 ---
 
