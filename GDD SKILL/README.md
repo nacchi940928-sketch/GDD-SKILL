@@ -11,6 +11,7 @@
 | [产出/README.md](产出/README.md) | **管线交付物**（01~04） |
 | [案例/README.md](案例/README.md) | **对照样例**（非日常产出） |
 | [templates/README.md](templates/README.md) | **空模板与写作规范** |
+| [docs/GDD-SKILL-管线完成度.md](docs/GDD-SKILL-管线完成度.md) | **管线完成度总结（已完成/未完成）** |
 
 ## 目录一览
 
@@ -22,7 +23,6 @@ config/             全项目表关联 JSON 模板
 templates/        空模板 — 见 templates/README.md
 产出/{功能名}/     ★ 管线交付物（02-03需求拆解与功能点梳理/ + 开发文档/ + logs）
 案例/             对照样例（如竞技场高级赛）
-outputs/          已废弃；编译产出见 {feature_root}/开发文档/
 workflows/        feature_root → 产出/
 tools/            compile.py 等
 ```

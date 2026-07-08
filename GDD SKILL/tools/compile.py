@@ -2,11 +2,8 @@
 """
 GDD 编译器：02-需求拆解.md + 03-功能点梳理.md → 程序包 / 测试包 / 策划包
 
-默认输入：`{feature_root}/02-03需求拆解与功能点梳理/`（即 02/03 拆解目录；兼容旧路径）
-默认输出：`{feature_root}/开发文档/`（与 01~04 同属一份策划案，不再使用顶层 outputs/）。
-
-策划包 skill_configs：仅输出 workflow 中显式填写的 key；不合并 L0 meta 默认值。
-策划包 / 测试包：Skill 仅输出路径索引，不嵌入 design/ux/tech/qa 全文。
+输入：`{feature_root}/02-03需求拆解与功能点梳理/02-需求拆解.md` + `03-功能点梳理.md`
+输出：`{feature_root}/开发文档/`
 
 用法:
   python compile.py 产出/超级鸡马
@@ -23,7 +20,6 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
-from meta_parser import parse_meta_md
 from skill_loader import load_skills, resolve_dependencies
 
 TOOLS_DIR = Path(__file__).resolve().parent
@@ -31,41 +27,19 @@ ROOT = TOOLS_DIR.parent
 
 STAGE_DIRS = {
     "01": "01-原始策划案",
-    "02": "02-需求拆解",
-    "03": "03-功能点梳理",
     "04": "04-待策划补充",
 }
 
 FILE_02 = "02-需求拆解.md"
 FILE_03 = "03-功能点梳理.md"
-SPEC_DIR = "02-03需求拆解与功能点梳理"  # 02/03 单文档目录（Windows 用 02-03 表示 02/03）
-COMPILE_DIR = "开发文档"  # compile 三包目录
-
-DIMENSION_ORDER = [
-    "规则",
-    "边界条件",
-    "红点",
-    "数据源",
-    "UI交互",
-    "状态机",
-    "校验规则",
-    "验收标准",
-]
-
-PROGRAM_02_DIMS = {"数据源", "状态机", "校验规则", "规则"}
-TEST_02_DIMS = {"验收标准", "边界条件"}
-PLANNING_02_DIMS = {"规则", "UI交互"}
+SPEC_DIR = "02-03需求拆解与功能点梳理"
+COMPILE_DIR = "开发文档"
+SKILLS_PREVIEW_DIR = TOOLS_DIR / ".skills_preview"
 
 
 def _resolve_delivery_paths(feature_root: Path) -> tuple[Path, Path]:
-    """优先 02-03需求拆解与功能点梳理/ 子目录，兼容旧名与 feature_root 根目录。"""
-    sub = feature_root / SPEC_DIR
-    legacy = feature_root / "02-03需求拆解与功能点梳理"
-    candidates_02 = (sub / FILE_02, legacy / FILE_02, feature_root / FILE_02)
-    candidates_03 = (sub / FILE_03, legacy / FILE_03, feature_root / FILE_03)
-    path_02 = next((p for p in candidates_02 if p.exists()), sub / FILE_02)
-    path_03 = next((p for p in candidates_03 if p.exists()), sub / FILE_03)
-    return path_02, path_03
+    spec = feature_root / SPEC_DIR
+    return spec / FILE_02, spec / FILE_03
 
 
 def _find_stage_dir(feature_root: Path, stage_key: str) -> Path | None:
@@ -79,18 +53,10 @@ def _find_stage_dir(feature_root: Path, stage_key: str) -> Path | None:
     return None
 
 
-def _collect_md_files(base: Path, subdirs: list[str] | None = None) -> list[Path]:
+def _collect_md_files(base: Path) -> list[Path]:
     if not base or not base.exists():
         return []
-    files: list[Path] = []
-    if subdirs:
-        for sub in subdirs:
-            d = base / sub
-            if d.is_dir():
-                files.extend(sorted(d.rglob("*.md")))
-    else:
-        files.extend(sorted(base.rglob("*.md")))
-    return files
+    return sorted(base.rglob("*.md"))
 
 
 def _read_files(files: list[Path], base: Path) -> str:
@@ -167,15 +133,14 @@ def _skill_tier(pkg_dir: Path) -> str:
         top = pkg_dir.resolve().relative_to(skills_root).parts[0]
     except (ValueError, IndexError):
         return "L?"
-    if top == "design":
+    if top == "frameworks":
         return "L1"
-    if top in ("tech", "ux", "gdd"):
+    if top in ("tech", "ux", "pipeline"):
         return "L0"
     return top
 
 
 def _render_skill_index(workflow: dict, skills: dict) -> str:
-    """Skill 路径索引；不嵌入 design/ux/tech/qa 全文。"""
     selected = workflow.get("selected_skills", [])
     if not selected:
         return ""
@@ -223,16 +188,6 @@ def _render_skill_index(workflow: dict, skills: dict) -> str:
     return "\n".join(lines)
 
 
-def _legacy_02_sections(dir_02: Path, dims: set[str]) -> list[tuple[str, str]]:
-    sections = []
-    for dim in DIMENSION_ORDER:
-        if dim in dims:
-            files = _collect_md_files(dir_02, [dim])
-            if files:
-                sections.append((dim, _read_files(files, dir_02)))
-    return sections
-
-
 def compile_feature(
     feature_root: Path,
     output_dir: Path | None = None,
@@ -244,14 +199,11 @@ def compile_feature(
 
     path_02, path_03 = _resolve_delivery_paths(feature_root)
     dir_01 = _find_stage_dir(feature_root, "01")
-    dir_02 = _find_stage_dir(feature_root, "02")
-    dir_03 = _find_stage_dir(feature_root, "03")
     dir_04 = _find_stage_dir(feature_root, "04")
 
-    use_single = path_02.exists() or path_03.exists()
-    if not use_single and not dir_02 and not dir_03:
+    if not path_02.exists() and not path_03.exists():
         raise FileNotFoundError(
-            f"未找到交付文档: 需要 {FILE_02} / {FILE_03}，或旧版 02/03 目录。可先运行: python tools/merge_delivery.py {feature_root}"
+            f"未找到交付文档: 需要 {feature_root / SPEC_DIR / FILE_02} 与 {FILE_03}"
         )
 
     skills_root = skills_dir or ROOT / "skills"
@@ -266,21 +218,9 @@ def compile_feature(
     text_03 = _read_single(path_03)
     text_02 = _read_single(path_02)
 
-    # --- 程序包 ---
     prog_sections: list[tuple[str, str]] = []
     if text_03:
         prog_sections.append(("功能点梳理（程序主读）", text_03))
-    elif dir_03:
-        prog_sections.append(("0. 阅读说明与索引", _read_files(
-            [p for p in _collect_md_files(dir_03) if p.name.startswith("0-") or p.name in (
-                "字段映射.md", "待确认事项.md")],
-            dir_03,
-        )))
-        fp_dir = dir_03 / "功能点"
-        if fp_dir.is_dir():
-            prog_sections.append(("1. 功能点（程序主读）", _read_files(sorted(fp_dir.glob("*.md")), dir_03)))
-    elif dir_02:
-        prog_sections.extend(_legacy_02_sections(dir_02, PROGRAM_02_DIMS))
 
     if dir_04:
         filled = []
@@ -296,16 +236,11 @@ def compile_feature(
     program_doc = _build_doc(f"{feature_name} — 程序包", prog_sections)
     (out / "程序包.md").write_text(program_doc, encoding="utf-8")
 
-    # --- 测试包 ---
     test_sections: list[tuple[str, str]] = []
     if text_03:
         appendix_b = _extract_appendix(text_03, r"## 附录 B 验收场景.*")
         if appendix_b:
             test_sections.append(("验收场景", appendix_b))
-    elif dir_03:
-        p = dir_03 / "验收场景.md"
-        if p.exists():
-            test_sections.append(("验收场景", p.read_text(encoding="utf-8")))
 
     if text_02:
         acc = _extract_appendix(text_02, r"## 7\. 验收要点.*")
@@ -314,8 +249,6 @@ def compile_feature(
             test_sections.append(("验收要点", acc))
         if boundary:
             test_sections.append(("边界与异常", boundary))
-    elif dir_02:
-        test_sections.extend(_legacy_02_sections(dir_02, TEST_02_DIMS))
 
     skill_index = _render_skill_index(workflow, skills) if workflow else ""
     if skill_index.strip():
@@ -324,7 +257,6 @@ def compile_feature(
     test_doc = _build_doc(f"{feature_name} — 测试包", test_sections)
     (out / "测试包.md").write_text(test_doc, encoding="utf-8")
 
-    # --- 策划包 ---
     plan_sections: list[tuple[str, str]] = []
     if workflow:
         plan_sections.append(("节点配置 (skill_configs)", _render_skill_configs(workflow, skills)))
@@ -332,8 +264,6 @@ def compile_feature(
         plan_sections.append(("原始策划案", _read_files(_collect_md_files(dir_01), dir_01)))
     if text_02:
         plan_sections.append(("需求拆解（汇报主读）", text_02))
-    elif dir_02:
-        plan_sections.extend(_legacy_02_sections(dir_02, PLANNING_02_DIMS))
     skill_index = _render_skill_index(workflow, skills) if workflow else ""
     if skill_index.strip():
         plan_sections.append(("Skill 索引", skill_index))
@@ -347,7 +277,7 @@ def compile_feature(
         "compiled_at": datetime.now(timezone.utc).isoformat(),
         "workflow": str(workflow_path) if workflow_path else None,
         "selected_skills": workflow.get("selected_skills", []),
-        "delivery_format": "single_md" if use_single else "legacy_folders",
+        "delivery_format": "single_md",
         "compiled_dir": str(out),
         "outputs": ["程序包.md", "测试包.md", "策划包.md"],
         "sources": {
@@ -355,8 +285,6 @@ def compile_feature(
             "01": str(dir_01) if dir_01 else None,
             FILE_02: str(path_02) if path_02.exists() else None,
             FILE_03: str(path_03) if path_03.exists() else None,
-            "02_legacy": str(dir_02) if dir_02 else None,
-            "03_legacy": str(dir_03) if dir_03 else None,
             "04": str(dir_04) if dir_04 else None,
         },
     }
@@ -414,7 +342,7 @@ def main():
         if not workflow_path:
             print("错误: --skills-only 需要 --workflow", file=sys.stderr)
             sys.exit(1)
-        out = output_dir or ROOT / "outputs" / "skills_preview"
+        out = output_dir or SKILLS_PREVIEW_DIR
         manifest = compile_skills_only(workflow_path, Path(args.skills_dir), out)
     else:
         if not args.feature:

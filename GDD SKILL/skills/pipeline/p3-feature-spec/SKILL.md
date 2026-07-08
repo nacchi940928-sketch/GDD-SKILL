@@ -32,8 +32,6 @@
 └── 补充与修改看板.md
 ```
 
-合并工具（legacy 一次性）：`python tools/merge_delivery.py {feature_root}`
-
 ---
 
 ## 文档结构

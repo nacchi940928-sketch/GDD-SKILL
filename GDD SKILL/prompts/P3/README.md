@@ -43,8 +43,6 @@ P3-1  §0 阅读说明
 | P3-5 | [P3-5-待确认事项.md](P3-5-待确认事项.md) | 附录 C |
 | P3-6 | [P3-6-Feature对齐.md](P3-6-Feature对齐.md) | Feature 任务映射（可选） |
 
-> **已废弃**：`03-功能点梳理/{功能名}/功能点/*.md` 多文件交付。legacy 合并：`python tools/merge_delivery.py {feature_root}`（一次性）。
-
 ---
 
 ## 功能点标准块（P3-2 每章必含）

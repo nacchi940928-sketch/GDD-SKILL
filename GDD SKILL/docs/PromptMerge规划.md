@@ -346,4 +346,4 @@ GDD SKILL/
 
 ## 7. 一句话原则
 
-> **L1 写通用规则，workflow 填项目参数，03 写程序能直接干的活；Prompt 管转换，Compiler 管合并，outputs 只读。**
+> **L1 写通用规则，workflow 填项目参数，03 写程序能直接干的活；Prompt 管转换，Compiler 管合并，`开发文档/` 只读。**

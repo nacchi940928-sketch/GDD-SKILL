@@ -36,15 +36,15 @@ client/design/{功能名}/
 
 ## 后端输入
 
-- `03-功能点梳理/`（主读）
-- `02/数据源/`、`02/校验规则/`、`02/状态机/`（服务端部分）
+- `{spec_root}/03-功能点梳理.md`（主读）
+- `{spec_root}/02-需求拆解.md` §6 数据概要、§5 边界与异常、§2 流程与状态（服务端部分）
 - `workflows/*.json` skill_configs
 - L1 `skills/frameworks/*/tech.md`
 
 ## 前端输入
 
-- `03-功能点梳理/`（主读）
-- `02/UI交互/`、`02/状态机/`（客户端）、`02/红点/`
+- `{spec_root}/03-功能点梳理.md`（主读）
+- `{spec_root}/02-需求拆解.md` §4 UI 与交互、§2 状态（客户端）、§6.1 红点
 - server 已交付的协议/字段命名（04-01 或 proto）
 - L0 `resolution_standard`、`interaction_feedback`（引用，不重复写）
 

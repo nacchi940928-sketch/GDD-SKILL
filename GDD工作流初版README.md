@@ -67,8 +67,8 @@ GDD SKILL/                          ← 项目主目录（本 README 同级为�
     │
     ├── skills/                     ← ★ 规范与可复用知识（Skill）
     │   ├── README.md               ← Skill 总索引（L0/L1/流程）
-    │   ├── gdd/                    ← 各阶段规范（p0-discovery ~ p6-pipeline）
-    │   ├── design/                 ← L1 系统**框架**（如 tournament_bracket）
+    │   ├── pipeline/               ← 各阶段规范（p0-discovery ~ p6-pipeline）
+    │   ├── frameworks/             ← L1 系统**框架**（如 tournament_bracket）
     │   ├── ux/                     ← L0 横切（interaction_feedback）
     │   ├── tech/                   ← L0 横切（resolution_standard）
     │   └── _template/              ← 新建 Skill 模板
@@ -77,11 +77,10 @@ GDD SKILL/                          ← 项目主目录（本 README 同级为�
     ├── workflows/                  ← 项目配置（selected_skills + skill_configs）
     ├── tools/                      ← 工具脚本
     │   ├── compile.py              ← 02+03 → 程序包/测试包/策划包
-    │   ├── docx_extract.py         ← 策划案 docx 提取
-    │   └── organize.py             ← 目录整理
+    │   └── docx_extract.py         ← 策划案 docx 提取
     │
-    ├── 案例/                       ← 完整样例（竞技场高级赛）
-    ├── outputs/                    ← 编译产出（由 compile.py 生成，勿手改）
+    ├── 产出/                       ← 管线交付（01~04 + 02-03单文档 + 开发文档）
+    ├── 案例/                       ← 对照样例（竞技场高级赛）
     └── docs/
         └── PromptMerge规划.md      ← 架构设计与落地记录
 ```
@@ -95,11 +94,10 @@ L0 横切基底（全项目共用）
   resolution_standard / interaction_feedback
         ↓
 L1 系统框架（跨功能复用，抽象模式 + config 槽位）
-  skills/design/tournament_bracket / …
+  skills/frameworks/tournament_bracket / …
         ↓ 实例化（skill_configs + 业务 delta）
 L2 项目/功能实例
-  案例/{功能}/00~04 + workflows/*.json
-  （00 立项探索为 P0 可选产出；01~04 为规格交付主线）
+  产出/{功能}/01~04 + 02-03单文档 + 开发文档 + workflows/*.json
 ```
 
 **原则**：L1 写通用规则与槽位；L2 写项目差异；workflow 填参数；**03-功能点梳理** 是程序 AI 管线的唯一主读文档。
@@ -132,7 +130,7 @@ L2 项目/功能实例
 | P6 开发管线 | 3 | [prompts/P6/](GDD%20SKILL/prompts/P6/) |
 
 **用法**：打开对应 `.md` → 复制「提示词正文」→ 替换 `{功能名}` → `@` 引用文件 → 发送 Agent。  
-规范细节见 `skills/gdd/*/SKILL.md`，**不要与提示词混淆**。
+规范细节见 `skills/pipeline/*/SKILL.md`，**不要与提示词混淆**。
 
 ### 推荐执行顺序
 
@@ -166,7 +164,7 @@ cd "GDD SKILL"
 python tools/compile.py 案例/竞技场高级赛 --workflow workflows/arena.workflow.json
 ```
 
-**产出**（`outputs/竞技场高级赛/`）：
+**产出**（`{feature_root}/开发文档/`，如 `案例/竞技场高级赛/开发文档/`）：
 
 | 文件 | 读者 | 内容 |
 |------|------|------|
@@ -200,7 +198,7 @@ python tools/compile.py 案例/竞技场高级赛 --workflow workflows/arena.wor
 | [P0-3 Skill 选型](GDD%20SKILL/prompts/P0/P0-3-功能层级与Skill选型.md) | `skill选型.md` + workflow 草案 |
 | [P0-4 玩法大纲与 01 初稿](GDD%20SKILL/prompts/P0/P0-4-玩法大纲与01初稿.md) | `玩法大纲.md` + `01/原始策划案-草稿.md` |
 
-规范：`skills/gdd/p0-discovery/SKILL.md`
+规范：`skills/pipeline/p0-discovery/SKILL.md`
 
 ---
 
@@ -211,10 +209,10 @@ python tools/compile.py 案例/竞技场高级赛 --workflow workflows/arena.wor
 | `resolution_standard` | L0 | 1080×2340 fit 留黑边、安全区 |
 | `interaction_feedback` | L0 | 按钮三态、Toast、防连点 |
 | `tournament_bracket` | L1 **框架** | 单败 Bracket 通用模式（报名/签位/阶段/节点）；**不含**竞技场/竞猜等业务 |
-| `gdd/p0-discovery` | 流程 | P0 立项探索（策划创作辅助，可选） |
-| `gdd/p1~p6-*` | 流程 | 各阶段规范 Skill（非业务系统） |
+| `pipeline/p0-discovery` | 流程 | P0 立项探索（策划创作辅助，可选） |
+| `pipeline/p1~p6-*` | 流程 | 各阶段规范 Skill（非业务系统） |
 
-> 具体功能（如竞技场高级赛）的业务规则在 `案例/{功能名}/` 实例化，通过 `workflows/*.json` 的 `skill_configs` 填框架参数。
+> 具体功能（如竞技场高级赛）的业务规则在 `产出/` 或 `案例/` 实例化，通过 `workflows/*.json` 的 `skill_configs` 填框架参数。
 
 ---
 
@@ -225,14 +223,14 @@ python tools/compile.py 案例/竞技场高级赛 --workflow workflows/arena.wor
 - 策划已有 docx，**跳过 P0**，走 P1 → 04 规格交付线
 - 完整走通 01 → 04，继承 `tournament_bracket` L1 框架
 - 关联 workflow：`workflows/arena.workflow.json`
-- 已编译产出：`outputs/竞技场高级赛/`
+- 已编译产出：`案例/竞技场高级赛/开发文档/`
 - 继承现网「纷乱的群殴」决斗模块；L2 delta：分组/报名/竞猜/商店
 
 评审建议路径：
 
-1. 读 `案例/.../03-功能点梳理/.../0-阅读说明.md` — 程序主文档入口  
-2. 读 `outputs/竞技场高级赛/程序包.md` — 编译合并视角  
-3. 对照 `skills/design/tournament_bracket/` — L1 基底 vs L2 实例差异  
+1. 读 `案例/.../02-03需求拆解与功能点梳理/03-功能点梳理.md` — 程序主文档  
+2. 读 `案例/竞技场高级赛/开发文档/程序包.md` — 编译合并视角  
+3. 对照 `skills/frameworks/tournament_bracket/` — L1 基底 vs L2 实例差异  
 
 ---
 
@@ -286,7 +284,7 @@ design 仓库（本工程产出）→ server/design + client/design（P6 四件�
 | `main` | 初始提交：模板 + 竞技场案例 |
 | `promptmerge` | PromptMerge 架构：skills / prompts（P0~P6）/ compile / workflows |
 
-**变更原则**：改 `skills/`、`案例/`、`workflows/` → 重新 `compile.py` → **禁止手改 `outputs/`**。
+**变更原则**：改 `skills/`、`产出/`、`案例/`、`workflows/` → 重新 `compile.py` → **禁止手改 `{feature_root}/开发文档/`**。
 
 ---
 
