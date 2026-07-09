@@ -1,0 +1,107 @@
+# GDD 管线步骤表（gdd-decompose 引用）
+
+路径前缀：`GDD SKILL/`。占位符：`{feature_root}` = `产出/{功能名}`，`{spec_root}` = `{feature_root}/02-03需求拆解与功能点梳理`。
+
+**Skill 中文对照**：`p0-discovery-立项探索` 立项探索 · `p1-original-gdd-原始策划案` 原始策划案 · `p2-decompose-需求拆解` 需求拆解 · `p3-feature-spec-功能点梳理` 功能点梳理 · `p4-planner-fill-待策划补充` 待策划补充 · `p5-compile-verify-编译验收` 编译验收 · `p6-pipeline-开发管线` 开发管线
+
+---
+
+## P0 立项探索（p0-discovery-立项探索 · 可选）
+
+| 步 | Prompt | Skill |
+|----|--------|-------|
+| 1 | `prompts/立项探索/项目发现.md` | **立项探索** `p0-discovery-立项探索` |
+| 2 | `prompts/立项探索/GameDNA定调.md` | 同上 |
+| 3 | `prompts/立项探索/功能层级与Skill选型.md` | 同上 |
+| 4 | `prompts/立项探索/玩法大纲与01初稿.md` | 同上 |
+
+有 docx 时 **跳过 P0**，直进 P1。
+
+---
+
+## P1 原始策划案（p1-original-gdd-原始策划案）
+
+| 步 | Prompt | pipeline Skill | 产出 |
+|----|--------|----------------|------|
+| 1 | `prompts/原始策划案/Docx转原始案.md` | **原始策划案** `p1-original-gdd-原始策划案` | `{feature_root}/01-原始策划案/{功能名}/原始策划案.md` |
+| 2 | `prompts/原始策划案/完整性检查.md` | 同上 | `01/…/完整性检查-gap清单.md` |
+
+**门禁 → P2**：01 六章齐全；gap 无阻塞。
+
+---
+
+## P2 需求拆解（p2-decompose-需求拆解 · 9 步）
+
+> 规范 Skill：**需求拆解** `p2-decompose-需求拆解`
+
+| 步 | 中文 Prompt | 英文目录引用 | 产出章节 | 编号 |
+|----|-------------|--------------|----------|------|
+| 1 | 数据源 | `prompts/需求拆解/数据源.md` | 02 §6 数据概要 | — |
+| 2 | 系统内容分解 | `prompts/需求拆解/系统内容分解.md` | 02 §1.5 | SYS-/CNT- |
+| 3 | 规则 | `prompts/需求拆解/规则.md` | 02 §3 | R- |
+| 4 | 边界条件 | `prompts/需求拆解/边界条件.md` | 02 §5 | EX/PRE/LIM |
+| 5 | 状态机 | `prompts/需求拆解/状态机.md` | 02 §2 | — |
+| 6 | UI交互 | `prompts/需求拆解/UI交互.md` | 02 §4 | — |
+| 7 | 红点 | `prompts/需求拆解/红点.md` | 02 §6.1 | RD- |
+| 8 | 校验规则 | `prompts/需求拆解/校验规则.md` | 03 附录 E.2 | V- |
+| 9 | 验收标准 | `prompts/需求拆解/验收标准.md` | 02 §7 | T/B/E |
+
+**规范 Skill**：`skills/pipeline/p2-decompose-需求拆解/SKILL.md`（**需求拆解**）  
+**写作规范**：`templates/02-需求拆解-写作规范.md`
+
+**门禁 → P3**：02 九步策划可读；§1.5 与 §3 R- 对齐；核心 R- 均有规则说明 + 边界。
+
+---
+
+## P3 功能点梳理（p3-feature-spec-功能点梳理 · 6 步）
+
+| 步 | Prompt | 产出 |
+|----|--------|------|
+| 1 | `prompts/功能点梳理/阅读说明.md` | 03 §0 |
+| 2 | `prompts/功能点梳理/功能点拆分.md` | 03 `## N.` 各章（可分批） |
+| 3 | `prompts/功能点梳理/字段映射.md` | 03 附录 A/D/E |
+| 4 | `prompts/功能点梳理/验收场景.md` | 03 附录 B |
+| 5 | `prompts/功能点梳理/待确认事项.md` | 03 附录 C + 看板 |
+| 6 | `prompts/功能点梳理/Feature对齐.md` | Feature 映射（L2） |
+
+**规范 Skill**：`skills/pipeline/p3-feature-spec-功能点梳理/SKILL.md`（**功能点梳理**）  
+**格式真源**：`源文档/竞技场高级赛（纷乱的群殴锦标赛）—— 功能点梳理.docx`
+
+**必 @**：`01/…/原始策划案.md`、`02-需求拆解.md`、已有 `03-功能点梳理.md`（追加时）
+
+**门禁 → P4**：03 各章五块结构齐全；附录 A 有 P-xx。
+
+---
+
+## P4 待策划补充（p4-planner-fill-待策划补充）
+
+| 步 | Prompt | Skill |
+|----|--------|-------|
+| 1 | `prompts/待策划补充/生成待补充清单.md` | **待策划补充** `p4-planner-fill-待策划补充` |
+| 2 | （策划人工填 04） | — |
+| 3 | `prompts/待策划补充/策划回填验收.md` | 同上 |
+
+**门禁 → P5**：回填验收通过。
+
+---
+
+## P5 编译验收（p5-compile-verify-编译验收）
+
+| 步 | Prompt | Skill | 备注 |
+|----|--------|-------|------|
+| 1 | `prompts/编译验收/职能分轨检查.md` | **编译验收** `p5-compile-verify-编译验收` | 只出报告 |
+| 2 | `prompts/编译验收/执行编译验收.md` | 同上 | 跑 `compile.py` |
+| 3 | `prompts/编译验收/策划验收清单.md` | 同上 | 策划验收 |
+| 4 | `prompts/编译验收/管线执行日志.md` | 同上 | **每次改文档后必写** |
+
+---
+
+## P6 开发管线（p6-pipeline-开发管线 · 可选）
+
+| 步 | Prompt | Skill |
+|----|--------|-------|
+| 1 | `prompts/开发管线/后端管线编排.md` | **开发管线** `p6-pipeline-开发管线` |
+| 2 | `prompts/开发管线/前端管线编排.md` | 同上 |
+| 3 | `prompts/开发管线/增量开发继承现网.md` | 同上 |
+
+产出在仓库外 `server/design/`、`client/design/`（若项目有）。

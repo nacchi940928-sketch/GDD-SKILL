@@ -27,7 +27,7 @@
 | GDD 02/数据源与现网表对齐 | Agent + 程序 |
 | 热更配置后的回归范围评估 | QA、程序 |
 
-**不用于**：Part 2 从 docx 首次拆解（那是 P2-DS + [config_table](../tech/config_table/tech.md)）；本 Skill 面向**已有表关系网后的变更管理**。
+**不用于**：Part 2 从 docx 首次拆解（那是 需求拆解·数据源 + [config_table](../tech/config_table/tech.md)）；本 Skill 面向**已有表关系网后的变更管理**。
 
 **前置**：GDD 配置表须先按 [config_table](../tech/config_table/tech.md) 写成程序态单表；程序定稿后维护本目录 `config/表关联关系.json`。
 
@@ -155,7 +155,7 @@ prompts/                   # 可选 Part 2 外挂
 
 | 现有 | 本 Skill |
 |------|----------|
-| P2-DS 登记 P-xx、02/数据源 | 现网改表后**反向**查哪些 P-xx / 表要同步 |
+| 需求拆解·数据源 登记 P-xx、02/数据源 | 现网改表后**反向**查哪些 P-xx / 表要同步 |
 | 04-02 配置数值（策划填） | 变更影响报告可指向 04 待填项 |
 | compile.py | 无直接依赖；结构大变后仍须重跑 compile |
 

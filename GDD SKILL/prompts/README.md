@@ -1,6 +1,7 @@
 # 提示词总索引
 
-> **路径规范**：`{feature_root}` = `产出/{功能名}`。详见 [使用指导.md](../使用指导.md)。
+> 路径规范：`{feature_root}` = `产出/{功能名}`。详见 [使用指导.md](../使用指导.md)。  
+> **Prompt 清单与门禁** → [规格交付库.md](规格交付库.md)（复制 Prompt 用本文件，不必翻各阶段 README）。
 
 ---
 
@@ -8,14 +9,14 @@
 
 | 部分 | 目录 | 定位 | 索引 |
 |------|------|------|------|
-| **Part 1 策划辅助** | [P0/](P0/) | 帮策划**写**案（可选） | [P0/README.md](P0/README.md) |
-| **Part 2 规格交付** | [P1/](P1/) ~ [P6/](P6/) | 将 01 **拆解**为程序/AI 可执行 GDD（**工作重点**） | **[规格交付库.md](规格交付库.md)** |
+| **Part 1 策划辅助** | [立项探索/](立项探索/) | 帮策划**写**案（可选） | [立项探索/README.md](立项探索/README.md) |
+| **Part 2 规格交付** | [原始策划案/](原始策划案/)～[开发管线/](开发管线/) | 将 01 **拆解**为程序/AI 可执行 GDD（**工作重点**） | **[规格交付库.md](规格交付库.md)** |
 
 ```text
-Part 1（可选）              Part 2（核心）
-P0 → 01 草稿        →    P1 定稿 → P2 八维度 → P3 功能点 → P4~P6 交付
-                              ↑
-                    策划 docx 可直接从 P1 进入
+Part 1 策划辅助（可选）                    Part 2 规格交付（核心）
+立项探索 → 01 草稿              →    原始策划案定稿 → 需求拆解 → 功能点梳理 → 待策划补充 → 编译验收 → 开发管线
+                                          ↑
+                                策划 docx 也可直接从「原始策划案」进入
 ```
 
 **Part 2 交付目标**：无论哪位策划的 01，经统一 Prompt 库产出规范一致的 `02 + 03`。
@@ -29,15 +30,15 @@ P0 → 01 草稿        →    P1 定稿 → P2 八维度 → P3 功能点 → P
 | 你要做什么 | 打开 |
 |------------|------|
 | 了解完整规范、编号、门禁 | **[规格交付库.md](规格交付库.md)** |
-| 复制公共头块 | [_shared/Part2-公共头.md](_shared/Part2-公共头.md) |
-| P1 入口 | [P1/README.md](P1/README.md) |
-| P2 八维度拆解 | [P2/README.md](P2/README.md) |
-| P3 功能点梳理 | [P3/README.md](P3/README.md) |
-| P4 待补充 | [P4/README.md](P4/README.md) |
-| P5 编译验收 | [P5/README.md](P5/README.md) |
-| P6 开发管线 | [P6/README.md](P6/README.md) |
+| 复制公共头块 | [公共/规格交付-公共头.md](公共/规格交付-公共头.md) |
+| 原始策划案（01 定稿） | [原始策划案/README.md](原始策划案/README.md) |
+| 需求拆解（02 九步） | [需求拆解/README.md](需求拆解/README.md) |
+| 功能点梳理（03） | [功能点梳理/README.md](功能点梳理/README.md) |
+| 待策划补充（04） | [待策划补充/README.md](待策划补充/README.md) |
+| 编译验收 | [编译验收/README.md](编译验收/README.md) |
+| 开发管线 | [开发管线/README.md](开发管线/README.md) |
 
-> **P1~P6 共 23 个提示词正文**均已统一 Part 2 六段式结构。
+> **原始策划案～开发管线** 共 24 个提示词正文，均已统一 Part 2 六段式结构。
 
 ---
 
@@ -45,36 +46,35 @@ P0 → 01 草稿        →    P1 定稿 → P2 八维度 → P3 功能点 → P
 
 | 阶段 | 提示词数 | 规范 Skill | 说明 |
 |------|----------|------------|------|
-| P1 入口 | 2 | [p1-original-gdd](../skills/pipeline/p1-original-gdd/SKILL.md) | docx → 01 定稿 |
-| **P2 需求拆解** | **8** | [p2-decompose](../skills/pipeline/p2-decompose/SKILL.md) | **核心：八维度编号化** |
-| **P3 功能点** | **6** | [p3-feature-spec](../skills/pipeline/p3-feature-spec/SKILL.md) | **核心：程序主文档** |
-| P4 待补充 | 2 | [p4-planner-fill](../skills/pipeline/p4-planner-fill/SKILL.md) | 策划回填 delta |
-| P5 编译验收 | 4 | [p5-compile-verify](../skills/pipeline/p5-compile-verify/SKILL.md) | compile + 验收 + **执行日志** |
-| P6 开发管线 | 3 | [p6-pipeline](../skills/pipeline/p6-pipeline/SKILL.md) | server/client 四件套 |
+| 原始策划案 | 2 | [p1-original-gdd-原始策划案](../skills/pipeline/p1-original-gdd-原始策划案/SKILL.md) | docx → 01 定稿 |
+| **需求拆解** | **9** | [p2-decompose-需求拆解](../skills/pipeline/p2-decompose-需求拆解/SKILL.md) | **核心：02 九步编号化** |
+| **功能点梳理** | **6** | [p3-feature-spec-功能点梳理](../skills/pipeline/p3-feature-spec-功能点梳理/SKILL.md) | **核心：程序主文档 03** |
+| 待策划补充 | 2 | [p4-planner-fill-待策划补充](../skills/pipeline/p4-planner-fill-待策划补充/SKILL.md) | 策划回填 04 delta |
+| 编译验收 | 4 | [p5-compile-verify-编译验收](../skills/pipeline/p5-compile-verify-编译验收/SKILL.md) | compile + 验收 + **执行日志** |
+| 开发管线 | 3 | [p6-pipeline-开发管线](../skills/pipeline/p6-pipeline-开发管线/SKILL.md) | server/client 四件套 |
 
 ## Part 2 推荐顺序
 
 ```text
-P1-1 → P1-2 → 策划确认 01
+原始策划案/Docx转原始案 → 完整性检查 → 策划确认 01
   ↓
-P2-DS → P2-R → P2-EX → P2-SM → P2-UI → P2-RD → P2-V → P2-T
+需求拆解：数据源 → 系统内容分解 → 规则 → 边界条件 → 状态机 → UI交互 → 红点 → 校验规则 → 验收标准
   ↓
-P3-1 → P3-2（可分批）→ P3-3 → P3-4 → P3-5 → P3-6
+功能点梳理：阅读说明 → 功能点拆分（可分批）→ 字段映射 → 验收场景 → 待确认事项 → Feature对齐
   ↓
-P4-1 → 策划回填 04 → P4-2 验收 ──┐
-  ↑                              │ 未通过
-  └──────────────────────────────┘
+待策划补充/生成待补充清单 → 策划回填 04 → 策划回填验收 ──┐
+  ↑                                                    │ 未通过
+  └────────────────────────────────────────────────────┘
   ↓
-P5-1 → P5-2 → P5-3 → P5-4 → P6
+编译验收：职能分轨检查 → 执行编译验收 → 策划验收清单 → 管线执行日志 → 开发管线
 ```
 
 ## 用法
 
 1. 打开 [规格交付库.md](规格交付库.md) 确认本步门禁与 @ 引用
-2. 打开对应 `P1~P6/*.md`，复制「提示词正文」
-3. 替换 `{功能名}`、`{feature_root}`、`{功能缩写}`、`{skill_id}`、`{项目}`
-4. `@` 引用必读输入文件
-5. 检查产出落在 `{feature_root}/` 正确子目录
+2. 打开对应阶段目录下的 `.md`，**仅复制**「提示词正文」代码块（不含文末示例）
+3. 参照文末 **输入内容示例** 填写占位符（工作包名称等）并 `@` 引用必读文件
+4. 检查产出落在 `{feature_root}/` 正确子目录
 
 ## 编译
 

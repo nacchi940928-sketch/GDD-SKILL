@@ -1,6 +1,6 @@
 ﻿# Skill 选型 — {功能名}
 
-> P0-3 产出。确认后可复制 workflow 草案为 `workflows/{项目}.workflow.json`。
+> 立项探索·功能层级与Skill选型 产出。确认后可复制 workflow 草案为 `workflows/{项目}.workflow.json`。
 
 ## 1. 功能层级
 

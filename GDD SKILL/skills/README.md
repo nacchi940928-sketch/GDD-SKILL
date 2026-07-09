@@ -10,7 +10,14 @@
 
 ```text
 skills/
-├── pipeline/          ★ 文档管线 P0~P6 格式规范（原 gdd/）— 每个功能必用
+├── pipeline/          ★ 文档管线格式规范 — 见 pipeline/README.md 中文对照表
+│   ├── p0-discovery-立项探索/      立项探索（可选）
+│   ├── p1-original-gdd-原始策划案/   原始策划案 · 01
+│   ├── p2-decompose-需求拆解/        需求拆解 · 02
+│   ├── p3-feature-spec-功能点梳理/     功能点梳理 · 03
+│   ├── p4-planner-fill-待策划补充/     待策划补充 · 04
+│   ├── p5-compile-verify-编译验收/   编译验收
+│   └── p6-pipeline-开发管线/         开发管线
 ├── frameworks/        ★ L1 玩法框架模板（原 design/）— workflow 按需选
 ├── tech/              L0 技术横切（配置表、分辨率、契约…）
 ├── ux/                L0 体验横切（交互反馈…）
@@ -22,9 +29,9 @@ skills/
 
 | 文件夹 | 一句话 | 配对 Prompt | 超级鸡马 | 竞技场 |
 |--------|--------|-------------|----------|--------|
-| **`pipeline/`** | 怎么写 01~03、怎么 compile | `prompts/P0~P6/` | ✅ 必用 | ✅ 必用 |
-| **`frameworks/`** | 这类玩法通用的业务骨架 | P2/P3 里 `@ frameworks/…` | ❌ 未选 | ✅ tournament_bracket |
-| **`tech/`、`ux/`** | 全项目横切标准 | P2-DS、P3-3、P6 | 部分勾选 | 部分勾选 |
+| **`pipeline/`** | 怎么写 01~03、怎么 compile（见 [pipeline/README.md](pipeline/README.md) 中文对照表） | `prompts/立项探索～开发管线/` | ✅ 必用 | ✅ 必用 |
+| **`frameworks/`** | 这类玩法通用的业务骨架 | 需求拆解/功能点梳理 里 `@ frameworks/…` | ❌ 未选 | ✅ tournament_bracket |
+| **`tech/`、`ux/`** | 全项目横切标准 | 需求拆解·数据源、功能点梳理·字段映射、开发管线 | 部分勾选 | 部分勾选 |
 
 > **易混点**：`pipeline` = 文档工序；`frameworks` = 玩法类型。二者都不是「某个功能的策划正文」。
 
@@ -88,7 +95,7 @@ pipeline/（文档怎么写 — 与玩法无关）
 | `implementation_data` | L0 | [tech/implementation_data](tech/implementation_data/) | 实现数据契约：变量追溯、契约审计、就绪矩阵 |
 | `interaction_feedback` | L0 | [ux/interaction_feedback](ux/interaction_feedback/) | 按钮三态、Toast、防连点 |
 | `tournament_bracket` | L1 | [frameworks/tournament_bracket](frameworks/tournament_bracket/) | 单败 Bracket 通用模式 |
-| `pipeline/p0~p6-*` | 管线 | [pipeline/](pipeline/) | 各阶段文档格式规范 |
+| `p0-discovery-立项探索` … `p6-pipeline-开发管线` | 管线 | [pipeline/](pipeline/) | 立项探索～开发管线 各阶段文档格式（见中文对照表） |
 
 ---
 

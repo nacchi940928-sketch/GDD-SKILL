@@ -1,54 +1,33 @@
 ﻿# GDD SKILL 子项目
 
-策划工作流主内容目录。仓库根 [README.md](../README.md) 为项目组评审入口。
+> 日常只看 **[使用指导.md](使用指导.md)** 和 **[prompts/规格交付库.md](prompts/规格交付库.md)**，不必在多个 README 间跳转。
 
-## 快速导航
+---
 
-| 文档 | 用途 |
-|------|------|
-| **[使用指导.md](使用指导.md)** | **路径规范、@ 引用、新建功能步骤** |
-| **[prompts/规格交付库.md](prompts/规格交付库.md)** | **Part 2 规格交付 Prompt 库（工作重点）** |
-| [产出/README.md](产出/README.md) | **管线交付物**（01~04） |
-| [案例/README.md](案例/README.md) | **对照样例**（非日常产出） |
-| [templates/README.md](templates/README.md) | **空模板与写作规范** |
-| [docs/GDD-SKILL-管线完成度.md](docs/GDD-SKILL-管线完成度.md) | **管线完成度总结（已完成/未完成）** |
-
-## 目录一览
+## 目录
 
 ```text
-prompts/          提示词 P0~P6
-skills/           规范与框架 — pipeline/（文档管线）· frameworks/（玩法框架）· tech/ux/（L0）
-源文档/             仅原始策划 docx
-config/             全项目表关联 JSON 模板
-templates/        空模板 — 见 templates/README.md
-产出/{功能名}/     ★ 管线交付物（02-03需求拆解与功能点梳理/ + 开发文档/ + logs）
-案例/             对照样例（如竞技场高级赛）
-workflows/        feature_root → 产出/
+prompts/          可执行 Prompt（立项探索～开发管线）
+skills/           pipeline 规范 · L0/L1 框架
+templates/        00~04 空模板
+产出/{功能名}/     ★ 真实交付（01~04 + 开发文档 + logs）
+案例/             对照样例（竞技场高级赛）
+workflows/        feature_root 配置
 tools/            compile.py 等
 ```
 
-## 三层基底
+## 常用
 
-| 层级 | 位置 | 内容 |
-|------|------|------|
-| L0 | `skills/tech/*`、`skills/ux/*` | 分辨率、交互反馈 |
-| L1 | `skills/frameworks/*` | 框架 Skill |
-| L2 | **`产出/{功能}/`** + `workflows/*.json` | 项目交付实例 |
-
-## 常用命令
+| 入口 | 说明 |
+|------|------|
+| [使用指导.md](使用指导.md) | 路径、`@`、新建、踩坑 |
+| [prompts/规格交付库.md](prompts/规格交付库.md) | Prompt 清单与门禁 |
+| [`.cursor/skills/gdd-decompose/`](../.cursor/skills/gdd-decompose/SKILL.md) | Cursor 一键拆解 |
+| [产出/超级鸡马/](产出/超级鸡马/) | 当前真产出 |
+| [案例/竞技场高级赛/](案例/竞技场高级赛/) | 对照样例 |
 
 ```bash
-# 真实产出
 python tools/compile.py 产出/超级鸡马 --workflow workflows/chickenhorse.workflow.json
-
-# 对照样例
-python tools/compile.py 案例/竞技场高级赛 --workflow workflows/arena.workflow.json
 ```
 
-## 当前产出
-
-[产出/超级鸡马/](产出/超级鸡马/) — 《超级鸡马》docx 规格化交付。
-
-## 对照样例
-
-[案例/竞技场高级赛/](案例/竞技场高级赛/) — 继承 `tournament_bracket` 的 L2 样例。
+全量文档地图（维护者用）→ [docs/文档索引.md](docs/文档索引.md)

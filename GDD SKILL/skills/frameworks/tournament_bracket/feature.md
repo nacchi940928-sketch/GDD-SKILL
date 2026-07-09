@@ -9,14 +9,14 @@ L2 `03-功能点梳理` 为程序主读；本表为**框架层排期索引**，�
 
 | 优先级 | 框架任务 | 依赖 | 框架验收 |
 |--------|----------|------|----------|
-| P0 | 阶段 Scheduler | — | T-TB-001 |
-| P0 | 报名 + 身份判定 | Scheduler | T-TB-001, T-TB-002 |
-| P0 | 签位 + 机器人补位 | 报名 | T-TB-003 |
-| P0 | Bracket 快照与协议族 | 签位 | GetBracketSnapshot |
-| P1 | 对阵树 UI + 节点三态 | 快照 | ux 节点机 |
-| P1 | 身份门控（战斗 vs 树） | 身份 | B-TB-001 |
-| P1 | Phase Push + 客户端门控 | Scheduler | 阶段一致 |
-| P2 | 扩展槽适配 | extension_slots | L2 用例 |
+| 立项探索 | 阶段 Scheduler | — | T-TB-001 |
+| 立项探索 | 报名 + 身份判定 | Scheduler | T-TB-001, T-TB-002 |
+| 立项探索 | 签位 + 机器人补位 | 报名 | T-TB-003 |
+| 立项探索 | Bracket 快照与协议族 | 签位 | GetBracketSnapshot |
+| 原始策划案 | 对阵树 UI + 节点三态 | 快照 | ux 节点机 |
+| 原始策划案 | 身份门控（战斗 vs 树） | 身份 | B-TB-001 |
+| 原始策划案 | Phase Push + 客户端门控 | Scheduler | 阶段一致 |
+| 需求拆解 | 扩展槽适配 | extension_slots | L2 用例 |
 
 ## 依赖关系
 
