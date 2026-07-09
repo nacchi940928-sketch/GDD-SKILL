@@ -17,6 +17,7 @@
 | P4 | **待策划补充** | `p4-planner-fill-待策划补充/` | `prompts/待策划补充/` | `04-待策划补充/` |
 | P5 | **编译验收** | `p5-compile-verify-编译验收/` | `prompts/编译验收/` | `开发文档/` 三包 |
 | P6 | **开发管线** | `p6-pipeline-开发管线/` | `prompts/开发管线/` | server/client 四件套 |
+| P7 | **规范反哺**（**手动 · 维护者**） | `p7-norm-feedback-规范反哺/` | `prompts/规范反哺/` | `规范反哺报告.md`（**不**进 gdd-decompose） |
 
 `{spec_root}` = `产出/{功能名}/02-03需求拆解与功能点梳理`
 
@@ -33,8 +34,9 @@
 | 待策划补充（04） | [p4-planner-fill-待策划补充/SKILL.md](p4-planner-fill-待策划补充/SKILL.md) |
 | 编译验收 | [p5-compile-verify-编译验收/SKILL.md](p5-compile-verify-编译验收/SKILL.md) |
 | 开发管线 | [p6-pipeline-开发管线/SKILL.md](p6-pipeline-开发管线/SKILL.md) |
+| **规范反哺**（手动，非自动） | [p7-norm-feedback-规范反哺/SKILL.md](p7-norm-feedback-规范反哺/SKILL.md) |
 
-**每个功能都要用**（立项探索除外），与玩法类型无关。
+**每个功能都要用**（立项探索、规范反哺除外），与玩法类型无关。
 
 ---
 

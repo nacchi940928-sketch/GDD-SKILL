@@ -105,3 +105,16 @@
 | 3 | `prompts/开发管线/增量开发继承现网.md` | 同上 |
 
 产出在仓库外 `server/design/`、`client/design/`（若项目有）。
+
+---
+
+## P7 规范反哺（**手动 · 不纳入本表自动顺序**）
+
+| 步 | Prompt | 产出 |
+|----|--------|------|
+| 1 | `prompts/规范反哺/生成规范反哺报告.md` | `{feature_root}/规范反哺报告.md` |
+
+**规范 Skill**：`skills/pipeline/p7-norm-feedback-规范反哺/SKILL.md`  
+**Cursor**：`.cursor/skills/gdd-norm-feedback/` — 须用户**显式要求**，gdd-decompose **不得**自动衔接。
+
+**门禁**：报告仅含建议；改 `prompts/`、`skills/` 须另开会话 + [GDD-SKILL-更新规范.md](../../GDD SKILL/skills/GDD-SKILL-更新规范.md) S1～S7。

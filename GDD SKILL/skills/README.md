@@ -17,7 +17,8 @@ skills/
 │   ├── p3-feature-spec-功能点梳理/     功能点梳理 · 03
 │   ├── p4-planner-fill-待策划补充/     待策划补充 · 04
 │   ├── p5-compile-verify-编译验收/   编译验收
-│   └── p6-pipeline-开发管线/         开发管线
+│   ├── p6-pipeline-开发管线/         开发管线
+│   └── p7-norm-feedback-规范反哺/    规范反哺（手动，非自动）
 ├── frameworks/        ★ L1 玩法框架模板（原 design/）— workflow 按需选
 ├── tech/              L0 技术横切（配置表、分辨率、契约…）
 ├── ux/                L0 体验横切（交互反馈…）
@@ -96,6 +97,7 @@ pipeline/（文档怎么写 — 与玩法无关）
 | `interaction_feedback` | L0 | [ux/interaction_feedback](ux/interaction_feedback/) | 按钮三态、Toast、防连点 |
 | `tournament_bracket` | L1 | [frameworks/tournament_bracket](frameworks/tournament_bracket/) | 单败 Bracket 通用模式 |
 | `p0-discovery-立项探索` … `p6-pipeline-开发管线` | 管线 | [pipeline/](pipeline/) | 立项探索～开发管线 各阶段文档格式（见中文对照表） |
+| `p7-norm-feedback-规范反哺` | 管线 | [pipeline/p7-norm-feedback-规范反哺](pipeline/p7-norm-feedback-规范反哺/) | **手动**规范演进萃取，不纳入 gdd-decompose |
 
 ---
 

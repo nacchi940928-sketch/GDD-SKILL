@@ -25,6 +25,15 @@ GDD SKILL/prompts/         → 指令：复制各 .md 的「提示词正文」�
 
 **禁止**：修改 `GDD SKILL/skills/`（除维护者任务）；手改 `{feature_root}/开发文档/`。
 
+## 不包含：规范反哺（P7）
+
+本 Skill **仅负责交付轨**（P1～P6 的拆解与 compile）。**不会**在 P3/P5 完成后自动：
+
+- 生成 `规范反哺报告.md`
+- 修改 `prompts/` 或 `skills/`
+
+若维护者要从 L2 萃取规范增量，须**另开会话**并显式使用 **`gdd-norm-feedback`**（见 `GDD SKILL/prompts/规范反哺/README.md`）。
+
 ## 启动：向用户确认或推断
 
 | 输入 | 用户需提供 | Agent 推断 |
@@ -143,3 +152,4 @@ python tools/compile.py {feature_root} --workflow workflows/{项目}.workflow.js
 | [pipeline-steps.md](pipeline-steps.md) | 逐步 Prompt 路径与门禁 |
 | `GDD SKILL/使用指导.md` | 路径、@ 引用、踩坑 |
 | `GDD SKILL/prompts/规格交付库.md` | 编号、索引、Part 2 真源 |
+| `GDD SKILL/prompts/规范反哺/README.md` | 规范反哺（手动，非本 Skill） |

@@ -12,6 +12,7 @@
 | skill_id | 维度 | Prompt | 状态 | 参考实例（L2） | 备注 |
 |----------|------|--------|------|----------------|------|
 | config_table | 配置表 | 需求拆解·数据源 | ✅ | （L2 待新建） | [tech.md](../tech/config_table/tech.md) |
+| decompose_content_taxonomy | 系统内容分解 SYS/CNT | 需求拆解·系统内容分解 | ⬜ | 待提供 | 路线图 2026-07-09 登记 |
 | configurable_rules | 可配置规则 | 需求拆解·规则、待策划补充 | ✅ | （L2 待新建） | [tech.md](../tech/configurable_rules/tech.md) |
 | implementation_data | 实现数据契约 | 需求拆解 收尾、P3、编译验收 | ✅ | （L2 待新建） | [tech.md](../tech/implementation_data/tech.md) |
 | config_table_impact | 配置表变更影响 | 待建 | 📝 | `config/表关联关系.template.json` | [代做](config_table_impact.md) |
@@ -46,3 +47,4 @@
 | 2026-07-06 | config_table | 从超级鸡马道具表问题抽象，晋升 L0 |
 | 2026-07-06 | configurable_rules | 从超级鸡马计分审计抽象，晋升 L0 |
 | 2026-07-06 | implementation_data | 从物理/摩擦遗漏问题抽象，晋升 L0 |
+| 2026-07-09 | decompose_content_taxonomy | P2-P3 待完善清单登记，待 L2 反哺 |

@@ -25,5 +25,7 @@ tools/            compile.py 等
 | [prompts/规格交付库.md](prompts/规格交付库.md) | Prompt 清单与门禁 |
 | [workflows/_template.workflow.json](workflows/_template.workflow.json) | 新建项目配置模板 |
 | [`.cursor/skills/gdd-decompose/`](../.cursor/skills/gdd-decompose/SKILL.md) | Cursor 一键拆解 |
+| [`.cursor/skills/gdd-norm-feedback/`](../.cursor/skills/gdd-norm-feedback/SKILL.md) | 规范反哺（手动，另开会话） |
+| [P2-P3-待完善清单.md](P2-P3-待完善清单.md) | P2/P3 维度 Skill 缺口 |
 
 全量文档地图（维护者用）→ [docs/文档索引.md](docs/文档索引.md)
