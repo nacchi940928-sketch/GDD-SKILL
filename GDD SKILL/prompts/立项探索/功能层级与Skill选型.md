@@ -79,27 +79,31 @@
 
 ---
 
+---
+
+---
+
 ## 输入内容示例
 
-> 说明如何填写占位符与 @ 引用。**勿与上方「提示词正文」一并复制**；示例以 `案例/竞技场高级赛` 为参照。
+> 说明如何填写占位符与 @ 引用。**勿与上方「提示词正文」一并复制**。路径均相对于 `GDD SKILL/` 根。
 
 ### 占位符
 
 | 占位符 | 本例取值 |
 |--------|----------|
-| `{功能名}` | 竞技场高级赛 |
+| `{功能名}` | {你的工作包名称} |
 
 ### Cursor 中 @ 引用
 
 ```
-@产出/竞技场高级赛/00-立项探索/竞技场高级赛/project.json
-@产出/竞技场高级赛/00-立项探索/竞技场高级赛/game_dna.json
-@skills/frameworks/tournament_bracket/design.md
-@workflows/arena.workflow.json
+@产出/{功能名}/00-立项探索/{功能名}/project.json
+@产出/{功能名}/00-立项探索/{功能名}/game_dna.json
+@skills/README.md
+@skills/frameworks/*/meta.md
 ```
 
 ### 策划补充说明（可选）
 
 ```
-对照 workflow 的 selected_skills，说明 L1 用 tournament_bracket，L2 delta 为竞猜/商店/入口分流。
+只推荐 skills/ 中已存在的 skill_id；无匹配写「待建 Skill」。
 ```

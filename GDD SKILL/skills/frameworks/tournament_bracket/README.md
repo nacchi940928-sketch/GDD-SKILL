@@ -8,7 +8,7 @@
 |---------------------|----------------|
 | 抽象模式、可配置槽位、规则编号 R-TB-xxx | `产出/{功能名}/` 下的 01~04 |
 | 不绑定 P-xx、具体 UI 文案、签位表数值 | workflow `skill_configs` 填本项目参数 |
-| 不定义 extension 槽内的具体业务 | L2 delta 写在 `案例/` |
+| 不定义 extension 槽内的具体业务 | L2 delta 写在 `产出/{功能名}/` |
 
 上级索引：[skills/README.md](../../README.md)
 

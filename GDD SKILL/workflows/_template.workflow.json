@@ -1,0 +1,26 @@
+{
+  "project": {
+    "name": "{功能名}",
+    "description": "（策划填写一句话描述）",
+    "reference_games": "",
+    "platform": "移动端",
+    "target_audience": "",
+    "monetization": ""
+  },
+  "selected_skills": [
+    "resolution_standard",
+    "interaction_feedback"
+  ],
+  "skill_configs": {
+    "resolution_standard": {
+      "orientation": "竖屏",
+      "reference_resolution": "1080x2340",
+      "scale_mode": "等比包含留黑边（fit）"
+    },
+    "interaction_feedback": {
+      "feedback_strength": "标准",
+      "click_lock_ms": "300"
+    }
+  },
+  "feature_root": "产出/{功能名}"
+}

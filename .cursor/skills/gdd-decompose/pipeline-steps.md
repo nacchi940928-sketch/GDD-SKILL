@@ -65,7 +65,7 @@
 | 6 | `prompts/功能点梳理/Feature对齐.md` | Feature 映射（L2） |
 
 **规范 Skill**：`skills/pipeline/p3-feature-spec-功能点梳理/SKILL.md`（**功能点梳理**）  
-**格式真源**：`源文档/竞技场高级赛（纷乱的群殴锦标赛）—— 功能点梳理.docx`
+**格式真源**：`skills/pipeline/p3-feature-spec-功能点梳理/SKILL.md`
 
 **必 @**：`01/…/原始策划案.md`、`02-需求拆解.md`、已有 `03-功能点梳理.md`（追加时）
 

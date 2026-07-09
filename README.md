@@ -2,7 +2,7 @@
 
 策划案（01）→ **02 需求拆解** + **03 功能点梳理** → 编译交付程序/AI 管线。
 
-所有 Prompt、模板、产出在 [`GDD SKILL/`](GDD%20SKILL/) 子目录。
+所有 Prompt、模板、产出在 [`GDD SKILL/`](GDD%20SKILL/) 子目录。**当前为空白工程**（无 L2 实例，仅有管线骨架与 L1 框架）。
 
 ---
 
@@ -17,7 +17,6 @@ Cursor 一键编排：[`.cursor/skills/gdd-decompose/`](.cursor/skills/gdd-decom
 
 ```bash
 cd "GDD SKILL"
-python tools/compile.py 产出/超级鸡马 --workflow workflows/chickenhorse.workflow.json
+# 新建功能后：
+python tools/compile.py 产出/{功能名} --workflow workflows/{项目}.workflow.json
 ```
-
-更多索引（模板、Skill、案例、维护者文档）→ [GDD SKILL/docs/文档索引.md](GDD%20SKILL/docs/文档索引.md)

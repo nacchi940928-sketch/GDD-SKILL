@@ -40,7 +40,7 @@ GDD SKILL/prompts/         → 指令：复制各 .md 的「提示词正文」�
 |----------|------|
 | 「整包 / 全流程 / 拆到 03」 | 当前入口 → 03 完成（含 04 清单可选） |
 | 「拆到编译 / compile」 | → 编译验收·执行编译验收 |
-| 「只拆 02 / 需求拆解」 | 需求拆解 8 步 |
+| 「只拆 02 / 需求拆解」 | 需求拆解 9 步 |
 | 「只拆 03 / 功能点梳理」 | 功能点梳理 6 步 |
 | 「只做规则 / 只做 §4」 | 对应单个 Prompt |
 
@@ -124,16 +124,16 @@ python tools/compile.py {feature_root} --workflow workflows/{项目}.workflow.js
 **docx → 整包拆解**：
 
 ```text
-@GDD SKILL/源文档/xxx.docx
-工作包：超级鸡马
-请按 gdd-decompose 从 docx 跑到 03 完成，feature_root=产出/超级鸡马
+@GDD SKILL/源文档/{你的策划案}.docx
+工作包：{功能名}
+请按 gdd-decompose 从 docx 跑到 03 完成，feature_root=产出/{功能名}
 ```
 
 **01 已有 → 只跑需求拆解·规则**：
 
 ```text
-@GDD SKILL/产出/超级鸡马/01-原始策划案/超级鸡马/原始策划案.md
-工作包：超级鸡马，只做需求拆解·规则
+@GDD SKILL/产出/{功能名}/01-原始策划案/{功能名}/原始策划案.md
+工作包：{功能名}，只做需求拆解·规则
 ```
 
 ## 延伸阅读

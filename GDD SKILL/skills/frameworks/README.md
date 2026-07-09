@@ -11,7 +11,7 @@
 2. 需求拆解/功能点梳理 Prompt 要求 `@ skills/frameworks/{skill_id}/design.md` 等
 3. 在 02 中写「继承 R-TB-xxx，本项目 delta …」
 
-**未选中的 framework 不必读**（如超级鸡马未选任何 L1 framework）。
+**未选中的 framework 不必读**。
 
 ---
 

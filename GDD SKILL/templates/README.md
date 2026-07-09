@@ -50,7 +50,7 @@ templates/
 
 ## 功能点梳理 单文档
 
-当前交付为 **单文件** `{spec_root}/03-功能点梳理.md`（§0 + 各章 + 附录 A~E）。格式真源见 [skills/pipeline/p3-feature-spec-功能点梳理/SKILL.md](../skills/pipeline/p3-feature-spec-功能点梳理/SKILL.md) 与竞技场 docx 样例。
+当前交付为 **单文件** `{spec_root}/03-功能点梳理.md`（§0 + 各章 + 附录 A~E）。格式见 [p3-feature-spec-功能点梳理/SKILL.md](../skills/pipeline/p3-feature-spec-功能点梳理/SKILL.md)。
 
 ---
 
