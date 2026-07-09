@@ -1,119 +1,88 @@
-﻿# Skill 知识库
+﻿# GDD SKILL 可移植包
 
-`skills/` 存放**可复用规范与框架知识**，供 Agent 读取、编译脚本引用。  
-**不是**可直接复制粘贴的提示词（提示词在 `prompts/`）。  
-**不是**具体功能的策划案（交付物在 `产出/`；对照样例在 `案例/`）。
+> **只复制本 `skills/` 文件夹**到其他项目即可（另建 `产出/`、安装 Cursor 入口，见下）。
 
----
-
-## 目录命名一览（先看这个）
+## 目录结构
 
 ```text
-skills/
-├── pipeline/          ★ 文档管线格式规范 — 见 pipeline/README.md 中文对照表
-│   ├── p0-discovery-立项探索/      立项探索（可选）
-│   ├── p1-original-gdd-原始策划案/   原始策划案 · 01
-│   ├── p2-decompose-需求拆解/        需求拆解 · 02
-│   ├── p3-feature-spec-功能点梳理/     功能点梳理 · 03
-│   ├── p4-planner-fill-待策划补充/     待策划补充 · 04
-│   ├── p5-compile-verify-编译验收/   编译验收
-│   ├── p6-pipeline-开发管线/         开发管线
-│   └── p7-norm-feedback-规范反哺/    规范反哺（手动，非自动）
-├── frameworks/        ★ L1 玩法框架模板（原 design/）— workflow 按需选
-├── tech/              L0 技术横切（配置表、分辨率、契约…）
-├── ux/                L0 体验横切（交互反馈…）
-├── _template/         新建 frameworks 时复制
-├── _backlog/          待建 Skill 构想（未晋升前禁止当正式 Skill）
-├── README.md          ← 本文件
+skills/                          ← ★ 复制整棵此目录
+├── README.md                    ← 本文件
+├── 结构说明.md                  全结构说明
+├── 使用指导.md                  日常操作
+├── gdd-decompose/               Cursor 斜杠命令 · 交付轨
+│   ├── SKILL.md                 ⭐ Agent 主指令
+│   ├── reference.md             管线步骤表
+│   ├── examples.md              对话示例
+│   ├── scripts/compile.py
+│   └── README.md
+├── gdd-norm-feedback/           Cursor 斜杠命令 · 演进轨
+├── prompts/                     各阶段 Prompt 正文
+├── pipeline/                    格式铁律（p0～p7）
+├── templates/                   01～04 模板
+├── tools/                       compile.py 等
+├── workflows/                   项目 JSON 配置
+├── frameworks/                  L1 玩法框架
+├── tech/、ux/                   L0 横切
 └── GDD-SKILL-更新规范.md
 ```
 
-| 文件夹 | 一句话 | 配对 Prompt |
-|--------|--------|-------------|
-| **`pipeline/`** | 怎么写 01~03、怎么 compile | `prompts/立项探索～开发管线/` |
-| **`frameworks/`** | 这类玩法通用的业务骨架（L1） | 需求拆解/功能点梳理 里 `@ frameworks/…` |
-| **`tech/`、`ux/`** | 全项目横切标准（L0） | 需求拆解·数据源、功能点梳理·字段映射 等 |
+## 在新项目安装（3 步）
 
-> **易混点**：`pipeline` = 文档工序；`frameworks` = 玩法类型。二者都不是「某个功能的策划正文」。
-
-详细说明：[pipeline/README.md](pipeline/README.md) · [frameworks/README.md](frameworks/README.md)
-
----
-
-## 治理原则（必读）
-
-| 层级 | 位置 | 写什么 | 谁可改 |
-|------|------|--------|--------|
-| **Skill** | `skills/` | 抽象框架、格式铁律、编号体系、config 槽位 | **须维护者确认**，AI 不得擅自写入 L2 业务 |
-| **Prompt** | `prompts/` | **文档规范**与执行步骤；只用 `{占位符}` | 维护者迭代 |
-| **产出** | `产出/{功能名}/` | 管线交付物（01~04） | 按项目执行 |
-| **案例** | `案例/` | 对照样例 | 维护者 |
-| **workflow** | `workflows/*.json` | 本项目 skill_configs | 按项目配置 |
-
-**禁止行为**
-
-- 将某次 `产出/` 的正文、规则、P-xx 数值**回写**进 `skills/`
-- 在 Prompt 正文中写死具体功能名/业务规则（应用 `{功能名}`、`{功能缩写}`）
-- 未经确认修改 L1 框架 Skill（`skills/frameworks/*`）
-
-**Prompt 与 Skill 分工**
-
-- **Prompt** = 告诉 AI「按什么格式、写到哪里、@ 什么输入」
-- **Skill** = 告诉 AI「这类系统的抽象模式是什么」（不含项目名词）
-- **01 原始策划案** = 业务内容的唯一来源（经 @ 引用）
-
----
-
-## 三层 + 管线模型
+### 1. 复制 skills 包
 
 ```text
-pipeline/（文档怎么写 — 与玩法无关）
-    │
-    ├── 引用 tech/*、ux/*（L0 横切）
-    └── 引用 frameworks/*（L1，可选）
-              │
-              ▼ 实例化
-    产出/{功能名}/ + workflows/*.json（L2）
+你的项目/
+├── skills/          ← 粘贴本目录
+└── 产出/            ← 新建空目录（管线写入此处）
 ```
 
-| 读什么 | 何时读 |
-|--------|--------|
-| `skills/frameworks/{skill_id}/` | workflow 选中、且拆解**同类玩法** |
-| `产出/{功能名}/02~03` | 看**该功能**如何实例化 |
-| `workflows/{项目}.workflow.json` | 看**该项目** skill_configs |
+### 2. 注册 Cursor 斜杠命令
 
-> L2 实例路径因项目而异，**不应**写死在 Skill 正文中。
+将编排 Skill **复制**到工作区 `.cursor/skills/`（Cursor 只认此路径）：
 
----
+```powershell
+# 在项目根执行（skills 的父目录）
+New-Item -ItemType Directory -Force -Path ".cursor\skills"
+Copy-Item -Recurse -Force "skills\gdd-decompose" ".cursor\skills\"
+Copy-Item -Recurse -Force "skills\gdd-norm-feedback" ".cursor\skills\"
+```
 
-## 已内置 Skill
+或运行：`powershell -File skills/install-cursor.ps1`
 
-| ID | 层级 | 目录 | 说明 |
-|----|------|------|------|
-| `resolution_standard` | L0 | [tech/resolution_standard](tech/resolution_standard/) | 1080×2340 fit、安全区 |
-| `config_table` | L0 | [tech/config_table](tech/config_table/) | 配置表单表结构、策划→Agent→程序三阶段 |
-| `configurable_rules` | L0 | [tech/configurable_rules](tech/configurable_rules/) | 可配置规则：R-xx + Const/表、Q-D/Q-R 分轨 |
-| `implementation_data` | L0 | [tech/implementation_data](tech/implementation_data/) | 实现数据契约：变量追溯、契约审计、就绪矩阵 |
-| `interaction_feedback` | L0 | [ux/interaction_feedback](ux/interaction_feedback/) | 按钮三态、Toast、防连点 |
-| `tournament_bracket` | L1 | [frameworks/tournament_bracket](frameworks/tournament_bracket/) | 单败 Bracket 通用模式 |
-| `p0-discovery-立项探索` … `p6-pipeline-开发管线` | 管线 | [pipeline/](pipeline/) | 立项探索～开发管线 各阶段文档格式（见中文对照表） |
-| `p7-norm-feedback-规范反哺` | 管线 | [pipeline/p7-norm-feedback-规范反哺](pipeline/p7-norm-feedback-规范反哺/) | **手动**规范演进萃取，不纳入 gdd-decompose |
+### 3. 用 Cursor 打开项目根
 
----
+工作区根 = **`skills/` 的父目录**（与 `产出/` 同级），不是 `skills/` 本身。
 
-## 新建 L1 框架
+## 路径约定
 
-1. 复制 `_template/` 到 `frameworks/{skill_id}/`
-2. 填写 `meta.md`（含 `config_schema`）与 `design/ux/tech/qa/feature.md`
-3. 在 `frameworks/{skill_id}/README.md` 写清「框架覆盖什么 / 不覆盖什么」
-4. **须维护者确认**后，才加入 `workflows/*.json` 的 `selected_skills`
+| 名称 | 路径 | 说明 |
+|------|------|------|
+| **SKILLS_ROOT** | `skills/` | 本包根；`prompts/`、`pipeline/` 相对此目录 |
+| **WORKSPACE_ROOT** | `skills/../` | `产出/`、`源文档/` 在此 |
+| **feature_root** | `产出/{功能名}` | 相对 WORKSPACE_ROOT |
 
-**原则**：L1 只写模式与槽位；具体数值、文案、业务名词一律放在 L2 `产出/`。
+## 一键拆解
 
----
+```text
+/gdd-decompose
+@源文档/{策划案}.docx
+工作包：{功能名}
+feature_root=产出/{功能名}
+workflow=skills/workflows/{项目}.workflow.json
+请从 docx 全流程跑到 04，全流程不要停。
+```
 
-## Skill 代做与演进
+## 编译
 
-- 待建构想：[_backlog/](_backlog/README.md)
-- 从真项目反哺：[GDD-SKILL-更新规范.md](GDD-SKILL-更新规范.md)
-- 进度表：[_backlog/维度Skill路线图.md](_backlog/维度Skill路线图.md)
+```bash
+python skills/tools/compile.py 产出/{功能名} --workflow skills/workflows/{项目}.workflow.json
+```
+
+## 快速入口
+
+| 文档 | 用途 |
+|------|------|
+| [使用指导.md](使用指导.md) | @ 引用、新建功能 |
+| [prompts/规格交付库.md](prompts/规格交付库.md) | Prompt 清单 |
+| [结构说明.md](结构说明.md) | 详细结构 |
+| [gdd-decompose/SKILL.md](gdd-decompose/SKILL.md) | 交付轨编排 |

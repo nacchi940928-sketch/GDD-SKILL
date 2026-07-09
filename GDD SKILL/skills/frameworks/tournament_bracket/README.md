@@ -42,7 +42,7 @@
 
 | 配置 | 位置 |
 |------|------|
-| `selected_skills` / `skill_configs` | `workflows/{项目}.workflow.json` |
+| `selected_skills` / `skill_configs` | `skills/workflows/{项目}.workflow.json` |
 | 业务 delta、P-xx、R-{缩写}-* | `产出/{功能名}/02~03` |
 
 **禁止**将 L2 案例正文回写进本目录。

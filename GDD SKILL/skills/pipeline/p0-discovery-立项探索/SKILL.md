@@ -76,7 +76,7 @@
 立项探索·功能层级与Skill选型 产出 `skill选型.md` 中的 workflow 草案，策划确认后可复制为：
 
 ```text
-workflows/{项目}.workflow.json
+skills/workflows/{项目}.workflow.json
 ```
 
 立项探索·玩法大纲与01初稿 玩法大纲中的「继承现网 / 新增 / 改动」须与 原始策划案 边界标注一致。

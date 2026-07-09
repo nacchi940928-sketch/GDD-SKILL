@@ -39,7 +39,7 @@ client/design/{功能名}/
 
 - `{spec_root}/03-功能点梳理.md`（主读）
 - `{spec_root}/02-需求拆解.md` §6 数据概要、§5 边界与异常、§2 流程与状态（服务端部分）
-- `workflows/*.json` skill_configs
+- `skills/workflows/*.json` skill_configs
 - L1 `skills/frameworks/*/tech.md`
 
 ## 前端输入

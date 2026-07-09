@@ -14,7 +14,7 @@
 
 ```bash
 cd "GDD SKILL"
-python tools/compile.py 产出/{功能名} --workflow workflows/{项目}.workflow.json
+python skills/tools/compile.py 产出/{功能名} --workflow skills/workflows/{项目}.workflow.json
 ```
 
 产出 `{feature_root}/开发文档/`：

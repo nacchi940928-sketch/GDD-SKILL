@@ -11,7 +11,7 @@
 
 | 类型 | 位置 | 状态 |
 |------|------|------|
-| **阶段 Skill** | `skills/pipeline/pipeline 各阶段-*/SKILL.md` | 有骨架，随项目打磨 |
+| **阶段 Skill** | `pipeline/pipeline 各阶段-*/SKILL.md` | 有骨架，随项目打磨 |
 | **维度 Skill** | `skills/tech/*`、`skills/ux/*`、`skills/frameworks/*` | 按领域增量建设 |
 
 **config_table** 是第一个成熟的**维度 Skill** 范例：从超级鸡马道具表结构问题抽象出「程序态单表 + 三阶段协作」，而非改某一功能的数值。

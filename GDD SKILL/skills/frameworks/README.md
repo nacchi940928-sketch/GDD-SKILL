@@ -7,7 +7,7 @@
 
 ## 何时读
 
-1. `workflows/{项目}.workflow.json` 的 `selected_skills` **包含**某 `skill_id`
+1. `skills/workflows/{项目}.workflow.json` 的 `selected_skills` **包含**某 `skill_id`
 2. 需求拆解/功能点梳理 Prompt 要求 `@ skills/frameworks/{skill_id}/design.md` 等
 3. 在 02 中写「继承 R-TB-xxx，本项目 delta …」
 

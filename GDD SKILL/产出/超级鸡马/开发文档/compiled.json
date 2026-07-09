@@ -1,0 +1,24 @@
+{
+  "feature": "超级鸡马",
+  "feature_root": "E:\\mhw\\GDD SKILL\\GDD SKILL\\产出\\超级鸡马",
+  "compiled_at": "2026-07-09T07:49:41.983350+00:00",
+  "workflow": "E:\\mhw\\GDD SKILL\\GDD SKILL\\skills\\workflows\\chickenhorse.workflow.json",
+  "selected_skills": [
+    "resolution_standard",
+    "interaction_feedback"
+  ],
+  "delivery_format": "single_md",
+  "compiled_dir": "E:\\mhw\\GDD SKILL\\GDD SKILL\\产出\\超级鸡马\\开发文档",
+  "outputs": [
+    "程序包.md",
+    "测试包.md",
+    "策划包.md"
+  ],
+  "sources": {
+    "spec_dir": "E:\\mhw\\GDD SKILL\\GDD SKILL\\产出\\超级鸡马\\02-03需求拆解与功能点梳理",
+    "01": "E:\\mhw\\GDD SKILL\\GDD SKILL\\产出\\超级鸡马\\01-原始策划案\\超级鸡马",
+    "02-需求拆解.md": "E:\\mhw\\GDD SKILL\\GDD SKILL\\产出\\超级鸡马\\02-03需求拆解与功能点梳理\\02-需求拆解.md",
+    "03-功能点梳理.md": "E:\\mhw\\GDD SKILL\\GDD SKILL\\产出\\超级鸡马\\02-03需求拆解与功能点梳理\\03-功能点梳理.md",
+    "04": "E:\\mhw\\GDD SKILL\\GDD SKILL\\产出\\超级鸡马\\04-待策划补充\\超级鸡马"
+  }
+}

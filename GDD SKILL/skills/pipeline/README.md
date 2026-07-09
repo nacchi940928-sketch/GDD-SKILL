@@ -13,8 +13,10 @@
 | Part 1 | **立项探索** | `p0-discovery-立项探索/` | `prompts/立项探索/` | `00-立项探索/`（可选） |
 | P1 | **原始策划案** | `p1-original-gdd-原始策划案/` | `prompts/原始策划案/` | `01-原始策划案/` |
 | P2 | **需求拆解** | `p2-decompose-需求拆解/` | `prompts/需求拆解/` | `02-需求拆解.md` |
+| **P2.5** | **工程真源对齐** | `p2b-program-bind-工程真源对齐/` | `prompts/工程真源对齐/` | `02.5-工程真源摘录.md` |
 | P3 | **功能点梳理** | `p3-feature-spec-功能点梳理/` | `prompts/功能点梳理/` | `03-功能点梳理.md` |
 | P4 | **待策划补充** | `p4-planner-fill-待策划补充/` | `prompts/待策划补充/` | `04-待策划补充/` |
+| **P4.5** | **决策稿对账**（可选） | `gdd-decompose/` §P4.5 | `prompts/决策稿对账/` | 回流 01~04 + logs |
 | P5 | **编译验收** | `p5-compile-verify-编译验收/` | `prompts/编译验收/` | `开发文档/` 三包 |
 | P6 | **开发管线** | `p6-pipeline-开发管线/` | `prompts/开发管线/` | server/client 四件套 |
 | P7 | **规范反哺**（**手动 · 维护者**） | `p7-norm-feedback-规范反哺/` | `prompts/规范反哺/` | `规范反哺报告.md`（**不**进 gdd-decompose） |
@@ -30,8 +32,10 @@
 | 立项探索 | [p0-discovery-立项探索/SKILL.md](p0-discovery-立项探索/SKILL.md) |
 | 原始策划案（01 定稿） | [p1-original-gdd-原始策划案/SKILL.md](p1-original-gdd-原始策划案/SKILL.md) |
 | 需求拆解（02） | [p2-decompose-需求拆解/SKILL.md](p2-decompose-需求拆解/SKILL.md) |
+| **工程真源对齐（02.5）** | [p2b-program-bind-工程真源对齐/SKILL.md](p2b-program-bind-工程真源对齐/SKILL.md) |
 | 功能点梳理（03） | [p3-feature-spec-功能点梳理/SKILL.md](p3-feature-spec-功能点梳理/SKILL.md) |
 | 待策划补充（04） | [p4-planner-fill-待策划补充/SKILL.md](p4-planner-fill-待策划补充/SKILL.md) |
+| **决策稿对账（P4.5 可选）** | [gdd-decompose/SKILL.md](../gdd-decompose/SKILL.md) §P4.5 |
 | 编译验收 | [p5-compile-verify-编译验收/SKILL.md](p5-compile-verify-编译验收/SKILL.md) |
 | 开发管线 | [p6-pipeline-开发管线/SKILL.md](p6-pipeline-开发管线/SKILL.md) |
 | **规范反哺**（手动，非自动） | [p7-norm-feedback-规范反哺/SKILL.md](p7-norm-feedback-规范反哺/SKILL.md) |

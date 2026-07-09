@@ -147,7 +147,7 @@ prompts/                   # 可选 Part 2 外挂
 └── CFG-1-配置表影响检索.md
 ```
 
-**不写入** `workflows/*.json` 的 `selected_skills`，除非维护者确认（本 Skill 为**运维/变更**向，非 GDD 拆解必选）。
+**不写入** `skills/workflows/*.json` 的 `selected_skills`，除非维护者确认（本 Skill 为**运维/变更**向，非 GDD 拆解必选）。
 
 ---
 
